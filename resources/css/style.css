@@ -1,0 +1,48 @@
+body {
+    font-family: 'Bai Jamjuree', sans-serif;
+  }
+  
+  .navbar {
+    background-color: white;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .navbar-brand {
+    font-weight: bold;
+    width: 60%;
+  }
+  
+  .logo {
+    width: 180px;
+  }
+  
+  .navbar-nav {
+    align-items: center; 
+    height: 60px;
+  }
+  
+  .navbar-nav .nav-item {
+    margin: 0 10px;
+  }
+  
+  .navbar-nav .nav-link {
+    color: #333;
+  }
+  
+  .navbar-nav .nav-link:hover {
+    color: #007bff;
+  }
+  
+  .btn-start-campaign {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .btn-start-campaign:hover {
+    background-color: #0056b3;
+  }
+  
+  .container-fluid {
+    width: 90%;
+  }
+  
