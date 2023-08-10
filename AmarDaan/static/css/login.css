@@ -3,15 +3,8 @@
     font-family: 'Bai Jamjuree', sans-serif;
 
 }
-
-body {
-	background: #f6f5f7;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-direction: column;
-	height: 100vh;
-	margin: -20px 0 50px;
+body{
+	width: 100%;
 }
 .round{
     border-radius: 10px;
@@ -89,7 +82,16 @@ input {
 	margin: 8px 0;
 	width: 100%;
 }
-
+.frm-body{
+	background: #f6f5f7;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	height:85vh;
+	width: 100%;
+	margin: -20px 0 50px;
+}
 .container {
 	background-color: #fff;
 	border-radius: 10px;
@@ -97,7 +99,7 @@ input {
 			0 10px 10px rgba(0,0,0,0.22);
 	position: relative;
 	overflow: hidden;
-	width: 1068px;
+	width: 50%;
 	max-width: 100%;
 	min-height: 650px;
 }
@@ -227,27 +229,3 @@ input {
 	width: 40px;
 }
 
-footer {
-    background-color: #222;
-    color: #fff;
-    font-size: 14px;
-    bottom: 0;
-    position: fixed;
-    left: 0;
-    right: 0;
-    text-align: center;
-    z-index: 999;
-}
-
-footer p {
-    margin: 10px 0;
-}
-
-footer i {
-    color: red;
-}
-
-footer a {
-    color: #3c97bf;
-    text-decoration: none;
-}
