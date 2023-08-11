@@ -20,3 +20,11 @@ def dashboard():
         print("note added successfully!")
 
     return render_template('dashboard.html', user=current_user)
+
+@views.route('/campaign')
+def campaign():
+    user = current_user if current_user.is_authenticated else None
+    if user == None:
+        return render_template('campaign_list.html', user=None)
+    else:
+        return render_template('campaign.html', user=user)
