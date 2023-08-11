@@ -1,4 +1,27 @@
 {% extends 'base.html' %}
+{% block link %}
+<style>
+    .form-body{
+        width: 50%;
+    }
+    .btn-primary{
+        margin: 50px;
+    }
+</style>
+{% endblock %}
 {% block content %}
-<h1>This is a user Dashboard</h1>
+<h1 align="center">Notes</h1>
+<ul class="list-group list-group-flush" id="notes">
+    {% for note in user.notes %}
+        <li class="list-group-item">{{ note.data }}</li>
+    {% endfor %}
+</ul>
+<div align="center">
+<div class="form-body">
+    <form action="{{url_for('views.dashboard')}}" method="post">
+        <textarea name="note" id='note' class="form-control"></textarea>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+    </form>
+</div>
 {% endblock %}
