@@ -1,5 +1,6 @@
 {% extends "base.html" %}
-{% block container %}
+{% block title %}Home{% endblock %}
+{% block content %}
 <header class="beautiful-header">
   <div class="header-content">
     <div class="left-content">
@@ -10,7 +11,7 @@
     </div>
     <div class="right-content">
       <div class="image-box">
-        <img id="headerImage" src="./resources/images/header-img-1.jpg" alt="Image">
+        <img id="headerImage" src="{{url_for('static', filename='images/header-img-4.jpg')}}" alt="Image">
       </div>
     </div>
   </div>
@@ -33,7 +34,7 @@
         <div class="carousel-inner">
             <div class="carousel-item active">
                 <div class="success-story">
-                    <img src="resources/images/header-img-3.jpg" alt="Success Image" class="success-image">
+                    <img src="{{url_for('static', filename='images/header-img-1.jpg')}}" alt="Success Image" class="success-image">
                     <div>
                         <h1>Rabeya's Journey: A Life Transformed with AmarDaan's Help</h1>
                         <p>Meet Rabeya, a determined girl from a village filled with hardships. Limited resources made education a distant dream. But, thanks to AmarDaan's compassionate donors, Rabeya's life took a remarkable turn.
@@ -46,7 +47,7 @@
             </div>
             <div class="carousel-item">
                 <div class="success-story">
-                    <img src="resources/images/header-img-4.jpg" alt="Success Image" class="success-image">
+                    <img src="{{url_for('static', filename='images/header-img-1.jpg')}}" alt="Success Image" class="success-image">
                     <div>
                         <h1>Kulsum's Inspirational Transformation with AmarDaan</h1>
                         <p>In a remarkable tale of innovation and community support, Rahman Khan, a visionary Bangladeshi entrepreneur, harnessed the power of AmarDaan Crowdfunding to bring quality education to rural areas. Khan's brainchild, a project to establish solar-powered schools, aimed to bridge the education gap and address energy challenges.
@@ -59,7 +60,7 @@
             </div>
             <div class="carousel-item">
               <div class="success-story">
-                  <img src="resources/images/header-img-4.jpg" alt="Success Image" class="success-image">
+                  <img src="{{url_for('static', filename='images/header-img-1.jpg')}}" alt="Success Image" class="success-image">
                   <div>
                       <h1>Empowering Bangladesh</h1>
                       <p>In the heart of a small town, Kulsum's life changed dramatically, thanks to AmarDaan's devoted donors. Despite financial struggles, Kulsum's determination led her to the organization's door. Through their support, she accessed education and skill development, paving the path to her dreams.
@@ -82,13 +83,13 @@
       <div class="ct-text">
         <h1>Discover amazing fundraising campaigns</h1>
       </div>
-      <button class="btn btn-start-campaign"> Fund Someone</button>
+      <button class="btn btn-start-campaign">Fund Someone</button>
     </div>
     <div class="box col-lg-6 img2">
       <div class="ct-text">
         <h1>Create your own campaign now</h1>
       </div>
-      <button class="btn btn-start-campaign"> Start Fundraising</button>
+      <button class="btn btn-start-campaign">Start Fundraising</button>
     </div>
   </div>
 </div>
@@ -137,12 +138,25 @@
         </div>
 </div>
 </div>
-
+<script>
+  const imageSources = [
+  "{{url_for('static', filename='images/header-img-4.jpg')}}",
+  "{{url_for('static', filename='images/header-img-5.jpg')}}",
+  "{{url_for('static', filename='images/header-img-6.jpg')}}",
+  "{{url_for('static', filename='images/header-img-4.jpg')}}",
+  "{{url_for('static', filename='images/header-img-4.jpg')}}",
+];
+const campaignData = [
+    { name: "Campaign 1", budget: 1000, collected: 750, imageUrl: " {{url_for('static', filename='images/header-img-4.jpg') }}" },
+    { name: "Campaign 2", budget: 2000, collected: 1500, imageUrl: "{{url_for('static', filename='images/header-img-4.jpg')}}" },
+    { name: "Campaign 2", budget: 2000, collected: 1700, imageUrl: "{{url_for('static', filename='images/header-img-5.jpg')}}" },
+    { name: "Campaign 2", budget: 2000, collected: 1900, imageUrl: "{{url_for('static', filename='images/header-img-6.jpg')}}" },
+    { name: "Campaign 2", budget: 2000, collected: 1800, imageUrl: "{{url_for('static', filename='images/header-img-3.jpg')}}" },
+    // Add more campaign data objects as needed
+  ];
+</script>
 <script type="text/javascript" src="{{ url_for('static', filename='index.js') }}"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+{% endblock %}
 
 </body>
-{% endblock %}

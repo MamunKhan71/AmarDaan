@@ -14,7 +14,7 @@ button {
   
   .navbar-brand {
     font-weight: bold;
-    width: 60%;
+    width: 50%;
   }
   
   .logo {
@@ -46,7 +46,7 @@ button {
     background-color: transparent;
     border: 3px solid #007bff;
     height: 4rem;
-    width: 8rem;
+    width: 10rem;
     font-weight: 700;
     color: #007bff;
   }

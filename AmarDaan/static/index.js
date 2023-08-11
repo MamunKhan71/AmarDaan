@@ -2,13 +2,6 @@
 
 // Code for changing header image
 const headerImage = document.getElementById("headerImage");
-const imageSources = [
-  "./resources/images/header-img-1.jpg",
-  "./resources/images/header-img-3.jpg",
-  "./resources/images/header-img-4.jpg",
-  "./resources/images/header-img-5.jpg",
-  "./resources/images/header-img-6.jpg"
-];
 
 let currentImageIndex = 0;
 
@@ -24,14 +17,7 @@ const prevBtn = document.getElementById("prevBtn");
 const nextBtn = document.getElementById("nextBtn");
 const cardRow = document.getElementById("cardRow");
 
-const campaignData = [
-    { name: "Campaign 1", budget: 1000, collected: 750, imageUrl: "./resources/images/header-img-1.jpg" },
-    { name: "Campaign 2", budget: 2000, collected: 1500, imageUrl: "./resources/images/header-img-4.jpg" },
-    { name: "Campaign 2", budget: 2000, collected: 1500, imageUrl: "./resources/images/header-img-5.jpg" },
-    { name: "Campaign 2", budget: 2000, collected: 1500, imageUrl: "./resources/images/header-img-6.jpg" },
-    { name: "Campaign 2", budget: 2000, collected: 1500, imageUrl: "./resources/images/header-img-3.jpg" },
-    // Add more campaign data objects as needed
-  ];
+
 
 let startIndex = 0;
 const cardsPerRow = 4;
