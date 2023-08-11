@@ -11,10 +11,11 @@ def login():
         email = request.form.get('email')
         passw = request.form.get('password')
         
-        user = User.query.filter_by(email).first()
+        user = User.query.filter_by(email=email).first()
         if user:
             if check_password_hash(user.password, passw):
-                print('Login Successful!')
+               flash("Account Logged Succesfully!", category='success')
+
             else:
                 print('Login Field')
 

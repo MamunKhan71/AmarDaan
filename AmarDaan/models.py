@@ -1,4 +1,4 @@
-from AmarDaan import db
+from amardaan import db
 from flask_login import UserMixin
 from sqlalchemy.sql import func
 
@@ -10,6 +10,7 @@ class Note(db.Model):
 
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(30))
     email = db.Column(db.String(150), unique = True)
     password = db.Column(db.String(150))
     notes = db.relationship('Note')

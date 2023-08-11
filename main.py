@@ -1,4 +1,4 @@
-from AmarDaan import create_app
+from amardaan import create_app
 app = create_app()
 
 if __name__ == '__main__':
