@@ -1,8 +1,83 @@
 {% extends 'base.html' %}
+{% block link %}
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/campaign.css')}}">
+{% endblock %}
 {% block content %}
-
-<div class="heading">
-    <h1>Start Fundraising</h1>
+<div class="header">
+    <h1>Start Your Fundraiser</h1>
 </div>
+<div class="container">
+    <div class="sidebar-steps fixed snipcss-hRotg style-UDfJt" id="style-UDfJt">
+        <div class="step active" onclick="navigateToStep(1)">
+          <a class="step-header">
+            <span class="btn btn-circle btn-edit" id="st1-circle">
+              1
+            </span>
+            <div class="step-title">
+              Get Started
+            </div>
+          </a>
+          <div class="text">
+            Set essential fundraiser details such as fundraiser title, target and currency
+          </div>
+        </div>
+        <div class="step" onclick="navigateToStep(2)">
+          <a class="step-header">
+            <span class="btn btn-circle" id="st2-circle">
+              2
+            </span>
+            <div class="step-title">
+              Fundraiser Story
+            </div>
+          </a>
+          <div class="text">
+            Tell your story! Add your description, images, videos and more
+          </div>
+        </div>
+        <div class="step" onclick="navigateToStep(3)">
+          <a class="step-header">
+            <span class="btn btn-circle" id="st3-circle">
+              3
+            </span>
+            <div class="step-title">
+              Final Details
+            </div>
+          </a>
+          <div class="text">
+            Add team members, customize visibility, and more
+          </div>
+        </div>
+        <div class="step" onclick="navigateToStep(4)">
+          <a class="step-header">
+            <span class="btn btn-circle" id="st4-circle">
+              4
+            </span>
+            <div class="step-title">
+              Payment Methods
+            </div>
+          </a>
+          <div class="text">
+            Enable payment processors for your fundraising page
+          </div>
+        </div>
+      </div>    
+</div>
+<script>
+function navigateToStep(stepNumber) {
+  // Remove the 'active' class from all steps
+  const steps = document.querySelectorAll('.step');
+  steps.forEach(function (step) {
+    step.classList.remove('active');
+  });
+
+  // Add the 'active' class to the clicked step
+  const clickedStep = document.querySelector(`.step:nth-child(${stepNumber})`);
+  clickedStep.classList.add('active');
+
+  // Set the hash for navigation
+  window.location.hash = 's' + stepNumber;
+}
+
+</script>
   
 {% endblock %}
