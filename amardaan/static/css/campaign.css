@@ -1,3 +1,6 @@
+.layout{
+    display: grid;
+}
 .header {
     width: 80%;
     display: flex;
@@ -21,7 +24,6 @@ body {
     -webkit-box-sizing: border-box; 
     margin: 0; 
     padding: 0; 
-    font-family: Lato,sans-serif;
 } 
 
 div { 
@@ -64,13 +66,34 @@ div {
     justify-content: flex-start; 
     flex-wrap: wrap;
 } 
+.layout-container{
+    display: flex;
+    width: 90%;
+    justify-content: center;
+    align-items: center;
+}
+.layout {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 1fr 2fr;
+    gap: 20px; 
+    padding: 20px;
+}
 
-.container { 
-    max-width: 1010px; 
-    margin: auto; 
-    padding: 0 15px; 
-    position: relative;
-} 
+
+.container1, .container2 {
+    display: flex;
+    justify-content: flex-end;
+    height: 1010px;
+    padding: 20px;
+    border-radius: 10px;
+}
+.container2{
+    box-shadow: 0 1.9021px 3.53246px rgba(47,67,90,.0278729), 0 5.25905px 9.76681px rgba(0,0,0,0), 0 12.6618px 23.5147px rgba(47,67,90,.0521271), 0 42px 78px rgba(47,67,90,.08);
+}
+
+/* Add your other styles here */
+
 
 body { 
     -webkit-text-size-adjust: 100%;
@@ -256,10 +279,7 @@ span {
     width: calc(100% - 60px); 
     padding-left: 28px;
 } 
-*{
-    font-family: 'Bai Jamjuree', sans-serif;
 
-}
 .sidebar-steps .step.active .step-title  { 
     color: #4a90e2;
 } 
