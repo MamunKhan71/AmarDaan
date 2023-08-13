@@ -338,6 +338,7 @@ textarea.input1 {
     padding: 12px 30px;
 } 
 
+
 textarea.input1 + .shadow-input1  { 
     border-radius: 10px;
 } 

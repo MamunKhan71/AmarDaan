@@ -138,9 +138,9 @@
                                     <label for="firstLocation">Payment Method</label>
                                     <select class="form-control">
                                         <option value="" selected disabled>Select Your Option</option>
-                                        <option>Bkash</option>
-                                        <option>Rocket</option>
-                                        <option>Nagad</option>
+                                        <option value="Bkash">Bkash</option>
+                                        <option value="Rocket">Rocket</option>
+                                        <option value="Nagad">Nagad</option>
                                     </select>
                                     <small>How do you want to receive your money?</small>
                                 </div>
@@ -158,14 +158,35 @@
                             </div>
                         </div>
                 </div>
-                <div class="step" onclick="navigateToStep(2)">
-                    <div class="text">
-                       
+                <div class="step" onclick="navigateToStep(2)" id="style-UDfJt2">
+                    <div style="padding: 0px 0px 0px 45px; color: black;"  class="text1">
+                        <h3>Fundraiser story</h3>
+                        <small>Explain why you're raising money, what the funds will be used for, and how much you value the support</small>
+                            <div class="form-group" >
+                                <label for="exampleTextarea">Your Story</label>
+                                <textarea class="form-control" id="exampleTextarea" rows="4"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="customFile">Upload fundraiser photo</label>
+                                <input type="file" class="form-control" id="customFile" />
+                            </div>
+                            <div class="form-group">
+                                <label for="yotube-link" class="form-label">Your video URL</label>
+                                <input class="form-control" value="https://" type="text" name="yotube-link">
+                                <small></small>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="step" onclick="navigateToStep(3)">
-                    <div class="text">
-                        
+                <div class="step" onclick="navigateToStep(3)" id="style-UDfJt3">
+                    <div style="padding: 0px 0px 0px 45px; color: black;" class="text1">
+                        <h3>Final Details</h3>
+                        <small>Add team members, customize visibility, and more</small>
+                        <div class="form-group">
+                            <label for="teamMembers">Team Members</label>
+                            <input type="text" class="form-control" id="teamMembers" placeholder="Add team members">
+                        </div>
+                        <!-- Add other form fields as needed -->
                     </div>
                 </div>
                 <div class="step" onclick="navigateToStep(4)">
@@ -185,32 +206,40 @@
 
 <script>
     function navigateToStep(stepNumber) {
-      // Remove the 'active' class from all steps in col1 and col2
-      const stepsContainer1 = document.getElementById('style-UDfJt1');
-      const stepsContainer2 = document.getElementById('style-UDfJt2');
-      
-      const steps1 = stepsContainer1.querySelectorAll('.step');
-      const steps2 = stepsContainer2.querySelectorAll('.step');
-      
-      steps1.forEach(function (step) {
-        step.classList.remove('active');
-      });
-      
-      steps2.forEach(function (step) {
-        step.classList.remove('active');
-      });
-    
-      // Add the 'active' class to the clicked step in col1 and col2
-      const clickedStep1 = stepsContainer1.querySelector(`.step:nth-child(${stepNumber})`);
-      clickedStep1.classList.add('active');
-      
-      const clickedStep2 = stepsContainer2.querySelector(`.step:nth-child(${stepNumber})`);
-      clickedStep2.classList.add('active');
-    
-      // Set the hash for navigation
-      window.location.hash = 's' + stepNumber;
+        // Remove the 'active' class from all steps in col1, col2, and col3
+        const stepsContainer1 = document.getElementById('style-UDfJt1');
+        const stepsContainer2 = document.getElementById('style-UDfJt2');
+        const stepsContainer3 = document.getElementById('style-UDfJt3');
+        const steps1 = stepsContainer1.querySelectorAll('.step');
+        const steps2 = stepsContainer2.querySelectorAll('.step');
+        const steps3 = stepsContainer3.querySelectorAll('.step');
+
+        steps1.forEach(function (step) {
+            step.classList.remove('active');
+        });
+
+        steps2.forEach(function (step) {
+            step.classList.remove('active');
+        });
+
+        steps3.forEach(function (step) {
+            step.classList.remove('active');
+        });
+
+        // Add the 'active' class to the clicked step in col1, col2, and col3
+        const clickedStep1 = stepsContainer1.querySelector(`.step:nth-child(${stepNumber})`);
+        clickedStep1.classList.add('active');
+
+        const clickedStep2 = stepsContainer2.querySelector(`.step:nth-child(${stepNumber})`);
+        clickedStep2.classList.add('active');
+
+        const clickedStep3 = stepsContainer3.querySelector(`.step:nth-child(${stepNumber})`);
+        clickedStep3.classList.add('active');
+
+        // Set the hash for navigation
+        window.location.hash = 's' + stepNumber;
     }
-    </script>
+</script>
     
     <!--Address block-->
     <script>
