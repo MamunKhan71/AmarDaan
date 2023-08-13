@@ -95,7 +95,6 @@
                                 <option value="35">Weddings &amp; Honeymoon</option>
                             </select>
                         </div>
-
                         <div class="address-block">
                             <div>
                                 <div class="form-group">
@@ -142,23 +141,20 @@
                                         <option value="Rocket">Rocket</option>
                                         <option value="Nagad">Nagad</option>
                                     </select>
-                                    <small>How do you want to receive your money?</small>
                                 </div>
                                 <div class="form-group" style="padding-top: 0px;">
                                     <label for="exampleInputEmail1">Phone Number</label>
                                     <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Your phone number">
-                                    <small>What is your payment number?</small>
 
                                 </div>
                                 <div class="form-group" style="padding-top: 0px;">
                                     <label for="exampleInputEmail1">Campaign Deadline</label>
                                     <input type="date" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                                    <small>When you want to stop this campaign?</small>
                                 </div>
                             </div>
                         </div>
                 </div>
-                <div class="step" onclick="navigateToStep(2)" id="style-UDfJt2">
+                <div class="step" onclick="navigateToStep(2)">
                     <div style="padding: 0px 0px 0px 45px; color: black;"  class="text1">
                         <h3>Fundraiser story</h3>
                         <small>Explain why you're raising money, what the funds will be used for, and how much you value the support</small>
@@ -170,21 +166,58 @@
                                 <label class="form-label" for="customFile">Upload fundraiser photo</label>
                                 <input type="file" class="form-control" id="customFile" />
                             </div>
-                            <div class="form-group">
-                                <label for="yotube-link" class="form-label">Your video URL</label>
-                                <input class="form-control" value="https://" type="text" name="yotube-link">
-                                <small></small>
+                            <div class="address-block">
+                                <div style="padding: 5px">
+                                    <label for="gender">Gender</label>
+                                    <select class="form-control">
+                                        <option value="" selected disabled>Select your gender</option>
+                                        <option value="male">Male</option>
+                                        <option value="female">Female</option>
+                                    </select>
+                                </div>
+                                <div style="padding: 5px">
+                                    <label for="age">Age</label>
+                                    <input class="form-control" type="number" name="age" placeholder="Your age">
+                                </div>
+                                <div style="padding: 5px">
+                                    <label for="occupation">Occupation</label>
+                                    <select class="form-control">
+                                        <option value="" selected disabled >Select your choice</option>
+                                        <option value="student">Student</option>
+                                        <option value="job holder">Job Holder</option>
+                                        <option value="unemployed">Unemployed</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+
                             </div>
+
                         </div>
                     </div>
-                </div>
-                <div class="step" onclick="navigateToStep(3)" id="style-UDfJt3">
+                
+                <div class="step" onclick="navigateToStep(3)">
                     <div style="padding: 0px 0px 0px 45px; color: black;" class="text1">
                         <h3>Final Details</h3>
-                        <small>Add team members, customize visibility, and more</small>
                         <div class="form-group">
-                            <label for="teamMembers">Team Members</label>
-                            <input type="text" class="form-control" id="teamMembers" placeholder="Add team members">
+                            <label for="yotube-link" class="form-label">Your video URL</label>
+                            <input class="form-control" value="https://" type="text" name="yotube-link">
+                            <small></small>
+                        </div>
+                        <div class="form-group">
+                            <label for="social-media">Social Media Profiles</label><br>
+                            <small>Is this fundraiser shown in other places? If so, add links to those pages.</small>
+                            <input type="text" class="form-control" name="social-media" value="https://">
+                        </div>
+                        <div class="form-group">
+                            <label for="about-us">How did you hear about us?</label>
+                            <select class="form-control">
+                            <option selected disabled value="">Select Your Choice</option>
+                            <option value="Search Engine">Search Engine</option>
+                            <option value="Friends & Family">Friends & Family</option> 
+                            <option value="Facebook">Facebook</option>
+                            <option value="Instagram">Instagram</option>
+                            <option value="others">Others</option>
+                            </select>
                         </div>
                         <!-- Add other form fields as needed -->
                     </div>
@@ -195,9 +228,8 @@
                         
                     </div>
                 
-
                 </div>
-            </form>
+                </form>
             </div>
         </div>
     </div>
@@ -209,10 +241,9 @@
         // Remove the 'active' class from all steps in col1, col2, and col3
         const stepsContainer1 = document.getElementById('style-UDfJt1');
         const stepsContainer2 = document.getElementById('style-UDfJt2');
-        const stepsContainer3 = document.getElementById('style-UDfJt3');
+        
         const steps1 = stepsContainer1.querySelectorAll('.step');
         const steps2 = stepsContainer2.querySelectorAll('.step');
-        const steps3 = stepsContainer3.querySelectorAll('.step');
 
         steps1.forEach(function (step) {
             step.classList.remove('active');
@@ -222,9 +253,6 @@
             step.classList.remove('active');
         });
 
-        steps3.forEach(function (step) {
-            step.classList.remove('active');
-        });
 
         // Add the 'active' class to the clicked step in col1, col2, and col3
         const clickedStep1 = stepsContainer1.querySelector(`.step:nth-child(${stepNumber})`);
@@ -232,9 +260,6 @@
 
         const clickedStep2 = stepsContainer2.querySelector(`.step:nth-child(${stepNumber})`);
         clickedStep2.classList.add('active');
-
-        const clickedStep3 = stepsContainer3.querySelector(`.step:nth-child(${stepNumber})`);
-        clickedStep3.classList.add('active');
 
         // Set the hash for navigation
         window.location.hash = 's' + stepNumber;
