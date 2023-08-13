@@ -1,5 +1,6 @@
-.layout{
-    display: grid;
+*{
+    font-family: 'Bai Jamjuree', sans-serif;
+
 }
 .header {
     width: 80%;
@@ -14,7 +15,6 @@
 }
 
 body {
-    font-family: 'Bai Jamjuree', sans-serif;
     font-style:inherit;
     font-size:14px;
     list-style:none;
@@ -57,34 +57,37 @@ div {
     background-color: #f5f5f5;
     color: white; 
   }
-  
-  
-  
+.layout-container{
+        display: flex;
+        justify-content: center;
+        height: 80vh;
+}
+.layout{
+    display: grid;
+    width: 80%;
+    grid-template-columns: 40% 30% 30%;
+}
+.col1{
+    display: flex;
+    justify-content: center;
+    height: 520px;
+}
+.col2{
+    grid-column: span 2;
+    display: block;
+}
   
 .row { 
     display: flex; 
     justify-content: flex-start; 
     flex-wrap: wrap;
 } 
-.layout-container{
-    display: flex;
-    width: 90%;
-    justify-content: center;
-    align-items: center;
-}
-.layout {
-    display: grid;
-    width: 100%;
-    grid-template-columns: 1fr 2fr;
-    gap: 20px; 
-    padding: 20px;
-}
 
-
+h2{
+    padding-bottom: 20px;
+}
 .container1, .container2 {
-    display: flex;
-    justify-content: flex-end;
-    height: 1010px;
+    height: 700px;
     padding: 20px;
     border-radius: 10px;
 }
@@ -136,7 +139,16 @@ html {
 .sidebar-steps.fixed { 
     position: fixed;
 } 
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 3fr; /* First column takes 1 part, second column takes 3 parts */
+    width: 100%;
+  }
 
+  .grid-item {
+    padding: 10px;
+    border: 1px solid black;
+  }
 .sidebar-steps .step  { 
     margin-bottom: 44px; 
     position: relative;
@@ -166,7 +178,6 @@ html {
     background: #eef5fe; 
     height: auto;
 } 
-
 .sidebar-steps .step:last-child  { 
     margin-bottom: 0;
 } 
@@ -210,6 +221,23 @@ a {
 .sidebar-steps .step.active .text  { 
     display: block;
 } 
+.text1{
+    display: none;
+}
+.address-block{
+    display: grid;
+    width: 100%;
+    height: 50px;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+.step.active .text1{
+    display: block;
+    width: 100%;
+    padding: 45px;
+}
+.form-group{
+    padding: 5px;
+}
 
 span { 
     vertical-align: baseline; 
@@ -243,7 +271,10 @@ span {
     justify-content: center; 
     flex-wrap: wrap;
 } 
-
+.ct2{
+    display: flex;
+    width: 100%;
+}
 .btn-circle { 
     width: 60px; 
     height: 60px; 
@@ -284,8 +315,13 @@ span {
     color: #4a90e2;
 } 
 
-
-#style-UDfJt.style-UDfJt {  
+#style-UDfJt1.style-UDfJt {  
    width: 360px;  
-    top: 220px;  
+   top: 220px;  
 }  
+.f-div{
+    display: none;
+}
+f-div.active{
+    display: block;
+}
