@@ -70,12 +70,12 @@
                     <form class="text1">
                     <h3>Fundraiser information</h3>
                         <div class="form-group">
-                          <label for="exampleInputEmail1">Fundraiser title</label>
-                          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Your campaign name">
+                          <label for="camp_name">Fundraiser title</label>
+                          <input type="text" class="form-control" name="camp_name" aria-describedby="emailHelp" placeholder="Your campaign name">
                         </div>
                         <div class="form-group">
-                            <label for="exampleFormControlSelect1">Fundraiser category / partner</label>
-                            <select class="form-control" id="exampleFormControlSelect1">
+                            <label for="camp_category">Fundraiser category / partner</label>
+                            <select class="form-control" name="camp_category">
                                 <option value="18">Animals &amp; Pets</option>
                                 <option value="19">Business &amp; Startups</option>
                                 <option value="20">Causes &amp; Charities</option>
@@ -98,8 +98,8 @@
                         <div class="address-block">
                             <div>
                                 <div class="form-group">
-                                    <label for="firstLocation">Division</label>
-                                    <select class="form-control" id="firstLocation" onchange="updateSecondLocation()">
+                                    <label for="camp_division">Division</label>
+                                    <select class="form-control" name="camp_division" id="firstLocation" onchange="updateSecondLocation()">
                                         <option value="" selected disabled>Select a division</option>
                                         <option value="Dhaka">Dhaka</option>
                                         <option value="Chattogram">Chattogram</option>
@@ -113,8 +113,8 @@
                             </div>
                             <div>
                                 <div class="form-group">
-                                    <label for="secondLocation">Zilla</label>
-                                    <select class="form-control" id="secondLocation" onchange="updateThirdLocation()">
+                                    <label for="camp_zilla">Zilla</label>
+                                    <select class="form-control" name="camp_zilla" id="secondLocation" onchange="updateThirdLocation()">
                                         <option value="" selected disabled>Select a zilla</option>
                                         <!-- Options will be populated dynamically using JavaScript -->
                                     </select>
@@ -122,8 +122,8 @@
                             </div>
                             <div>
                                 <div class="form-group">
-                                    <label for="thirdLocation">Upzilla</label>
-                                    <select class="form-control" id="thirdLocation">
+                                    <label for="camp_upzilla">Upzilla</label>
+                                    <select class="form-control" name="camp_upzilla" id="thirdLocation">
                                         <option value="" selected disabled>Select an upzilla</option>
                                         <!-- Options will be populated dynamically using JavaScript -->
                                     </select>
@@ -134,8 +134,8 @@
                             <h3>Donation information</h3>
                             <div class="address-block">
                                 <div class="form-group" style="padding: 0px;">
-                                    <label for="firstLocation">Payment Method</label>
-                                    <select class="form-control">
+                                    <label for="camp_payment">Payment Method</label>
+                                    <select class="form-control" name="camp_payment">
                                         <option value="" selected disabled>Select Your Option</option>
                                         <option value="Bkash">Bkash</option>
                                         <option value="Rocket">Rocket</option>
@@ -143,13 +143,13 @@
                                     </select>
                                 </div>
                                 <div class="form-group" style="padding-top: 0px;">
-                                    <label for="exampleInputEmail1">Phone Number</label>
-                                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Your phone number">
+                                    <label for="camp_mobile">Phone Number</label>
+                                    <input type="text" class="form-control" name="camp_mobile" aria-describedby="emailHelp" placeholder="Your phone number">
 
                                 </div>
                                 <div class="form-group" style="padding-top: 0px;">
-                                    <label for="exampleInputEmail1">Campaign Deadline</label>
-                                    <input type="date" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                    <label for="camp_deadline">Campaign Deadline</label>
+                                    <input type="date" class="form-control" name="camp_deadline" aria-describedby="emailHelp">
                                 </div>
                             </div>
                         </div>
@@ -159,29 +159,29 @@
                         <h3>Fundraiser story</h3>
                         <small>Explain why you're raising money, what the funds will be used for, and how much you value the support</small>
                             <div class="form-group" >
-                                <label for="exampleTextarea">Your Story</label>
-                                <textarea class="form-control" id="exampleTextarea" rows="4"></textarea>
+                                <label for="camp_story">Your Story</label>
+                                <textarea class="form-control" name="camp_story" rows="4"></textarea>
                             </div>
                             <div class="form-group">
-                                <label class="form-label" for="customFile">Upload fundraiser photo</label>
-                                <input type="file" class="form-control" id="customFile" />
+                                <label class="form-label" for="camp_photo">Upload fundraiser photo</label>
+                                <input type="file" class="form-control" name="camp_photo" />
                             </div>
                             <div class="address-block">
                                 <div style="padding: 5px">
-                                    <label for="gender">Gender</label>
-                                    <select class="form-control">
+                                    <label for="camp_gender">Gender</label>
+                                    <select class="form-control" name="camp_gender">
                                         <option value="" selected disabled>Select your gender</option>
                                         <option value="male">Male</option>
                                         <option value="female">Female</option>
                                     </select>
                                 </div>
                                 <div style="padding: 5px">
-                                    <label for="age">Age</label>
-                                    <input class="form-control" type="number" name="age" placeholder="Your age">
+                                    <label for="camp_age">Age</label>
+                                    <input class="form-control" type="number" name="camp_age" placeholder="Your age">
                                 </div>
                                 <div style="padding: 5px">
-                                    <label for="occupation">Occupation</label>
-                                    <select class="form-control">
+                                    <label for="camp_occupation">Occupation</label>
+                                    <select class="form-control" name="camp_occupation">
                                         <option value="" selected disabled >Select your choice</option>
                                         <option value="student">Student</option>
                                         <option value="job holder">Job Holder</option>
@@ -199,18 +199,18 @@
                     <div style="padding: 0px 0px 0px 45px; color: black;" class="text1">
                         <h3>Final Details</h3>
                         <div class="form-group">
-                            <label for="yotube-link" class="form-label">Your video URL</label>
-                            <input class="form-control" value="https://" type="text" name="yotube-link">
+                            <label for="camp_video" class="form-label">Your video URL</label>
+                            <input class="form-control" value="https://" type="text" name="camp_video">
                             <small></small>
                         </div>
                         <div class="form-group">
-                            <label for="social-media">Social Media Profiles</label><br>
+                            <label for="camp_social">Social Media Profiles</label><br>
                             <small>Is this fundraiser shown in other places? If so, add links to those pages.</small>
-                            <input type="text" class="form-control" name="social-media" value="https://">
+                            <input type="text" class="form-control" name="camp_social" value="https://">
                         </div>
                         <div class="form-group">
-                            <label for="about-us">How did you hear about us?</label>
-                            <select class="form-control">
+                            <label for="camp_aboutus">How did you hear about us?</label>
+                            <select class="form-control" name="camp_aboutus">
                             <option selected disabled value="">Select Your Choice</option>
                             <option value="Search Engine">Search Engine</option>
                             <option value="Friends & Family">Friends & Family</option> 
@@ -218,6 +218,7 @@
                             <option value="Instagram">Instagram</option>
                             <option value="others">Others</option>
                             </select>
+                            <button type="button" class="btn btn-primary">Submit</button>
                         </div>
                         <!-- Add other form fields as needed -->
                     </div>
