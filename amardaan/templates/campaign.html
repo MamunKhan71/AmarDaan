@@ -227,7 +227,8 @@
                     </div>
 
                 </div>
-                <!--Form Ends here-->
+                </form>
+                <!--Form Ends-->
             </div>
         </div>
     </div>
@@ -264,7 +265,7 @@
     }
 </script>
 
-<!--Address block-->
+<!--Address block!-->
 <script>
     const locationHierarchy = {
         Dhaka: {
@@ -318,7 +319,7 @@
 
         // Add new options based on the selected division in the first location
         const selectedValue = firstLocation.value;
-        const zillas = locationHierarchy[selectedValue] ? .Zilla;
+        const zillas = locationHierarchy[selectedValue] ?.Zilla;
 
         if (zillas) {
             zillas.forEach(zilla => {
@@ -347,7 +348,7 @@
 
         // Add new options based on the selected zilla in the second location
         const selectedValue = secondLocation.value;
-        const upzillas = locationHierarchy[selectedValue] ? .Upzilla;
+        const upzillas = locationHierarchy[selectedValue]?.Upzilla;
 
         if (upzillas) {
             upzillas.forEach(upzilla => {
