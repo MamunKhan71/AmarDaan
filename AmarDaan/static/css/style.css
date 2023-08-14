@@ -360,11 +360,6 @@ button {
     overflow: visible;
 } 
 
-
-button { 
-    -webkit-appearance: button;
-} 
-
 button { 
     outline: none!important; 
     border: none; 

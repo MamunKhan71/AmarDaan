@@ -250,17 +250,8 @@ span {
     border: 0; 
     list-style: none;
 } 
-.btn-submit{
-    width: 100%;
-    border: 0px; 
-    border-radius: 10px;
-}
-.btn-submit:hover{
-    transition-duration: .5s;
-    background-color: #4a90e2;
-    color: white;
-}
-.btn { 
+
+.camp-btn { 
     border-radius: 8px; 
     border: 1px solid #eaebee; 
     background: #fff; 
@@ -291,22 +282,22 @@ span {
     border-radius: 50%;
 } 
 
-.sidebar-steps .btn  { 
+.sidebar-steps .camp-btn  { 
     color: rgba(121,135,152,.5); 
     border: 1px solid #eef5fe;
 } 
 
-.sidebar-steps .btn-active:not(.btn-done)  { 
+.sidebar-steps .camp-btn-active:not(.camp-btn-done)  { 
     border: 1px solid #4a90e2; 
     color: #2f435a;
 } 
 
-.sidebar-steps .step.active .btn  { 
+.sidebar-steps .step.active .camp-btn  { 
     border: 1px solid #4a90e2; 
     color: #2f435a;
 } 
 
-.btn:hover,.btn:active { 
+.camp-btn:hover,.camp-btn:active { 
     background: #eef5fe; 
     border: 1px solid #4a90e2; 
     color: #4a90e2;

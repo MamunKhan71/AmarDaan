@@ -39,6 +39,8 @@ button {
   }
   
   .btn-start-campaign {
+    font-size: 14px; /* Adjust the font size as needed */
+    padding: 8px 17px ; 
     background-color: #007bff;
     color: white;
   }
