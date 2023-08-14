@@ -1,8 +1,5 @@
-{% extends 'base.html' %}
-{% block link %}
-<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/campaign.css')}}">
-{% endblock %}
-{% block content %}
+{% extends 'base.html' %} {% block link %}
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/campaign.css')}}"> {% endblock %} {% block content %}
 <div class="header">
     <h1>Start Your Fundraiser</h1>
 </div>
@@ -67,11 +64,11 @@
         <div class="col2">
             <div class="sidebar-steps style-UDfJt" id="style-UDfJt2">
                 <div class="step active" onclick="navigateToStep(1)">
-                    <form class="text1">
-                    <h3>Fundraiser information</h3>
+                    <form class="text1" action="{{url_for('views.campaign')}}" method="POST">
+                        <h3>Fundraiser information</h3>
                         <div class="form-group">
-                          <label for="camp_name">Fundraiser title</label>
-                          <input type="text" class="form-control" name="camp_name" aria-describedby="emailHelp" placeholder="Your campaign name">
+                            <label for="camp_name">Fundraiser title</label>
+                            <input type="text" class="form-control" name="camp_name" aria-describedby="emailHelp" placeholder="Your campaign name">
                         </div>
                         <div class="form-group">
                             <label for="camp_category">Fundraiser category / partner</label>
@@ -155,46 +152,46 @@
                         </div>
                 </div>
                 <div class="step" onclick="navigateToStep(2)">
-                    <div style="padding: 0px 0px 0px 45px; color: black;"  class="text1">
+                    <div style="padding: 0px 0px 0px 45px; color: black;" class="text1">
                         <h3>Fundraiser story</h3>
                         <small>Explain why you're raising money, what the funds will be used for, and how much you value the support</small>
-                            <div class="form-group" >
-                                <label for="camp_story">Your Story</label>
-                                <textarea class="form-control" name="camp_story" rows="4"></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label" for="camp_photo">Upload fundraiser photo</label>
-                                <input type="file" class="form-control" name="camp_photo" />
-                            </div>
-                            <div class="address-block">
-                                <div style="padding: 5px">
-                                    <label for="camp_gender">Gender</label>
-                                    <select class="form-control" name="camp_gender">
+                        <div class="form-group">
+                            <label for="camp_story">Your Story</label>
+                            <textarea class="form-control" name="camp_story" rows="4"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="camp_photo">Upload fundraiser photo</label>
+                            <input type="file" class="form-control" name="camp_photo" />
+                        </div>
+                        <div class="address-block">
+                            <div style="padding: 5px">
+                                <label for="camp_gender">Gender</label>
+                                <select class="form-control" name="camp_gender">
                                         <option value="" selected disabled>Select your gender</option>
                                         <option value="male">Male</option>
                                         <option value="female">Female</option>
                                     </select>
-                                </div>
-                                <div style="padding: 5px">
-                                    <label for="camp_age">Age</label>
-                                    <input class="form-control" type="number" name="camp_age" placeholder="Your age">
-                                </div>
-                                <div style="padding: 5px">
-                                    <label for="camp_occupation">Occupation</label>
-                                    <select class="form-control" name="camp_occupation">
+                            </div>
+                            <div style="padding: 5px">
+                                <label for="camp_age">Age</label>
+                                <input class="form-control" type="number" name="camp_age" placeholder="Your age">
+                            </div>
+                            <div style="padding: 5px">
+                                <label for="camp_occupation">Occupation</label>
+                                <select class="form-control" name="camp_occupation">
                                         <option value="" selected disabled >Select your choice</option>
                                         <option value="student">Student</option>
                                         <option value="job holder">Job Holder</option>
                                         <option value="unemployed">Unemployed</option>
                                         <option value="other">Other</option>
                                     </select>
-                                </div>
-
                             </div>
 
                         </div>
+
                     </div>
-                
+                </div>
+
                 <div class="step" onclick="navigateToStep(3)">
                     <div style="padding: 0px 0px 0px 45px; color: black;" class="text1">
                         <h3>Final Details</h3>
@@ -217,8 +214,8 @@
                             <option value="Facebook">Facebook</option>
                             <option value="Instagram">Instagram</option>
                             <option value="others">Others</option>
-                            </select>
-                            <button type="button" class="btn btn-primary">Submit</button>
+                            </select><br/>
+                            <button type="submit" value="Submit" class="btn-submit">Submit</button>
                         </div>
                         <!-- Add other form fields as needed -->
                     </div>
@@ -226,11 +223,11 @@
                 <div class="step" onclick="navigateToStep(4)">
 
                     <div class="text">
-                        
+
                     </div>
-                
+
                 </div>
-                </form>
+                <!--Form Ends here-->
             </div>
         </div>
     </div>
@@ -242,15 +239,15 @@
         // Remove the 'active' class from all steps in col1, col2, and col3
         const stepsContainer1 = document.getElementById('style-UDfJt1');
         const stepsContainer2 = document.getElementById('style-UDfJt2');
-        
+
         const steps1 = stepsContainer1.querySelectorAll('.step');
         const steps2 = stepsContainer2.querySelectorAll('.step');
 
-        steps1.forEach(function (step) {
+        steps1.forEach(function(step) {
             step.classList.remove('active');
         });
 
-        steps2.forEach(function (step) {
+        steps2.forEach(function(step) {
             step.classList.remove('active');
         });
 
@@ -266,100 +263,100 @@
         window.location.hash = 's' + stepNumber;
     }
 </script>
-    
-    <!--Address block-->
-    <script>
-        const locationHierarchy = {
-            Dhaka: {
-                Zilla: ['Dhaka', 'Gazipur', 'Narayanganj', 'Tangail', /* Add more zillas for Dhaka */],
-                Upzilla: ['Uttara', 'Mohammadpur', 'Mirpur', /* Add more upzillas for Dhaka */]
-            },
-            Chattogram: {
-                Zilla: ['Chattogram', 'Comilla', 'Feni', 'Cox\'s Bazar', /* Add more zillas for Chattogram */],
-                Upzilla: ['Sitakunda', 'Fatikchhari']
-            },
-            Comilla:{
-                Upzilla: ['Chandina', 'Debidwar'],
-            },
-            Rajshahi: {
-                Zilla: ['Rajshahi', 'Pabna', 'Natore', 'Bogra', /* Add more zillas for Rajshahi */],
-                Upzilla: ['Ullapara', 'Puthia', 'Durgapur', /* Add more upzillas for Rajshahi */]
-            },
-            Khulna: {
-                Zilla: ['Khulna', 'Jessore', 'Satkhira', 'Bagerhat', /* Add more zillas for Khulna */],
-                Upzilla: ['Dumuria', 'Keshabpur', 'Shyamnagar', /* Add more upzillas for Khulna */]
-            },
-            Barisal: {
-                Zilla: ['Barisal', 'Patuakhali', 'Bhola', 'Pirojpur', /* Add more zillas for Barisal */],
-                Upzilla: ['Banaripara', 'Lalmohan', 'Nesarabad', /* Add more upzillas for Barisal */]
-            },
-            Sylhet: {
-                Zilla: ['Sylhet', 'Moulvibazar', 'Habiganj', 'Sunamganj', /* Add more zillas for Sylhet */],
-                Upzilla: ['Golapganj', 'Bishwanath', 'Zakiganj', /* Add more upzillas for Sylhet */]
-            },
-            Rangpur: {
-                Zilla: ['Rangpur', 'Dinajpur', 'Gaibandha', 'Kurigram', /* Add more zillas for Rangpur */],
-                Upzilla: ['Mithapukur', 'Biral', 'Pirganj', /* Add more upzillas for Rangpur */]
-            }
-            // Add other divisions and their zillas/upzillas here
-        };
-        
-        function updateSecondLocation() {
-            const firstLocation = document.getElementById('firstLocation');
-            const secondLocation = document.getElementById('secondLocation');
-            
-            // Clear existing options in the second location
-            secondLocation.innerHTML = '';
-            
-            // Add default "Select a zilla" option
-            const defaultOption = document.createElement('option');
-            defaultOption.value = '';
-            defaultOption.textContent = 'Select a zilla';
-            defaultOption.disabled = true;
-            defaultOption.selected = true;
-            secondLocation.appendChild(defaultOption);
-            
-            // Add new options based on the selected division in the first location
-            const selectedValue = firstLocation.value;
-            const zillas = locationHierarchy[selectedValue]?.Zilla;
-            
-            if (zillas) {
-                zillas.forEach(zilla => {
-                    const option = document.createElement('option');
-                    option.value = zilla;
-                    option.textContent = zilla;
-                    secondLocation.appendChild(option);
-                });
-            }
+
+<!--Address block-->
+<script>
+    const locationHierarchy = {
+        Dhaka: {
+            Zilla: ['Dhaka', 'Gazipur', 'Narayanganj', 'Tangail', /* Add more zillas for Dhaka */ ],
+            Upzilla: ['Uttara', 'Mohammadpur', 'Mirpur', /* Add more upzillas for Dhaka */ ]
+        },
+        Chattogram: {
+            Zilla: ['Chattogram', 'Comilla', 'Feni', 'Cox\'s Bazar', /* Add more zillas for Chattogram */ ],
+            Upzilla: ['Sitakunda', 'Fatikchhari']
+        },
+        Comilla: {
+            Upzilla: ['Chandina', 'Debidwar'],
+        },
+        Rajshahi: {
+            Zilla: ['Rajshahi', 'Pabna', 'Natore', 'Bogra', /* Add more zillas for Rajshahi */ ],
+            Upzilla: ['Ullapara', 'Puthia', 'Durgapur', /* Add more upzillas for Rajshahi */ ]
+        },
+        Khulna: {
+            Zilla: ['Khulna', 'Jessore', 'Satkhira', 'Bagerhat', /* Add more zillas for Khulna */ ],
+            Upzilla: ['Dumuria', 'Keshabpur', 'Shyamnagar', /* Add more upzillas for Khulna */ ]
+        },
+        Barisal: {
+            Zilla: ['Barisal', 'Patuakhali', 'Bhola', 'Pirojpur', /* Add more zillas for Barisal */ ],
+            Upzilla: ['Banaripara', 'Lalmohan', 'Nesarabad', /* Add more upzillas for Barisal */ ]
+        },
+        Sylhet: {
+            Zilla: ['Sylhet', 'Moulvibazar', 'Habiganj', 'Sunamganj', /* Add more zillas for Sylhet */ ],
+            Upzilla: ['Golapganj', 'Bishwanath', 'Zakiganj', /* Add more upzillas for Sylhet */ ]
+        },
+        Rangpur: {
+            Zilla: ['Rangpur', 'Dinajpur', 'Gaibandha', 'Kurigram', /* Add more zillas for Rangpur */ ],
+            Upzilla: ['Mithapukur', 'Biral', 'Pirganj', /* Add more upzillas for Rangpur */ ]
         }
-        
-        function updateThirdLocation() {
-            const secondLocation = document.getElementById('secondLocation');
-            const thirdLocation = document.getElementById('thirdLocation');
-            
-            // Clear existing options in the third location
-            thirdLocation.innerHTML = '';
-            
-            // Add default "Select an upzilla" option
-            const defaultOption = document.createElement('option');
-            defaultOption.value = '';
-            defaultOption.textContent = 'Select an upzilla';
-            defaultOption.disabled = true;
-            defaultOption.selected = true;
-            thirdLocation.appendChild(defaultOption);
-            
-            // Add new options based on the selected zilla in the second location
-            const selectedValue = secondLocation.value;
-            const upzillas = locationHierarchy[selectedValue]?.Upzilla;
-            
-            if (upzillas) {
-                upzillas.forEach(upzilla => {
-                    const option = document.createElement('option');
-                    option.value = upzilla;
-                    option.textContent = upzilla;
-                    thirdLocation.appendChild(option);
-                });
-            }
+        // Add other divisions and their zillas/upzillas here
+    };
+
+    function updateSecondLocation() {
+        const firstLocation = document.getElementById('firstLocation');
+        const secondLocation = document.getElementById('secondLocation');
+
+        // Clear existing options in the second location
+        secondLocation.innerHTML = '';
+
+        // Add default "Select a zilla" option
+        const defaultOption = document.createElement('option');
+        defaultOption.value = '';
+        defaultOption.textContent = 'Select a zilla';
+        defaultOption.disabled = true;
+        defaultOption.selected = true;
+        secondLocation.appendChild(defaultOption);
+
+        // Add new options based on the selected division in the first location
+        const selectedValue = firstLocation.value;
+        const zillas = locationHierarchy[selectedValue] ? .Zilla;
+
+        if (zillas) {
+            zillas.forEach(zilla => {
+                const option = document.createElement('option');
+                option.value = zilla;
+                option.textContent = zilla;
+                secondLocation.appendChild(option);
+            });
         }
-        </script>
+    }
+
+    function updateThirdLocation() {
+        const secondLocation = document.getElementById('secondLocation');
+        const thirdLocation = document.getElementById('thirdLocation');
+
+        // Clear existing options in the third location
+        thirdLocation.innerHTML = '';
+
+        // Add default "Select an upzilla" option
+        const defaultOption = document.createElement('option');
+        defaultOption.value = '';
+        defaultOption.textContent = 'Select an upzilla';
+        defaultOption.disabled = true;
+        defaultOption.selected = true;
+        thirdLocation.appendChild(defaultOption);
+
+        // Add new options based on the selected zilla in the second location
+        const selectedValue = secondLocation.value;
+        const upzillas = locationHierarchy[selectedValue] ? .Upzilla;
+
+        if (upzillas) {
+            upzillas.forEach(upzilla => {
+                const option = document.createElement('option');
+                option.value = upzilla;
+                option.textContent = upzilla;
+                thirdLocation.appendChild(option);
+            });
+        }
+    }
+</script>
 {% endblock %}

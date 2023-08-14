@@ -250,7 +250,16 @@ span {
     border: 0; 
     list-style: none;
 } 
-
+.btn-submit{
+    width: 100%;
+    border: 0px; 
+    border-radius: 10px;
+}
+.btn-submit:hover{
+    transition-duration: .5s;
+    background-color: #4a90e2;
+    color: white;
+}
 .btn { 
     border-radius: 8px; 
     border: 1px solid #eaebee; 

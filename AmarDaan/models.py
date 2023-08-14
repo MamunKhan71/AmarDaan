@@ -2,7 +2,7 @@ from amardaan import db
 from flask_login import UserMixin
 from sqlalchemy.sql import func
 
-class Note(db.Model):
+class Campaign(db.Model):
     id = db.Column(db.Integer, primary_key= True)
     camp_name = db.Column(db.String(200))
     camp_category = db.Column(db.String(200))
@@ -13,7 +13,7 @@ class Note(db.Model):
     camp_mobile = db.Column(db.String(200))    
     camp_deadline = db.Column(db.String(200))
     camp_story = db.Column(db.String(200))
-    camp_photo = db.Column(db.String(200))
+    # camp_photo = db.Column(db.String(200))
     camp_gender = db.Column(db.String(200))
     camp_age = db.Column(db.String(200))
     camp_occupation = db.Column(db.String(200))
@@ -29,4 +29,4 @@ class User(db.Model, UserMixin):
     name = db.Column(db.String(30))
     email = db.Column(db.String(150), unique = True)
     password = db.Column(db.String(150))
-    notes = db.relationship('Note')
+    notes = db.relationship('Campaign')
