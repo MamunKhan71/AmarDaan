@@ -14,14 +14,14 @@ def home():
 @views.route('/dashboard', methods=["POST", "GET"])
 @login_required
 def dashboard():
+    user = current_user
     if request.method == "POST":
         note = request.form.get('note')
         new_note = Campaign(data=note, user_id=current_user.id)
         db.session.add(new_note)
         db.session.commit()
         print("Note added successfully!")
-
-    return render_template('dashboard.html', user=current_user)
+    return render_template('dashboard.html', user = user)
 
 @views.route('/campaign', methods=["GET", "POST"])
 def campaign():
