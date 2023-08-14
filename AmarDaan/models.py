@@ -13,7 +13,7 @@ class Campaign(db.Model):
     camp_mobile = db.Column(db.String(200))    
     camp_deadline = db.Column(db.String(200))
     camp_story = db.Column(db.String(200))
-    # camp_photo = db.Column(db.String(200))
+    camp_photo = db.Column(db.String(200))
     camp_gender = db.Column(db.String(200))
     camp_age = db.Column(db.String(200))
     camp_occupation = db.Column(db.String(200))

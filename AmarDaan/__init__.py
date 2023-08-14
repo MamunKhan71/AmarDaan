@@ -1,6 +1,7 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from os import path
+import os
 from flask_login import LoginManager
 db = SQLAlchemy()
 DB_NAME = "amardaan.db"
@@ -9,8 +10,9 @@ def create_app():
     app = Flask(__name__)
     app.config['SECRET_KEY'] = 'mamunapp'
     app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{path.join(path.dirname(__file__), DB_NAME)}'
+    app.config['UPLOAD_FOLDER'] = 'uploads'  # Specify the folder where you want to store uploaded files
     db.init_app(app=app)
-
+ 
 
     from .views import views
     from .auth import auth
