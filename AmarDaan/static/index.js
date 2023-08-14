@@ -46,19 +46,20 @@ function updateCards() {
       const card = document.createElement("div");
       card.className = "col";
       card.innerHTML = `
-        <div class="card">
-          <img src="${campaignData[i].imageUrl}" class="card-img-top" alt="Campaign Image">
-          <div class="card-body">
-            <h5 class="card-title">${campaignData[i].name}</h5>
-            <p class="card-text">Target Budget: $${campaignData[i].budget}</p>
-            <div class="progress mb-3">
-              <div class="progress-bar" role="progressbar" style="width: ${progressPercentage}%" aria-valuenow="${progressPercentage}" aria-valuemin="0" aria-valuemax="100">
-                $${campaignData[i].collected} / $${campaignData[i].budget}
-              </div>
-            </div>
-            <button class="btn btn-primary">View Details</button>
+      <div class="card shadow" style="border: 0px;">
+      <img src="${campaignData[i].imageUrl}" class="card-img-top img-fluid" style="height: 300px;" alt="Campaign Image">
+      <div class="card-body" >
+        <h5 class="card-title">${campaignData[i].name}</h5>
+        <p class="card-text">Target Budget: $${campaignData[i].budget}</p>
+        <div class="progress mb-3">
+          <div class="progress-bar" role="progressbar" style="width: ${progressPercentage}%" aria-valuenow="${progressPercentage}" aria-valuemin="0" aria-valuemax="100">
+            $${campaignData[i].collected} / $${campaignData[i].budget}
           </div>
         </div>
+        <button class="btn btn-primary">View Details</button>
+      </div>
+    </div>
+    
       `;
 
       cardRow.appendChild(card);

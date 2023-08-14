@@ -1,3 +1,89 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css");
 *{
     font-family: 'Bai Jamjuree', sans-serif;
+
+}
+.icon {
+    background-color: var(--secondary-color);
+    width: 2em;
+    height: 2em;
+    display: flex;
+    align-items: center; /* Center icon horizontally */
+    justify-content: center; /* Center icon vertically */
+    margin-right: 0.5em;
+}
+li:hover{
+    background-color: #c3c3f8;
+    border-radius: 10px;
+    transition-duration: .5s;
+}
+
+.div-body{
+    width: 100%;
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.sub-div{
+    display: grid;
+    width: 80%;
+    height: 80%;
+    grid-template-columns: 20% 80%;
+    gap: 30px;
+}
+.col1{
+    width: 100%;
+    background-color: #f0f0f0;
+    border-radius: 1rem;
+
+}
+.col2{
+    background-color: #f5f5fd;
+    border-radius: 1rem;
+}
+.col1-center{
+    display: block;
+    width: 100%;
+    justify-content: center;
+}
+.tmp{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+}
+.p-header{
+    display: flex;
+    width: 100%;
+    height: 10px;
+    padding-top: 50px;
+    justify-content: center;
+    align-content: center;
+    flex: 1;
+}
+
+.navbari {
+    height: 100%;
+    display: block;
+    padding: 1.563em;
+    font-weight: 600;
+    width: 18.75em;
+}
+
+.navbari-nav a {
+    display: flex;
+    color: var(--secondary-color);
+    padding: 1em;
+    
+    text-decoration: none;
+    align-items: center;
+    cursor: pointer;
+}
+li{
+    list-style-type: none;
+}
+ul  {
+    padding: 0px;
 }

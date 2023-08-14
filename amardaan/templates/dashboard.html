@@ -1,28 +1,49 @@
 {% extends 'base.html' %}
 {% block link %}
-<link rel="stylesheet" href="{{url_for('static', filename='css/dashboard.css')}}">
-<style>
-    .form-body{
-        width: 50%;
-    }
-    .btn-primary{
-        margin: 50px;
-    }
-</style>
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/dashboard.css')}}">
 {% endblock %}
 {% block content %}
-<h1 align="center">Notes</h1>
-<ul class="list-group list-group-flush" id="notes">
-    {% for note in user.notes %}
-        <li class="list-group-item">{{ note.data }}</li>
-    {% endfor %}
-</ul>
-<div align="center">
-<div class="form-body">
-    <form action="{{url_for('views.dashboard')}}" method="post">
-        <textarea name="note" id='note' class="form-control"></textarea>
-        <button type="submit" class="btn btn-primary">Submit</button>
+<body>
+    <div class="div-body">
+        <div class="sub-div">
+            <div class="col1">
+                <div class="col1-center">
+                    <nav class="navbari">
+                        <a class="navbari-brand" href="#">
+                        </a>
+                        <ul class="navbari-nav">
+                            <li>
+                                <a class="active"><i class="bi bi-house icon"></i><span>Home</span></a>
+                            </li>
+                            <li>
+                                <a><i class="bi bi-bar-chart icon"></i><span>Statistics</span></a>
+                            </li>
+                            <li>
+                                <a><i class="bi bi-chat-left-dots icon"></i><span>Messages</span></a>
+                            </li>
+                            <li>
+                                <a><i class="bi bi-person-check icon"></i></i><span>Profile</span></a>
+                            </li>
+                            <li>
+                                <a><i class="bi bi-file-earmark-text icon"></i><span>Documents</span></a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+
+            </div>
+            <div class="col2">
+                <div class="p-header">
+                    <h2>Edit user profile</h2>
+                    <h5>Edit your profile with the latest info</h5>
+                </div>
+                <div class="p-header-bg">
+
+                </div>
+
+            </div>
+        </div>
     </div>
-    </form>
-</div>
+</body>
+
 {% endblock %}
