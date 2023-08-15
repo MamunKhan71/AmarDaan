@@ -29,4 +29,4 @@ class User(db.Model, UserMixin):
     name = db.Column(db.String(30))
     email = db.Column(db.String(150), unique = True)
     password = db.Column(db.String(150))
-    notes = db.relationship('Campaign')
+    campaigns = db.relationship('Campaign', backref='user', lazy=True)

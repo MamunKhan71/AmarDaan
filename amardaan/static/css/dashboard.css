@@ -87,3 +87,24 @@ li{
 ul  {
     padding: 0px;
 }
+.inside-col-div{
+    padding: 50px;
+    display: grid;
+    grid-template-columns: 40% 60%;
+}
+.in-col1{
+    display: flex;
+    height: 50vh;
+    width: 80%;
+    background-color: #ffffff;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+}
+.user-profile{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}

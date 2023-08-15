@@ -15,13 +15,14 @@ def home():
 @login_required
 def dashboard():
     user = current_user
+    user_campaigns = Campaign.query.filter_by(user_id=user.id).all()
     if request.method == "POST":
         note = request.form.get('note')
-        new_note = Campaign(data=note, user_id=current_user.id)
+        new_note = Campaign(camp_name=note, user_id=current_user.id)  # Assuming camp_name is the correct attribute
         db.session.add(new_note)
         db.session.commit()
         print("Note added successfully!")
-    return render_template('dashboard.html', user = user)
+    return render_template('dashboard.html', user=user, campaigns=user_campaigns)
 
 @views.route('/campaign', methods=["GET", "POST"])
 def campaign():
@@ -72,6 +73,7 @@ def campaign():
                 camp_video=camp_video,
                 camp_social=camp_social,
                 camp_aboutus=camp_aboutus,
+                user_id=current_user.id,
             )
             db.session.add(new_campaign)
             db.session.commit()
