@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, request, current_app, redirect, url_for
 from flask_login import login_required, current_user
 from .models import Campaign
+from werkzeug.security import generate_password_hash, check_password_hash
 from . import db
 import os
 import time
@@ -109,7 +110,29 @@ def upload_profile_picture():
 
     return redirect(url_for('views.dashboard'))
 
-
+@views.route('/update_profile', methods=["POST"])
+@login_required
+def update_profile():
+    first_name = request.form.get('first_name')
+    last_name = request.form.get('last_name')
+    password = request.form.get('password')
+    email = request.form.get('email')
+    facebook = request.form.get('facebook')
+    instagram = request.form.get('instagram')
+    updated_name = f"{first_name} {last_name}"
+    user=current_user
+    if updated_name:
+        user.name = updated_name
+    if email:
+        user.email = email
+    if password:
+        user.password = generate_password_hash(password=password, method='sha256')
+    if facebook:    
+        user.facebook = f"https://www.fb.com/{facebook}"
+    if instagram:
+        user.instagram = f"https://www.instagram.com/{instagram}"
+    db.session.commit()
+    return render_template('otp_page.html', user=current_user)
 
 
 

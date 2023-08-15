@@ -29,6 +29,8 @@ class User(db.Model, UserMixin):
     name = db.Column(db.String(30))
     email = db.Column(db.String(150), unique = True)
     password = db.Column(db.String(150))
+    facebook = db.Column(db.String(150))
+    instagram = db.Column(db.String(150))
     profile_picture = db.Column(db.String(150))
     date = db.Column(db.DateTime(timezone=True), default= func.now())
     campaigns = db.relationship('Campaign', backref='user', lazy=True)

@@ -42,7 +42,7 @@
                             <div class="profile-picture">
                                 {% if user.profile_picture %}
                                 <img id="profile-image"
-                                    src="{{ url_for('static', filename='uploads/' + user.profile_picture) }}?{{ user.profile_picture_updated }}"
+                                    src="{{ url_for('static', filename=user.profile_picture.replace('\\', '/')) }}?{{ user.profile_picture_updated }}"
                                     alt="User Photo">
                                 {% else %}
                                 <img id="profile-image" src="{{ url_for('static', filename='images/default.jpg') }}"
@@ -64,15 +64,15 @@
                         <div class="header">
                             <h4>Edit Profile</h4>
                         </div>
-                        <form method="POST">
+                        <form action="{{url_for('views.update_profile')}}" method="POST">
                             <div class="grid-col-2">
                                 <div class="form-group">
-                                    <label for="f-name">First Name</label>
-                                    <input type="text" class="form-control title-case" value="{{user.name.split()[0]}}">
+                                    <label for="first_name">First Name</label>
+                                    <input type="text" name="first_name" class="form-control title-case" value="{{user.name.split()[0]}}">
                                 </div>
                                 <div class="form-group">
-                                    <label for="f-name">Last Name</label>
-                                    <input type="text" class="form-control title-case"
+                                    <label for="last_name">Last Name</label>
+                                    <input type="text" name="last_name" class="form-control title-case"
                                         value="{{ ' '.join(user.name.split()[1:]) }}">
                                 </div>
                             </div>
@@ -80,7 +80,7 @@
                                 <div class="form-group">
                                     <label for="password">Password</label>
                                     <div class="password-input-container">
-                                        <input type="password" class="form-control title-case password-match" id="password" placeholder="********">
+                                        <input type="password" name="password" class="form-control title-case password-match" id="password" placeholder="********">
                                         <button id="toggle-password" class="password-toggle" type="button">Show</button>
                                     </div>
                                     <small id="password-strength" class="password-strength">Password strength: <span class="strength"></span></small>
@@ -110,12 +110,12 @@
                             <div class="grid-col-2" style="padding-top: 10px">
                                 <div class="input-group mb-3">
                                     <span class="input-group-text" id="basic-addon1"><i style="color: blue;" class="bi bi-facebook"></i></span>
-                                    <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+                                    <input type="text" class="form-control" name="facebook" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
                                   </div>
                                 <div class="form-group">
                                     <div class="input-group mb-3">
                                         <span class="input-group-text" id="basic-addon1"><i style="color: red;" class="bi bi-instagram"></i></i></span>
-                                        <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+                                        <input type="text" name="instagram" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
                                       </div>
                                 </div>
                             </div>
@@ -155,7 +155,7 @@
                     formData.append('profile_picture', file);
 
                     // Send a POST request to the server
-                    fetch('/update_profile_picture', {
+                    fetch('/upload_profile_picture', {
                         method: 'POST',
                         body: formData
                     })
