@@ -33,16 +33,38 @@
                 </div>
             </div>
             <div class="col2">
-                <div class="col2">
-                    <div class="inside-col-div">
-                        <div class="in-col1">
-                            <div class="user-profile">
-                                {% for camp in user.campaigns %}
-                                <h2>{{user.name}}</h2>
-                                <img src="{{ url_for('static', filename='uploads/'+ camp.camp_photo) }}" alt="User Photo">
-                                {% endfor %}
+                <div class="inside-col-div">
+                    <div class="in-col1">
+                        <div class="profile-container">
+                            <h2 class="title-case">{{ user.name }}</h2>
+                            <div class="profile-picture">
+                                {% if user.profile_picture %}
+                                    <img id="profile-image" src="{{ url_for('static', filename='uploads/' + user.profile_picture) }}?{{ user.profile_picture_updated }}" alt="User Photo">
+                                {% else %}
+                                    <img id="profile-image" src="{{ url_for('static', filename='images/default.jpg') }}" alt="Default User Photo">
+                                {% endif %}
+                            </div>
+                            <button style="border: 0px; border-radius: 10px; background-color: red;color:white;" id="update-profile-button">Update New Photo</button>
+                            <input type="file" id="upload-input" accept=".jpg, .jpeg, .png" style="display: none;">
+                            <strong style="color:blueviolet"><small>Member Since: {{ user.date.strftime('%d %B %Y') }}</small></strong>
+                            <div class="info">
+                                <div class="info-column">
+                                    <div>
+                                        <p>Email</p>
+                                    </div>
+                                    <div>
+                                        <p>:   </p>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
+                    </div>
+                    <div>
+                        
+                    </div>
+                    </div>
+
                         <div class="in-col2">
 
 
@@ -53,4 +75,46 @@
         </div>
     </div>
 </body>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    const updateButton = document.getElementById('update-profile-button');
+    const uploadInput = document.getElementById('upload-input');
+    const profileImage = document.getElementById('profile-image');
+
+    updateButton.addEventListener('click', function() {
+        uploadInput.click();
+    });
+
+    uploadInput.addEventListener('change', function() {
+        const file = uploadInput.files[0];
+
+        if (file) {
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                profileImage.src = e.target.result;
+
+                // Create a FormData object to send the file to the server
+                const formData = new FormData();
+                formData.append('profile_picture', file);
+
+                // Send a POST request to the server
+                fetch('/update_profile_picture', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    // Handle the response from the server if needed
+                })
+                .catch(error => {
+                    console.error('Error updating profile picture:', error);
+                });
+            };
+
+            reader.readAsDataURL(file);
+        }
+    });
+});
+</script>
 {% endblock %}

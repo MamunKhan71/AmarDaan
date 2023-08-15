@@ -92,19 +92,55 @@ ul  {
     display: grid;
     grid-template-columns: 40% 60%;
 }
-.in-col1{
+/* Add the other styles you have here */
+
+.in-col1 {
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     height: 50vh;
     width: 80%;
     background-color: #ffffff;
-    justify-content: center;
-    align-items: center;
     border-radius: 10px;
+    padding: 20px;
 }
-.user-profile{
+
+.profile-container {
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.profile-picture {
+    width: 150px; /* Adjust the width as needed */
+    height: 150px; /* Adjust the height as needed */
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+
     justify-content: center;
     align-items: center;
-    height: 100%;
+    background-color: #f0f0f0;
+    border: 5px dashed #f0f0f0;
+}
+.title-case{
+    text-transform: capitalize;
+}
+.profile-picture img {
     width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    clip-path: circle(50%);
+}
+
+.info-column{
+    display: grid;
+    width: 100%;
+    padding-left: 20px;
+    grid-template-columns: 20% 80%;
+    grid-template-rows: 1fr 1fr;
 }

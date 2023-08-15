@@ -1,8 +1,9 @@
-from flask import Blueprint, render_template, request, current_app
+from flask import Blueprint, render_template, request, current_app, redirect, url_for
 from flask_login import login_required, current_user
 from .models import Campaign
 from . import db
 import os
+import time
 
 views = Blueprint('views', __name__)
 
@@ -15,6 +16,7 @@ def home():
 @login_required
 def dashboard():
     user = current_user
+    print(user.profile_picture)
     user_campaigns = Campaign.query.filter_by(user_id=user.id).all()
     if request.method == "POST":
         note = request.form.get('note')
@@ -44,11 +46,11 @@ def campaign():
             if photo.filename == '':
                 return 'No selected file'
             else:
-                upload_folder = os.path.join(current_app.root_path, current_app.config['UPLOAD_FOLDER'])
-                os.makedirs(upload_folder, exist_ok=True)  # Create the directory if it doesn't exist
+                upload_folder = os.path.join(current_app.root_path, 'static', current_app.config['UPLOAD_FOLDER'])
+                os.makedirs(upload_folder, exist_ok=True)
                 filename = os.path.join(upload_folder, photo.filename)
-                photo.save(filename)
-            
+                photo.save(filename)      
+
             camp_gender = request.form.get('camp_gender')
             camp_age = request.form.get('camp_age')
             camp_occupation = request.form.get('camp_occupation')
@@ -80,3 +82,35 @@ def campaign():
             print("Data Saved Successfully!")
 
     return render_template('campaign.html', user=user)
+
+@views.route('/upload_profile_picture', methods=["POST"])
+@login_required
+def upload_profile_picture():
+    if request.method == "POST":
+        user = current_user
+        profile_picture = request.files['profile_picture']
+        if profile_picture.filename == '':
+            return 'No selected file'
+        else:
+            upload_folder = os.path.join(current_app.root_path, 'static', 'uploads')
+            os.makedirs(upload_folder, exist_ok=True)  # Create the directory if it doesn't exist
+            filename = os.path.join(upload_folder, profile_picture.filename)
+            profile_picture.save(filename)
+
+        print("Uploaded File:", filename)  # Debug print
+
+        # Update user's profile_picture attribute with the relative path to the uploaded image
+        relative_path = os.path.relpath(filename, os.path.join(current_app.root_path, 'static'))
+        user.profile_picture = "Hi"
+        user.profile_picture_updated = time.time()  # Set to the current timestamp
+        db.session.commit()
+        
+        print("Profile Picture Updated Successfully!")
+
+    return redirect(url_for('views.dashboard'))
+
+
+
+
+
+
