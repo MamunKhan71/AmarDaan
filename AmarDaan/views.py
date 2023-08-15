@@ -101,7 +101,7 @@ def upload_profile_picture():
 
         # Update user's profile_picture attribute with the relative path to the uploaded image
         relative_path = os.path.relpath(filename, os.path.join(current_app.root_path, 'static'))
-        user.profile_picture = "Hi"
+        user.profile_picture = relative_path
         user.profile_picture_updated = time.time()  # Set to the current timestamp
         db.session.commit()
         

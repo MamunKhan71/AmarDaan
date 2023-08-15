@@ -4,6 +4,7 @@
 {% endblock %}
 
 {% block content %}
+
 <body>
     <div class="div-body">
         <div class="sub-div">
@@ -14,7 +15,8 @@
                         </a>
                         <ul class="navbari-nav">
                             <li>
-                                <a href="{{ url_for('views.home') }}"><i class="bi bi-house icon"></i><span>Home</span></a>
+                                <a href="{{ url_for('views.home') }}"><i
+                                        class="bi bi-house icon"></i><span>Home</span></a>
                             </li>
                             <li>
                                 <a href="#"><i class="bi bi-bar-chart icon"></i><span>Statistics</span></a>
@@ -39,82 +41,203 @@
                             <h2 class="title-case">{{ user.name }}</h2>
                             <div class="profile-picture">
                                 {% if user.profile_picture %}
-                                    <img id="profile-image" src="{{ url_for('static', filename='uploads/' + user.profile_picture) }}?{{ user.profile_picture_updated }}" alt="User Photo">
+                                <img id="profile-image"
+                                    src="{{ url_for('static', filename='uploads/' + user.profile_picture) }}?{{ user.profile_picture_updated }}"
+                                    alt="User Photo">
                                 {% else %}
-                                    <img id="profile-image" src="{{ url_for('static', filename='images/default.jpg') }}" alt="Default User Photo">
+                                <img id="profile-image" src="{{ url_for('static', filename='images/default.jpg') }}"
+                                    alt="Default User Photo">
                                 {% endif %}
                             </div>
-                            <button style="border: 0px; border-radius: 10px; background-color: red;color:white;" id="update-profile-button">Update New Photo</button>
+                            <button style="border: 0px; border-radius: 10px; background-color: red;color:white;"
+                                id="update-profile-button">Update New Photo</button>
                             <input type="file" id="upload-input" accept=".jpg, .jpeg, .png" style="display: none;">
-                            <strong style="color:blueviolet"><small>Member Since: {{ user.date.strftime('%d %B %Y') }}</small></strong>
-                            <div class="info">
-                                <div class="info-column">
-                                    <div>
-                                        <p>Email</p>
-                                    </div>
-                                    <div>
-                                        <p>:   </p>
-                                    </div>
+                            <strong style="color:blueviolet"><small>Member Since: {{ user.date.strftime('%d %B %Y')
+                                    }}</small></strong>
+                        </div>
+                    </div>
+                    <div class="in-col2">
+                        <div class="header">
+                            <h4>Edit Profile</h4>
+                        </div>
+                        <form method="POST">
+                            <div class="grid-col-2">
+                                <div class="form-group">
+                                    <label for="f-name">First Name</label>
+                                    <input type="text" class="form-control title-case" value="{{user.name.split()[0]}}">
                                 </div>
-
+                                <div class="form-group">
+                                    <label for="f-name">Last Name</label>
+                                    <input type="text" class="form-control title-case"
+                                        value="{{ ' '.join(user.name.split()[1:]) }}">
+                                </div>
+                            </div>
+                            <div class="grid-col-2">
+                                <div class="form-group">
+                                    <label for="password">Password</label>
+                                    <div class="password-input-container">
+                                        <input type="password" class="form-control title-case password-match" id="password" placeholder="********">
+                                        <button id="toggle-password" class="password-toggle" type="button">Show</button>
+                                    </div>
+                                    <small id="password-strength" class="password-strength">Password strength: <span class="strength"></span></small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="confirm-password">Confirm Password</label>
+                                    <input type="password" class="form-control title-case password-match" id="confirm-password" placeholder="********">
+                                    <small id="password-match-message" class="password-match-message"></small>
+                                </div>
+                                
+                            </div>
+                            <div class="grid-col-2" style="padding-top: 10px">
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    {% if user.user_email %}
+                                        <input type="email" name="email" value="{{user.user_email}}">
+                                    {% else %}
+                                        <input type="email" class="form-control" name="email" placeholder="Your email address">
+                                    {% endif %}
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Confirm Email</label>
+                                    <input type="email" class="form-control" name="email" placeholder="Confirm email address">
+                                </div>
+                            </div>
+                            <h6 style="padding-top: 10px;">Social Profile</h6>
+                            <div class="grid-col-2" style="padding-top: 10px">
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text" id="basic-addon1"><i style="color: blue;" class="bi bi-facebook"></i></span>
+                                    <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+                                  </div>
+                                <div class="form-group">
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="basic-addon1"><i style="color: red;" class="bi bi-instagram"></i></i></span>
+                                        <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+                                      </div>
+                                </div>
+                            </div>
+                            <div>
+                                <button class="btn btn-danger" style="width: 100%;" type="submit">Update Profile</button>
                             </div>
                         </div>
-                    </div>
-                    <div>
-                        
-                    </div>
-                    </div>
-
-                        <div class="in-col2">
-
-
-                        </div>
-                    </div>
+                    </form>
+                </div>
                 </div>
             </div>
         </div>
     </div>
 </body>
+
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-    const updateButton = document.getElementById('update-profile-button');
-    const uploadInput = document.getElementById('upload-input');
-    const profileImage = document.getElementById('profile-image');
+    document.addEventListener('DOMContentLoaded', function () {
+        const updateButton = document.getElementById('update-profile-button');
+        const uploadInput = document.getElementById('upload-input');
+        const profileImage = document.getElementById('profile-image');
 
-    updateButton.addEventListener('click', function() {
-        uploadInput.click();
+        updateButton.addEventListener('click', function () {
+            uploadInput.click();
+        });
+
+        uploadInput.addEventListener('change', function () {
+            const file = uploadInput.files[0];
+
+            if (file) {
+                const reader = new FileReader();
+
+                reader.onload = function (e) {
+                    profileImage.src = e.target.result;
+
+                    // Create a FormData object to send the file to the server
+                    const formData = new FormData();
+                    formData.append('profile_picture', file);
+
+                    // Send a POST request to the server
+                    fetch('/update_profile_picture', {
+                        method: 'POST',
+                        body: formData
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            // Handle the response from the server if needed
+                        })
+                        .catch(error => {
+                            console.error('Error updating profile picture:', error);
+                        });
+                };
+
+                reader.readAsDataURL(file);
+            }
+        });
     });
-
-    uploadInput.addEventListener('change', function() {
-        const file = uploadInput.files[0];
-
-        if (file) {
-            const reader = new FileReader();
-
-            reader.onload = function(e) {
-                profileImage.src = e.target.result;
-
-                // Create a FormData object to send the file to the server
-                const formData = new FormData();
-                formData.append('profile_picture', file);
-
-                // Send a POST request to the server
-                fetch('/update_profile_picture', {
-                    method: 'POST',
-                    body: formData
-                })
-                .then(response => response.json())
-                .then(data => {
-                    // Handle the response from the server if needed
-                })
-                .catch(error => {
-                    console.error('Error updating profile picture:', error);
-                });
-            };
-
-            reader.readAsDataURL(file);
-        }
-    });
-});
 </script>
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#password').on('input', function() {
+            var password = $(this).val();
+            var strength = 0;
+
+            // Check password strength criteria and update strength value
+            if (password.length >= 8) {
+                strength++;
+            }
+            if (/[A-Z]/.test(password)) {
+                strength++;
+            }
+            if (/[0-9]/.test(password)) {
+                strength++;
+            }
+            if (/[!@#$%^&*()_+{}[\]:;<>,.?~\\-]/.test(password)) {
+                strength++;
+            }
+
+            // Update the strength indicator
+            var strengthIndicator = $('.password-strength .strength');
+            strengthIndicator.removeClass('weak medium strong');
+            if (strength === 1) {
+                strengthIndicator.addClass('weak').text('Weak');
+            } else if (strength === 2) {
+                strengthIndicator.addClass('medium').text('Medium');
+            } else if (strength >= 3) {
+                strengthIndicator.addClass('strong').text('Strong');
+            }
+        });
+
+    });
+</script>
+<script>
+    $(document).ready(function() {
+        $('#toggle-password').on('click', function() {
+            var passwordInput = $('#password');
+            var passwordType = passwordInput.attr('type');
+
+            if (passwordType === 'password') {
+                passwordInput.attr('type', 'text');
+                $(this).text('Hide');
+            } else {
+                passwordInput.attr('type', 'password');
+                $(this).text('Show');
+            }
+        });
+
+        // Password strength checker for Password field
+        $('#password').on('input', function() {
+            var password = $(this).val();
+            // Your password strength checking logic here
+        });
+
+        // Match password and confirm password fields
+        $('.password-match').on('input', function() {
+            var password = $('#password').val();
+            var confirmPassword = $('#confirm-password').val();
+            var matchMessage = $('#password-match-message');
+
+            if (password === confirmPassword) {
+                matchMessage.text('Passwords match ').addClass('password-match-success').removeClass('password-match-error');
+            } else {
+                matchMessage.text('Passwords do not match').addClass('password-match-error').removeClass('password-match-success');
+            }
+        });
+    });
+</script>
+
 {% endblock %}
