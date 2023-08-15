@@ -25,6 +25,22 @@ li:hover{
     justify-content: center;
     align-items: center;
 }
+.about-me{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80px;
+    margin: 20px;
+    width: 80%;
+    background-color: #faf9f9;
+    border: transparent;
+    border-radius: 10px;
+}
+.about-me p{
+    text-align: center;
+    font-size: small;
+    color:#5f615f
+}
 .sub-div{
     display: grid;
     width: 80%;
