@@ -5,7 +5,9 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from . import db
 import os
 import time
-
+import smtplib
+from email.mime.text import MIMEText
+import random
 views = Blueprint('views', __name__)
 
 @views.route('/')
@@ -134,6 +136,29 @@ def update_profile():
     db.session.commit()
     return render_template('otp_page.html', user=current_user)
 
+@views.route('/otp_verification', methods=["GET", "POST"])
+@login_required
+def otp_verification():
+    otp_code = random.randint(pow(10, 4), (pow(10, 5) - 1))
+    def send_email(subject, body, sender, recepients, password):
+        msg = MIMEText(body)
+        msg['Subject'] = subject
+        msg['From'] = sender
+        msg['To'] = ','.join(recepients)
+        with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp_server:
+            smtp_server.login(sender, password)
+            smtp_server.sendmail(sender, recepients, msg.as_string())
+        print("Message Sent!")
+
+    subject = "Your OTP Verification Code"
+    body = f" Dear {current_user.name},\nThank you for choosing AmarDaan! To ensure the security of your account, we have sent you a One-Time Password (OTP) for verification purposes. \nYour OTP: {otp_code} \nPlease enter this OTP on the verification page to complete the process. Please note that this OTP is valid for a limited time and should not be shared with anyone.\nIf you did not initiate this request or have any concerns, please contact our customer support immediately at [Customer Support amardaan247@gmail.com. \nThank you for your trust in AmarDaan."
+    sender = "amardaan247@gmail.com"
+    recepients = current_user.email
+    password = "AtgsWbics153523?"
+    send_email(subject, body, sender, recepients, password)
+
+
+    
 
 
 
