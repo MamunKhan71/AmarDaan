@@ -188,4 +188,7 @@ def otp_verified():
     else:
         return render_template("error.html", message="ERROR 404 - WRONG OTP")
 
-
+@views.route('/statistics')
+@login_required
+def statistics():
+    return render_template('statistics.html', user=current_user)

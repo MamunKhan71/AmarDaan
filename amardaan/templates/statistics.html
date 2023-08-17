@@ -1,0 +1,25 @@
+{% extends 'dashboard.html' %}
+{% block l1 %}
+<link rel="stylesheet" href="{{url_for('static', filename='css/sta_container.css')}}"> 
+{% endblock %}
+{% block b1 %}
+<div class="sta-aligner">
+    <div class="sta-container">
+        <div class="sta-col1">
+            </div>
+
+        <div class="sta-col2">
+            <div class="sta-inside">
+                <h5>Your Donations</h5>
+                <h3 style="font-weight: 600; padding-top: 10px;">৳ 2,25,000.00 <small style="color: grey; font-size: small;">(TK)</small> </h3>
+                <small style="font-size: .8rem; padding-top: 10px;color: blueviolet">From Jan 01, 2022 to Jan 31, 2022</small>
+                <strong></strong>
+                <div class="button-class">
+                        <button class="btn btn-primary"><i class="bi bi-cash-stack"></i> Donate</button>
+                        <button class="btn btn-dark"><i class="bi bi-download"></i> Extract</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

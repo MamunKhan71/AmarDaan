@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 {% block link %}
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/dashboard.css') }}">
+{% block l1 %}
+{% endblock %}
 {% endblock %}
 
 {% block content %}
@@ -19,7 +21,7 @@
                                         class="bi bi-house icon"></i><span>Home</span></a>
                             </li>
                             <li>
-                                <a href="#"><i class="bi bi-bar-chart icon"></i><span>Statistics</span></a>
+                                <a href="{{url_for('views.statistics')}}"><i class="bi bi-bar-chart icon"></i><span>Statistics</span></a>
                             </li>
                             <li>
                                 <a href="#"><i class="bi bi-chat-left-dots icon"></i><span>Messages</span></a>
@@ -35,6 +37,7 @@
                 </div>
             </div>
             <div class="col2">
+                {% block b1 %}
                 <div class="inside-col-div">
                     <div class="in-col1">
                         <div class="profile-container">
@@ -52,7 +55,6 @@
                             <button style="border: 0px; border-radius: 10px; background-color: red;color:white;"
                                 id="update-profile-button">Update New Photo</button>
                             <input type="file" id="upload-input" accept=".jpg, .jpeg, .png" style="display: none;">
-                            
                         </div>
                         <div class="about-me">
                             <p>A passionate donator who aims to solve peoples problem as much as he can!</p>
@@ -131,14 +133,15 @@
                                 <button class="btn btn-danger" style="width: 100%;" type="submit">Update Profile</button>
                             </div>
                         </div>
-                    </form>
+                        </form>
                 </div>
+                {% endblock %}
                 </div>
             </div>
         </div>
     </div>
 </body>
-
+{% block script %}
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const updateButton = document.getElementById('update-profile-button');
@@ -251,5 +254,5 @@
         });
     });
 </script>
-
+{% endblock %}
 {% endblock %}

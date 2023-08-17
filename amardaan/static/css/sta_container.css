@@ -1,0 +1,36 @@
+.sta-aligner{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+.sta-container{
+    padding: 50px;
+    display: grid;
+    width: 100%;
+    grid-template-columns: 70% 30%;
+    gap: 20px;
+    
+}
+.sta-col1{
+    background-color: rgb(253, 253, 251);
+    border-radius: 10px;
+    height: 250px;
+}
+
+.sta-col2{
+    background-color: rgb(253, 253, 251);
+    border-radius: 10px;
+}
+.sta-inside{
+    padding: 30px;
+}
+.button-class{
+    padding: 40px 0px 0px 0px;
+    display: grid;
+    height: 40px;
+    width: 100%;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    text-align: center;
+}
