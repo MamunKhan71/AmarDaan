@@ -95,8 +95,8 @@
                             <div class="grid-col-2" style="padding-top: 10px">
                                 <div class="form-group">
                                     <label for="email">Email</label>
-                                    {% if user.user_email %}
-                                        <input type="email" name="email" value="{{user.user_email}}">
+                                    {% if user.email %}
+                                        <input class="form-control" type="email" name="email" value="{{user.email}}">
                                     {% else %}
                                         <input type="email" class="form-control" name="email" placeholder="Your email address">
                                     {% endif %}
@@ -110,13 +110,21 @@
                             <div class="grid-col-2" style="padding-top: 10px">
                                 <div class="input-group mb-3">
                                     <span class="input-group-text" id="basic-addon1"><i style="color: blue;" class="bi bi-facebook"></i></span>
+                                    {% if user.facebook %}
+                                    <input type="text" class="form-control" name="facebook" value="{{user.facebook}}" aria-label="Username" aria-describedby="basic-addon1">
+                                    {% else %}
                                     <input type="text" class="form-control" name="facebook" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
-                                  </div>
+                                    {% endif %}
+                                </div>
                                 <div class="form-group">
                                     <div class="input-group mb-3">
                                         <span class="input-group-text" id="basic-addon1"><i style="color: red;" class="bi bi-instagram"></i></i></span>
+                                        {% if user.instagram %}
+                                        <input type="text" name="instagram" class="form-control" value="{{user.instagram}}" aria-label="Username" aria-describedby="basic-addon1">
+                                        {% else %}
                                         <input type="text" name="instagram" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
-                                      </div>
+                                        {% endif %}
+                                    </div>
                                 </div>
                             </div>
                             <div>
