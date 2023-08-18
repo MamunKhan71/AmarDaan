@@ -37,7 +37,6 @@
                 </div>
             </div>
             <div class="col2">
-                {% block b1 %}
                 <div class="inside-col-div">
                     <div class="in-col1">
                         <div class="profile-container">
@@ -135,13 +134,11 @@
                         </div>
                         </form>
                 </div>
-                {% endblock %}
                 </div>
             </div>
         </div>
     </div>
 </body>
-{% block script %}
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const updateButton = document.getElementById('update-profile-button');
@@ -254,5 +251,4 @@
         });
     });
 </script>
-{% endblock %}
 {% endblock %}
