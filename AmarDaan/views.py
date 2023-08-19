@@ -192,3 +192,8 @@ def otp_verified():
 @login_required
 def statistics():
     return render_template('statistics.html', user=current_user)
+
+
+@views.route('/profile')
+def profile():
+    return render_template('user_profile.html', user=current_user)

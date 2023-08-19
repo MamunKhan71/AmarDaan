@@ -343,3 +343,81 @@ tr > td:first-child {
     border-radius: 50%;
     height: 100%;
 }
+/* Side Widget */
+.button-box {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.btn {
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.btn-purple {
+    background-color: #7C5CFC;
+    color: white;
+}
+
+.btn-white {
+    background-color: rgb(50, 122, 40);
+    color: rgb(255, 255, 255);
+    border: 2px solid rgb(50, 122, 40);
+}
+
+.pie-chart {
+    height: 250px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.spending-box {
+    position: relative;
+}
+
+.overall-spending {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 32%;
+    left: 50%;
+    text-align: center;
+}
+
+.overall-spending > h4 {
+    color: #596780;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 150%;
+}
+
+.overall-spending > span {
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 150%;
+}
+  .progress-bg {
+      width: 65%;
+      height: 10px;
+      border-radius: 10px;
+      box-shadow: inset 0 0 10px #ccc;
+  }
+  
+  .progress-bar {
+      height: 10px;
+      border-radius: 10px;
+      width: 50%;
+      background-color: #1c314a; 
+  }  
+.tbl{
+    text-align: left;
+}
+  
