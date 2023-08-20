@@ -28,7 +28,7 @@ def dashboard():
         db.session.add(new_note)
         db.session.commit()
         print("Note added successfully!")
-    return render_template('dashboard.html', user=user, campaigns=user_campaigns)
+    return render_template('statistics.html', user=user, campaigns=user_campaigns)
 
 @views.route('/campaign', methods=["GET", "POST"])
 def campaign():
@@ -111,7 +111,7 @@ def upload_profile_picture():
         
         print("Profile Picture Updated Successfully!")
 
-    return redirect(url_for('views.dashboard'))
+    return redirect(url_for('views.user_profile'))
 
 def send_email(subject, body, sender, recipients, password):
     msg = MIMEText(body)
