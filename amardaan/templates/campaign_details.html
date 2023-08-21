@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+{% block link %}
+<link rel="stylesheet" href="../static/css/campaign_details.css">
+{% endblock %}
+{% block content %}
+    <!-- <div class="donation--container">
+      <h1 id="donation--user" class="donation--user">Your Progress User</h1>
+      <span class="donation--title">Reached:</span>
+      <span id="donation--goal" class="donation--goal"></span>
+      <div class="donation--bar">
+        <div class="donation--rounded">
+          <div id="donation--progress" class="donation--progress" style="width: 0;"></div>
+        </div>
+        <div id="donation--number" class="donation--number" style="left: 0;"></div>
+        <span id="donation--status" class="donation--status"></span>
+      </div>
+      <form class="form--container">
+        <input id="donation--amount" class="input" type="number" min="1" placeholder="$ enter amount">
+        <input id="donate" class="button" type="submit" value="Donate">
+      </form>
+    </div>
+    <script>
+        "use strict";
+
+// Function to find percentage
+function percentage(a, b) {
+  return a / b * 100 > 100 ? 100 : a / b * 100;
+}
+
+//On Window Load
+window.onload = function() {
+
+  //User Object
+  var User = {
+    name: "Francisco",
+    donationCollect: 56,
+    donationGoal: 125
+  };
+
+  // IDs
+  var donationUser = document.getElementById("donation--user"),
+    donationProgress = document.getElementById("donation--progress"),
+    donationNumber = document.getElementById("donation--number"),
+    donationGoal = document.getElementById("donation--goal"),
+    donationStatus = document.getElementById("donation--status"),
+    donationAmount = document.getElementById("donation--amount"),
+    donate = document.getElementById("donate");
+
+  // How much percent to reach Goal
+  var percent = percentage(User.donationCollect, User.donationGoal);
+  // What we have so far to reach Goal
+  donationProgress.setAttribute("aria-valuenow", User.donationCollect);
+  // Goal
+  donationProgress.setAttribute("aria-valuemax", User.donationGoal);
+
+  // Default Data
+  donationUser.innerHTML = "Your Progress <span class='green'>" + User.name + "<span>";
+  donationProgress.setAttribute("style", "width:" + percent + "%");
+  donationNumber.setAttribute("style", "left:" + percent + "%");
+  donationNumber.innerHTML = "$" + User.donationCollect;
+  donationGoal.innerHTML = "Goal<br>$" + User.donationGoal;
+  donationStatus.innerHTML = "<i class='fa fa-window-close red'></i> You need <span class='red'>$" + (User.donationGoal - User.donationCollect) + "</span> to reach your Donation Goal";
+
+  //Events
+
+  //Only Positive Numbers allow in the Donation input
+  donationAmount.onkeydown = function(e) {
+    if (!((e.keyCode > 95 && e.keyCode < 106) || (e.keyCode > 47 && e.keyCode < 58) || e.keyCode === 8)) {
+      return false;
+    }
+  };
+
+  // Onclick event for the donate button
+  donate.onclick = function(e) {
+    e.preventDefault();
+    var newDonationCollect = (+User.donationCollect) + (+donationAmount.value);
+    var newPercent = percentage(newDonationCollect, User.donationGoal);
+    var newDonationNumber = User.donationCollect != User.donationGoal ? (+User.donationCollect) + (+donationAmount.value) : User.donationGoal;
+    User.donationCollect = newDonationNumber;
+    donationNumber.innerHTML = "$" + newDonationNumber;
+    donationProgress.setAttribute("style", "width:" + newPercent + "%");
+    donationNumber.setAttribute("style", "left:" + newPercent + "%");
+    donationStatus.innerHTML = User.donationGoal - newDonationNumber > 0 ? "<i class='fa fa-window-close red'></i> You need <span class='red'>$" + (User.donationGoal - newDonationNumber) + "</span> to reach your Donation Goal" : "<i class='fa fa-exclamation-circle green'></i> Your campaign has been funded";
+
+  };
+
+};
+    </script> -->
+    <div class="main-container">
+        <div class="headline">
+            <h1>Restoring Hope to Breast Cancer Patients in Lebanon</h1>
+            <h6>Fundraising campaign by Md. Mamun - Dhaka,Food & Appearel</h6>
+        </div>
+        <div class="content">
+            
+        </div>
+    </div>
+{% endblock %}

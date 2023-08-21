@@ -197,3 +197,7 @@ def statistics():
 @views.route('/profile')
 def profile():
     return render_template('user_profile.html', user=current_user)
+
+@views.route('/campaign_details')
+def campaign_details():
+    return render_template('campaign_details.html', user=current_user)
