@@ -3,24 +3,70 @@
 <link rel="stylesheet" href="../static/css/campaign_details.css">
 {% endblock %}
 {% block content %}
-    <!-- <div class="donation--container">
-      <h1 id="donation--user" class="donation--user">Your Progress User</h1>
-      <span class="donation--title">Reached:</span>
-      <span id="donation--goal" class="donation--goal"></span>
-      <div class="donation--bar">
-        <div class="donation--rounded">
-          <div id="donation--progress" class="donation--progress" style="width: 0;"></div>
+    <div class="main-container">
+        <div class="headline">
+            <h1>Footsteps Bangladesh COVID-19 Relief</h1>
+            <h6>Fundraising campaign by Md. Mamun - Health, Food & Appearel</h6>
         </div>
-        <div id="donation--number" class="donation--number" style="left: 0;"></div>
-        <span id="donation--status" class="donation--status"></span>
+        <div class="content">
+            <div class="left-content">
+                <div class="left-container">
+                  <div class="photo-container">
+                    <img src="../static/images/header-img-8.jpg">
+                  </div>
+                  <div class="photo-container" id="text">
+                    <div class="container">
+                      <p class="story">In the face of the ongoing COVID-19 crisis, the people of Bangladesh are struggling
+                          to meet their basic needs. Families are facing hunger, medical resources are scarce, and the
+                          future remains uncertain. But we believe in the power of community and solidarity.</p>
+                      <p class="story">Footsteps Bangladesh COVID-19 Relief is a campaign aimed at providing essential
+                          supplies, medical assistance, and support to the most vulnerable communities across Bangladesh.
+                          Our mission is to make sure that no one is left behind during these challenging times.</p>
+                      <p class="story">With your generous contribution, we can:</p>
+                      <ul class="story">
+                          <li>Deliver food and clean water to families in need</li>
+                          <li>Provide medical supplies and healthcare services to the sick</li>
+                          <li>Support local businesses and daily wage earners affected by the crisis</li>
+                          <li>Ensure access to education for children through online learning initiatives</li>
+                      </ul>
+                      <div class="call-to-action">
+                        <a href="#"><button class="btns">Donate Now</button></a>
+                      </div>
+                      <p class="story">Every contribution matters, no matter how big or small. Together, we can make a
+                          significant impact on the lives of those who need it the most. Join us in leaving positive
+                          Footsteps of change in Bangladesh!</p>
+                      <div class="call-to-action">
+                          <a href="#"><button class="btns">Support the Cause</button></a>
+                      </div>
+                  </div>
+                  </div>
+                  
+                </div>
+            </div>
+            <div class="right-content">
+              <div class="donation--container">
+                <h1 id="donation--user" class="donation--user">Donated</h1>
+                <span class="donation--title">Reached:</span>
+                <span id="donation--goal" class="donation--goal"></span>
+                <div class="donation--bar">
+                  <div class="donation--rounded">
+                    <div id="donation--progress" class="donation--progress" style="width: 0;"></div>
+                  </div>
+                  <div id="donation--number" class="donation--number" style="left: 0;"></div>
+                  <span id="donation--status" class="donation--status"></span>
+                </div>
+                <form class="form--container" style="padding: 10px;">
+                  <input id="donation--amount" class="btns" style="width: 200px;background-color: rgb(240, 240, 240);height: 50px;border:transparent;color: black " type="number" min="1" placeholder="Enter amount">
+                  <input id="donate" class="btns" type="submit" value="Donate" style="width: 80px;height: 50px; background-color: green;">
+                </form>
+              </div>
+            </div>
+        </div>
+        
       </div>
-      <form class="form--container">
-        <input id="donation--amount" class="input" type="number" min="1" placeholder="$ enter amount">
-        <input id="donate" class="button" type="submit" value="Donate">
-      </form>
     </div>
     <script>
-        "use strict";
+      "use strict";
 
 // Function to find percentage
 function percentage(a, b) {
@@ -54,7 +100,7 @@ window.onload = function() {
   donationProgress.setAttribute("aria-valuemax", User.donationGoal);
 
   // Default Data
-  donationUser.innerHTML = "Your Progress <span class='green'>" + User.name + "<span>";
+  donationUser.innerHTML = "Your Progress <span class='green'>" + user.name + "<span>";
   donationProgress.setAttribute("style", "width:" + percent + "%");
   donationNumber.setAttribute("style", "left:" + percent + "%");
   donationNumber.innerHTML = "$" + User.donationCollect;
@@ -85,14 +131,5 @@ window.onload = function() {
   };
 
 };
-    </script> -->
-    <div class="main-container">
-        <div class="headline">
-            <h1>Restoring Hope to Breast Cancer Patients in Lebanon</h1>
-            <h6>Fundraising campaign by Md. Mamun - Dhaka,Food & Appearel</h6>
-        </div>
-        <div class="content">
-            
-        </div>
-    </div>
+    </script>
 {% endblock %}

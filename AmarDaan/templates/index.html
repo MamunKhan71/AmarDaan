@@ -4,8 +4,8 @@
 <header class="beautiful-header">
   <div class="header-content">
     <div class="left-content">
-      <h1 class="header-title">আমার দানে আপনাকে স্বাগতম</h1>
-      <p style="text-align: justify;" class="header-description">অনলাইন ক্রাউডফান্ডিং এর মাধ্যমে বাংলাদেশের ক্ষমতায়ন। প্রচারাভিযান শুরু করুন, কারণ সমর্থন করুন এবং কার্যকর পরিবর্তন চালান। উদারতার সহজ কাজের মাধ্যমে একটি ভাল ভবিষ্যত গঠনে আমাদের সাথে যোগ দিন। একসাথে, আমরা একটি পার্থক্য.</p>
+      <h1 class="header-title">Welcome to AmarDaan</h1>
+      <p style="text-align: justify;" class="header-description">Empowering Bangladesh through Online Crowdfunding. Initiate the campaign, because supporting and driving effective change. Join us in creating a better future through the simplicity of generosity. Together, we make a difference.</p>
       <button class="btn btn-red">Donate Now</button>
       
     </div>
@@ -46,7 +46,7 @@
 
 <div class="s-story">
   <div class="container mt-5">
-    <h2 style="padding-top: 50px" class="text-center mb-4">Success Stories</h2>
+    <h1 style="padding-top: 50px" class="text-center mb-4">Success Stories</h1>
     <div id="successCarousel" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
@@ -248,7 +248,7 @@ productCardContent.map((product, i) => {
     <h3 class="product_card__title">${product.title}</h3>
     <p class="product_card__description">${product.content}</p>
     <p class="product_card__price">${product.price}</p>
-    <button class="product_card__btn">Donate Now</button>
+    <a href="{{url_for('views.campaign_details')}}"><button class="product_card__btn">Donate Now</button></a>
 </div>
     
     
