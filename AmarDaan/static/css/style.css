@@ -12,9 +12,9 @@ body{
   }
   .beautiful-header {
     background-image: url('../images/headerbg.jpg');
-    background-size: cover; /* Show the full image without cropping */
-    background-repeat: no-repeat; /* Prevent the image from repeating */
-    background-position: center center; /* Center the background image */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center; 
     padding: 60px 0;
     text-align: center;
 }
@@ -35,7 +35,6 @@ body{
   }
  
   .header-title {
-    font-family: 'Li Ador Noirrit';
     font-size: 50px;
     font-weight: 700;
     margin-bottom: 20px;
@@ -43,7 +42,6 @@ body{
   }
   
   .header-description {
-    font-family: 'Li Ador Noirrit';
     font-size: 24px;
     color: #666;
   }
@@ -63,7 +61,6 @@ body{
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }
-  
   .image-box img {
     width: 100%;
     height: auto;
@@ -117,7 +114,7 @@ p{
 .img2{
   /* background-image: url(../images/header-img-5.jpg); */
   background-color: #00396b;
-
+ 
 }
 .ct-text{
   display: flex;
@@ -131,18 +128,6 @@ p{
   src:url('https://colorlib.com/etc/cf/ContactFrom_v1/fonts/font-awesome-4.7.0/fonts/fontawesome-webfont.eot?#iefix&v=4.7.0') format('embedded-opentype'),url('https://colorlib.com/etc/cf/ContactFrom_v1/fonts/font-awesome-4.7.0/fonts/fontawesome-webfont.woff2?v=4.7.0') format('woff2'),url('https://colorlib.com/etc/cf/ContactFrom_v1/fonts/font-awesome-4.7.0/fonts/fontawesome-webfont.woff?v=4.7.0') format('woff'),url('https://colorlib.com/etc/cf/ContactFrom_v1/fonts/font-awesome-4.7.0/fonts/fontawesome-webfont.ttf?v=4.7.0') format('truetype'),url('https://colorlib.com/etc/cf/ContactFrom_v1/fonts/font-awesome-4.7.0/fonts/fontawesome-webfont.svg?v=4.7.0#fontawesomeregular') format('svg');
   font-weight:normal;
   font-style:normal;
-} 
-@font-face { 
-  font-family:Montserrat-Regular;
-  src:url(https://colorlib.com/etc/cf/ContactFrom_v1/fonts/montserrat/Montserrat-Regular.ttf);
-} 
-@font-face { 
-  font-family:Montserrat-Bold;
-  src:url(https://colorlib.com/etc/cf/ContactFrom_v1/fonts/montserrat/Montserrat-Bold.ttf);
-} 
-@font-face { 
-  font-family:Montserrat-ExtraBold;
-  src:url(https://colorlib.com/etc/cf/ContactFrom_v1/fonts/montserrat/Montserrat-ExtraBold.ttf);
 } 
 
 * { 

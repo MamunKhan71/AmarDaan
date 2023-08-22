@@ -10,7 +10,7 @@ function changeImage() {
   headerImage.src = imageSources[currentImageIndex];
 }
 
-setInterval(changeImage, 3000);
+setInterval(changeImage, 2500);
 
 // Code for campaign cards
 const prevBtn = document.getElementById("prevBtn");

@@ -8,8 +8,7 @@ button {
   .navbar {
     background-color: white;
     height: 80px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    padding: 0px 15% 0px 15%;
+    padding: 0px 8% 0px 7%;
   }
   
   .navbar-brand {
@@ -41,7 +40,7 @@ button {
   .btn-start-campaign {
     font-size: 14px; /* Adjust the font size as needed */
     padding: 8px 17px ; 
-    background-color: #007bff;
+    background-color: #1b38f8;
     color: white;
   }
   .btn-red{
@@ -66,7 +65,6 @@ button {
     height: 150px;
   }
 
-  /* Styling for navigation buttons */
   .navigation-buttons {
     display: flex;
     align-items: center;
