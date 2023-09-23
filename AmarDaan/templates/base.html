@@ -32,11 +32,13 @@
               <li class="nav-item">
                 <a class="nav-link" href="{{url_for('views.campaign')}}">Campaign</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{url_for('views.faq')}}">FAQ</a>
+              </li>
               {% if user.is_authenticated %}
               <li class="nav-item" id="user-profile">
                 <!-- User profile will be dynamically inserted here -->
               </li>
-              
               {% else %}
               <li class="nav-item">
                 <a class="nav-link" href="{{url_for('auth.logout')}}">Login / Signup</a>
@@ -79,6 +81,8 @@
         `;
     }
 </script>
+{% block body %}
+{% endblock %}
 </body>
 
 </html>
