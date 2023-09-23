@@ -167,7 +167,7 @@ def otp_verified():
             password = request.form.get('password')
             facebook = request.form.get('facebook')
             instagram = request.form.get('instagram')
-
+            print(email)
             if updated_name:
                 user.name = updated_name
             if email:
@@ -201,3 +201,7 @@ def profile():
 @views.route('/campaign_details')
 def campaign_details():
     return render_template('campaign_details.html', user=current_user)
+
+@views.route('/faq')
+def faq():
+    return render_template('faq.html', user=current_user)
