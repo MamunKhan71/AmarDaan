@@ -1,135 +1,681 @@
 {% extends 'base.html' %}
 {% block link %}
 <link rel="stylesheet" href="../static/css/campaign_details.css">
+<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
 {% endblock %}
 {% block content %}
-    <div class="main-container">
-        <div class="headline">
-            <h1>Footsteps Bangladesh COVID-19 Relief</h1>
-            <h6>Fundraising campaign by Md. Mamun - Health, Food & Appearel</h6>
+<div class="page-content ">
+  <section class="campaign-title">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h1 class="H1">
+            Run for Ratan <br> 
+          <p>Empower change, join the 'Run for Ratan' campaign and make a lasting impact today!</p>
+
+          </h1>
         </div>
-        <div class="content">
-            <div class="left-content">
-                <div class="left-container">
-                  <div class="photo-container">
-                    <img src="../static/images/header-img-8.jpg">
-                  </div>
-                  <div class="photo-container" id="text">
-                    <div class="container">
-                      <p class="story">In the face of the ongoing COVID-19 crisis, the people of Bangladesh are struggling
-                          to meet their basic needs. Families are facing hunger, medical resources are scarce, and the
-                          future remains uncertain. But we believe in the power of community and solidarity.</p>
-                      <p class="story">Footsteps Bangladesh COVID-19 Relief is a campaign aimed at providing essential
-                          supplies, medical assistance, and support to the most vulnerable communities across Bangladesh.
-                          Our mission is to make sure that no one is left behind during these challenging times.</p>
-                      <p class="story">With your generous contribution, we can:</p>
-                      <ul class="story">
-                          <li>Deliver food and clean water to families in need</li>
-                          <li>Provide medical supplies and healthcare services to the sick</li>
-                          <li>Support local businesses and daily wage earners affected by the crisis</li>
-                          <li>Ensure access to education for children through online learning initiatives</li>
-                      </ul>
-                      <div class="call-to-action">
-                        <a href="#"><button class="btns">Donate Now</button></a>
-                      </div>
-                      <p class="story">Every contribution matters, no matter how big or small. Together, we can make a
-                          significant impact on the lives of those who need it the most. Join us in leaving positive
-                          Footsteps of change in Bangladesh!</p>
-                      <div class="call-to-action">
-                          <a href="#"><button class="btns">Support the Cause</button></a>
-                      </div>
-                  </div>
-                  </div>
-                  
-                </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h5 class="campaign_by H10 text-center">
+            <div class="part">
+              Fundraising campaign by
+              <a href="#/user/?uid=1192150" class="owner link">
+                Md. Mamun
+              </a>
             </div>
-            <div class="right-content">
-              <div class="donation--container">
-                <h1 id="donation--user" class="donation--user">Donated</h1>
-                <span class="donation--title">Reached:</span>
-                <span id="donation--goal" class="donation--goal"></span>
-                <div class="donation--bar">
-                  <div class="donation--rounded">
-                    <div id="donation--progress" class="donation--progress" style="width: 0;"></div>
-                  </div>
-                  <div id="donation--number" class="donation--number" style="left: 0;"></div>
-                  <span id="donation--status" class="donation--status"></span>
-                </div>
-                <form class="form--container" style="padding: 10px;">
-                  <input id="donation--amount" class="btns" style="width: 200px;background-color: rgb(240, 240, 240);height: 50px;border:transparent;color: black " type="number" min="1" placeholder="Enter amount">
-                  <input id="donate" class="btns" type="submit" value="Donate" style="width: 80px;height: 50px; background-color: green;">
-                </form>
-              </div>
+            <div class="part">
+              <span class="dot d-sm-none d-none d-md-inline-block">
+              </span>
+              <a href="#/campaigns?country=bd" class="owner link">
+                Ashulia, Savar
+              </a>
+              <span class="dot d-md-inline-block">
+              </span>
+              <a href="#/category/sports" class="category text-cat-sports">
+                Health
+              </a>
             </div>
+          </h5>
         </div>
-        
       </div>
     </div>
-    <script>
-      "use strict";
+  </section>
+  <div id="sticky_menu_stopper">
+  </div>
+  <section class="campaign-content tabs-sec">
+    <div class="container tab-container">
+      <div id="tab-content-continer" class="row tab-row">
+        <div id="tab-content-area" class="col-lg-8 pr-lg-16">
+          <ul id="sticky-tabs" class="tab_count_4 nav nav-tabs scrollmenu  style-oToya" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" data-toggle="tab" href="#campaign-story" role="tab">
+                Story
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link " data-toggle="tab" href="#campaign-updates" role="tab">
+                Updates
+                <sup class="count">
+                  0
+                </sup>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link " data-toggle="tab" href="#campaign-donors" role="tab">
+                Donors
+                <sup class="count">
+                  4
+                </sup>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="tab" href="#campaign-followers" role="tab">
+                Followers
+                <sup class="count">
+                  0
+                </sup>
+              </a>
+            </li>
+          </ul>
+          <div class="tab-content">
+            <div class="tab-pane active" id="campaign-story" role="tabpanel">
+              <div id="profileMain">
+                <div id="profile" class="style-qP541">
+                  <a href="/wp-content/uploads/2023/08/8047957/img/cimg_8047957_1692116677.png" data-gal="prettyPhoto[gal]" id="style-SsfCG" class="style-SsfCG">
+                    <img class="img-responsive style-sJOzm" alt="" data-pagespeed-url-hash="2996970203" src="../static/images/header-img-7.jpg" onerror="this.onerror=null;pagespeed.lazyLoadImages.loadIfVisibleAndMaybeBeacon(this);" id="style-sJOzm">
+                  </a>
+                </div>
+              </div>
+              <div class="sticky-content-area right-box for-mobile d-block d-lg-none">
+                <ul class="campaign-amount-ul list-inline list-unstyled m-0 p-0">
+                  <li class="list-inline-item m-0 p-0">
+                    <div class="campaign-amount-raised text-left">
+                      Tk 18,000
+                    </div>
+                    <div class="campaign-amount-goal H10 text-left">
+                      raised of Tk 800,000.00 goal goal 
+                    </div>
+                  </li>
+                </ul>
+                <div class="campaign-goal-progress">
+                  <div class="total-progress">
+                    <div class="current-progress" style="width: 2%">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-6 progress-in-word H10 text-left">
+                      2% Funded
+                    </div>
+                    <div class="col-6 progress-in-word H10 text-right text-grayish-blue">
+                      4 Donors
+                    </div>
+                  </div>
+                </div>
+                <div class="time-left">
+                  <div class="time_label">
+                    <div class="clock">
+                    </div>
+                    <span class="P9">
+                      Time left
+                    </span>
+                  </div>
+                  <div class="time">
+                    <span class="days H5">
+                      48
+                    </span>
+                    <span class="hours H5">
+                      17
+                    </span>
+                    <span class="minutes H5">
+                      25
+                    </span>
+                  </div>
+                </div>
+                <div id="follow_compaign2" class="follow_this_campaign">
+                  <button type="button">
+                    <i class="fa fa-heart" aria-hidden="true"></i>
+                    </i>
+                    <span id="follow_compaign_text2">
+                      Follow this campaign
+                    </span>
+                  </button>
+                  <input type="hidden" id="follow_statusfieild" value="0">
+                </div>
+                <span class="bottom_line P12 text-center d-block">
+                  You only have the opportunity to donate to this campaign before 
+                  <span class="end_time">
+                    Tuesday Nov 14, 11:59 pm UTC
+                  </span>
+                </span>
+              </div>
+              <div class="heading_with_links">
+                <h2 class="H3 text-left">
+                  Campaign Story
+                </h2>
+              </div>
+              <div class="story-content-area  style-Y6yLD" id="style-Y6yLD">
+                <p style="text-align: justify;">
+                  In the quiet town of Hopeville, a heart beats with boundless dreams - Ratan's. At just 10, he was diagnosed with a rare heart condition, but his spirit soared higher than any ailment could reach. Every day, he'd gaze at the horizon, longing to run like the wind.
 
-// Function to find percentage
-function percentage(a, b) {
-  return a / b * 100 > 100 ? 100 : a / b * 100;
-}
+                </br></br>
+                  "Run for Ratan" is more than a campaign; it's a race against time, a sprint towards hope. We envision a world where Ratan's laughter fills the air, where his tiny feet dance with abandon. With your support, we aim to give him the gift of a new heart and a chance to chase his dreams.
 
-//On Window Load
-window.onload = function() {
+                </br></br>
+                  Together, let's turn every heartbeat into a promise. Every dollar brings us closer to the finish line. Join us in this journey of love, hope, and unwavering determination. Run alongside Ratan as he races towards a future full of possibilities.
 
-  //User Object
-  var User = {
-    name: "Francisco",
-    donationCollect: 56,
-    donationGoal: 125
-  };
+                </br></br>
+                  Donate today and let's make Ratan's dreams take flight. Every step counts. Every heartbeat matters. Run for Ratan.
+                </p>
+                <div class="story_content_spacer">
+                </div>
+              </div>
+              <div class="story-section fundraising_team_section">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <h3 class="H3 text-left section-heading">
+                      Organizer 
+                    </h3>
+                  </div>
+                </div>
+                <div class="fundraising-team-row">
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <div class="member-img" style="background-image:url('../static/images/Mamun\ Formal\ Pic.png')">
+                      </div>
+                      <div class="member_info">
+                        <ul class="list-inline">
+                          <li class="d-block d-lg-inline member-name H8 text-left" id="flname1192150">
+                            Md. Mamun
+                          </li>
+                        </ul>
+                        <div class="d-none d-lg-block member_info_bottom">
+                          <a href="#" class="send-message" onclick="if (!window.__cfRLUnblockHandlers) return false; assign_set_uuiid(1192150);" data-toggle="modal" data-target="#send_msg">
+                            <span class="link">
+                              Send a message
+                            </span>
+                          </a>
+                        </div>
+                      </div>
+                      <div class="d-block d-lg-none member_info_bottom">
+                        <a href="#" class="send-message" onclick="if (!window.__cfRLUnblockHandlers) return false; assign_set_uuiid(1192150);" data-toggle="modal" data-target="#send_msg">
+                          <span class="link">
+                            Send a message
+                          </span>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="story-section donors_section">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <h3 class="H5 text-left section-heading">
+                      Donors 
+                    </h3>
+                  </div>
+                </div>
+                <div id="donors-rows2">
+                  <div class="donors-row comment_msg_pre_3942398" id="comment_msg_pre_3942398">
+                    <div class="row">
+                      <div class="col-lg-12">
+                        <div class="donor-img img-responsive no-photo-bg">
+                        </div>
+                        <ul>
+                          <li class="donor_name">
+                            Mh Limon
+                          </li>
+                          <li class="donation_date style-TtsKy" id="style-TtsKy">
+                            Donated on Aug 20, 2023
+                          </li>
+                        </ul>
+                      </div>
+                      <div class="text-right amount_div">
+                        <span class="donation_amount">
+                          Tk 5000.00
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="donors-row comment_msg_pre_3941655" id="comment_msg_pre_3941655">
+                    <div class="row">
+                      <div class="col-lg-12">
+                        <div class="donor-img img-responsive no-photo-bg">
+                        </div>
+                        <ul>
+                          <li class="donor_name">
+                            Rafi Ahmed
+                          </li>
+                          <li class="donation_date style-w1xyh" id="style-w1xyh">
+                            Donated on Aug 19, 2023
+                          </li>
+                        </ul>
+                      </div>
+                      <div class="text-right amount_div">
+                        <span class="donation_amount">
+                          Tk 10000.00
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="donors-row comment_msg_pre_3938965" id="comment_msg_pre_3938965">
+                    <div class="row">
+                      <div class="col-lg-12">
+                        <div class="donor-img img-responsive no-photo-bg">
+                        </div>
+                        <ul>
+                          <li class="donor_name">
+                            Anonymous
+                          </li>
+                          <li class="donation_date style-Vmb9E" id="style-Vmb9E">
+                            Donated on Aug 16, 2023
+                          </li>
+                        </ul>
+                      </div>
+                      <div class="text-right amount_div">
+                        <span class="donation_amount hidden_amount">
+                          Amount Hidden
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="text-center">
+                  <a href="#" id="see_all_donors" class="see_all_donors link">
+                    See all donors (4)
+                  </a>
+                </div>
+              </div>
+              <div class="gropup_and_report_btn">
+                <button id="report_img" type="button" class="report-btn bttn md-btn sec" data-toggle="modal" data-target="#report_campaign">
+                  <i class="icon i-flag">
+                  </i>
+                  Report
+                </button>
+                <div class="modal fade" id="report_campaign" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                      <div class="modal-body style-bEGJC" id="style-bEGJC">
+                        <form id="report_form" class="content" name="report_form" action="/support-to-be-a-world-champion-tamogasd-hogy-vilagbajnok-lehessen/" onsubmit="if (!window.__cfRLUnblockHandlers) return false; return validate(this);" method="post">
+                          <h3 class="H3 text-blue text-center">
+                            Report campaign
+                          </h3>
+                          <div class="content-item">
+                            <div class="form-group">
+                              <label for="" class="H8 text-black text-bold">
+                                Flag category
+                              </label>
+                              <div class="jq-selectbox jqselect js-select js-select-default" id="flagCat-styler">
+                                <select id="flagCat" name="flagCat" data-placeholder="Please select" class="js-select js-select-default">
+                                  <option value="4">
+                                    Dangerous Acts
+                                  </option>
+                                  <option value="8">
+                                    Fake Campaign
+                                  </option>
+                                  <option value="3">
+                                    Hateful / Abusive Content
+                                  </option>
+                                  <option value="6">
+                                    Infringes My Rights
+                                  </option>
+                                  <option value="7">
+                                    Other
+                                  </option>
+                                  <option value="5">
+                                    Spam
+                                  </option>
+                                  <option value="2">
+                                    Violent / Repulsive Content
+                                  </option>
+                                  <option value="1">
+                                    X Rated
+                                  </option>
+                                </select>
+                                <div class="jq-selectbox__select">
+                                  <div class="jq-selectbox__select-text">
+                                    Dangerous Acts
+                                  </div>
+                                  <div class="jq-selectbox__trigger">
+                                    <div class="jq-selectbox__trigger-arrow">
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="jq-selectbox__dropdown style-yDXa2" id="style-yDXa2">
+                                  <ul>
+                                    <li class="selected sel" style="">
+                                      Dangerous Acts
+                                    </li>
+                                    <li style="">
+                                      Fake Campaign
+                                    </li>
+                                    <li style="">
+                                      Hateful / Abusive Content
+                                    </li>
+                                    <li style="">
+                                      Infringes My Rights
+                                    </li>
+                                    <li style="">
+                                      Other
+                                    </li>
+                                    <li style="">
+                                      Spam
+                                    </li>
+                                    <li style="">
+                                      Violent / Repulsive Content
+                                    </li>
+                                    <li style="">
+                                      X Rated
+                                    </li>
+                                  </ul>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label for="" class="H8 text-black text-bold">
+                                Your message
+                              </label>
+                              <textarea class="form-control" id="reportMessage" name="reportMessage" placeholder="Add the title of your page">
+                              </textarea>
+                            </div>
+                            <div class="form-group">
+                              <label for="" class="H8 text-black text-bold">
+                                Security code
+                              </label>
+                              <div class="row m-0">
+                                <div class="col-3 code">
+                                  <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD//gA7Q1JFQVRPUjogZ2QtanBlZyB2MS4wICh1c2luZyBJSkcgSlBFRyB2NjIpLCBxdWFsaXR5ID0gODAK/9sAQwAGBAUGBQQGBgUGBwcGCAoQCgoJCQoUDg8MEBcUGBgXFBYWGh0lHxobIxwWFiAsICMmJykqKRkfLTAtKDAlKCko/9sAQwEHBwcKCAoTCgoTKBoWGigoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgo/8AAEQgAGQAtAwEiAAIRAQMRAf/EAB8AAAEFAQEBAQEBAAAAAAAAAAABAgMEBQYHCAkKC//EALUQAAIBAwMCBAMFBQQEAAABfQECAwAEEQUSITFBBhNRYQcicRQygZGhCCNCscEVUtHwJDNicoIJChYXGBkaJSYnKCkqNDU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6g4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2drh4uPk5ebn6Onq8fLz9PX29/j5+v/EAB8BAAMBAQEBAQEBAQEAAAAAAAABAgMEBQYHCAkKC//EALURAAIBAgQEAwQHBQQEAAECdwABAgMRBAUhMQYSQVEHYXETIjKBCBRCkaGxwQkjM1LwFWJy0QoWJDThJfEXGBkaJicoKSo1Njc4OTpDREVGR0hJSlNUVVZXWFlaY2RlZmdoaWpzdHV2d3h5eoKDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uLj5OXm5+jp6vLz9PX29/j5+v/aAAwDAQACEQMRAD8A+m6KwfGmsXui6N52l6fNf3s0qwRKkTyJEWz+8kCAtsXGTtBJ4A65Hnfw8jsW8VePLXXZ5tSt3is7i5n1WzaJW2ozOzpIoEahjlVbGFUYyFzXQlpcxb1sexUV5p4d8Nadr+v23iGw0qHRtFtopY7H7LD9mnvvMTY07lcFE2k+WOG53ZAIBj1TSLPwv4x8LNZWFromlGf7El5Y/NNdOyDZBOpA+Rip+Y+YcqDmMktTsFz0+ivCvF+tX2rat4b1XVItX0+3h122W20t9PnXbGGYmWRtmJJmwNqITtXIG4ljXutJqwJ3CsHUfCOh6j/a/wBssfM/tbyftv71x5vlY8vo3y4wPu4z3zW9RSGR3EMVzBJBcRpLDKpR43UMrqRggg8EEdqxdK8JaNpd1aXNrbzNLaRGG2NxdTTi3QgAiMSMwTgAfKBxx0reoouBQ1bSLHV/sf8AaEHnfY7lLyD52XZKmdrcEZxk8Hj2q/RRQB//2Q==" data-pagespeed-url-hash="2180184493" onload="pagespeed.CriticalImages.checkImageForCriticality(this);" id="style-kdR7X" class="style-kdR7X">
+                                </div>
+                                <div class="col-9 pr-0">
+                                  <input type="text" placeholder="Please enter code" class="form-control" id="captchaValue" name="captchaValue">
+                                </div>
+                              </div>
+                            </div>
+                            <p id="valid_result">
+                            </p>
+                            <div class="btn-row mt-52 mt-m-32">
+                              <button class="btn btn-md" data-dismiss="modal">
+                                Close
+                              </button>
+                              <button class="btn btn-primary btn-md" id="campaign_page_report_btn">
+                                Submit
+                              </button>
+                            </div>
+                            <input type="hidden" class="form-control" id="captchaValueHidden" name="captchaValueHidden" value="4734">
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="sticky-stopper">
+              </div>
+            </div>
+            <div class="tab-pane " id="campaign-updates" role="tabpanel">
+              <div class="campaign_updates_section" id="all_updates_div">
+                <p class="no-active-campaign-style">
+                  No updates for this campaign just yet
+                </p>
+              </div>
+            </div>
+            <div class="tab-pane " id="campaign-donors" role="tabpanel">
+              <div class="donors_section full-panel">
+                <div class="row section-heading-row">
+                  <div class="col-8 text-left">
+                    <h3 class="section-heading">
+                      Donors &amp;&nbsp;Comments
+                    </h3>
+                  </div>
+                  <div class="col-4 text-right">
+                    <span class="P10 count donors-count">
+                      4 donors 
+                    </span>
+                  </div>
+                </div>
+                <div id="donors-rows">
+                  <div class="donors-row comment_msg_pre_3942398" id="comment_msg_pre_3942398">
+                    <div class="row">
+                      <div class="col-lg-12">
+                        <div class="donor-img img-responsive no-photo-bg">
+                        </div>
+                        <ul>
+                          <li class="donor_name">
+                            Éva Szládekné Klintsák
+                          </li>
+                          <li class="donation_date style-MipGi" id="style-MipGi">
+                            Donated on Aug 20, 2023
+                          </li>
+                        </ul>
+                      </div>
+                      <div class="text-right amount_div">
+                        <span class="donation_amount">
+                          Ft5000.00
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="donors-row comment_msg_pre_3941655" id="comment_msg_pre_3941655">
+                    <div class="row">
+                      <div class="col-lg-12">
+                        <div class="donor-img img-responsive no-photo-bg">
+                        </div>
+                        <ul>
+                          <li class="donor_name">
+                            Guest
+                          </li>
+                          <li class="donation_date style-5235C" id="style-5235C">
+                            Donated on Aug 19, 2023
+                          </li>
+                        </ul>
+                      </div>
+                      <div class="text-right amount_div">
+                        <span class="donation_amount">
+                          Tk 10000.00
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="donors-row comment_msg_pre_3938965" id="comment_msg_pre_3938965">
+                    <div class="row">
+                      <div class="col-lg-12">
+                        <div class="donor-img img-responsive no-photo-bg">
+                        </div>
+                        <ul>
+                          <li class="donor_name">
+                            Anonymous
+                          </li>
+                          <li class="donation_date style-qgrgO" id="style-qgrgO">
+                            Donated on Aug 16, 2023
+                          </li>
+                        </ul>
+                      </div>
+                      <div class="text-right amount_div">
+                        <span class="donation_amount hidden_amount">
+                          Amount Hidden
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="donors-row comment_msg_pre_3938363" id="comment_msg_pre_3938363">
+                    <div class="row">
+                      <div class="col-lg-12">
+                        <div class="donor-img img-responsive no-photo-bg">
+                        </div>
+                        <ul>
+                          <li class="donor_name">
+                            Gaszmann Zoltán
+                          </li>
+                          <li class="donation_date style-t9EY3" id="style-t9EY3">
+                            Donated on Aug 15, 2023
+                          </li>
+                          <li class="donor_msg">
+                            <p>
+                              legyen 7!, szép szerencsés szám! 
+                            </p>
+                          </li>
+                        </ul>
+                      </div>
+                      <div class="text-right amount_div">
+                        <span class="donation_amount">
+                          Tk 1000.00
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="sticky-stopper">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane" id="campaign-followers" role="tabpanel">
+              <div class="followers_section full-panel">
+                <div class="row section-heading-row">
+                  <div class="col-8 text-left">
+                    <h3 class="section-heading">
+                      Followers
+                    </h3>
+                  </div>
+                  <div class="col-4 text-right">
+                    <span class="P10 count followers-count">
+                      0 followers
+                    </span>
+                  </div>
+                </div>
+                <div id="followers-rows">
+                  <div class="no-active-campaign-style">
+                    No Followers Just Yet...
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="tab-content-sidebar" class="col-lg-4 pl-lg-44 d-none d-lg-inline">
+          <div id="sticky-area" class="style-AxkHT">
+            <div class="right-box">
+              <div class="sticky-content-area">
+                <div class="campaign-amount-raised">
+                  ৳ 18,000
+                </div>
+                <div class="campaign-amount-goal H10 text-center">
+                  raised of ৳ 800,000.00 goal
+                </div>
+                <div class="campaign-goal-progress">
+                  <div class="total-progress">
+                    <div class="current-progress" style="width: 2%">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6 progress-in-word H10 text-left text-blue">
+                      2% Funded
+                    </div>
+                    <div class="col-md-6 progress-in-word H10 text-right text-grayish-blue">
+                      4 Donors
+                    </div>
+                  </div>
+                </div>
+                <div class="time-left">
+                  <div id="style-SbEmK" class="style-SbEmK">
+                    <div class="clock">
+                    </div>
+                    <div class="time">
+                      <span class="P11 d-block text-left">
+                        Time left
+                      </span>
+                      <div class="time_left_div">
+                        <span class="days H6 text-left">
+                          48
+                        </span>
+                        <span class="hours H6 text-left">
+                          17
+                        </span>
+                        <span class="minutes H6 text-left">
+                          25
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <a href="#/campaign_funds/?pre=8047957" class="GA4-single-donate-now" onclick="if (!window.__cfRLUnblockHandlers) return false; ga('send', 'event', 'Donate', 'click', 'donate-top-btn');">
+                  <button type="button" class="donate-btn bttn lg-btn pri">
+                    DONATE NOW
+                  </button>
+                </a>
+                <div class="share_with_friend">
+                  <button type="button" class="bttn sec md-btn outline-blue" data-toggle="modal" data-target="#campaign-share-modal">
+                    <span class="icons">
+                      <i class="icon i-ws-circle">
+                      </i>
+                      <i class="icon i-twitter-circle">
+                      </i>
+                      <i class="icon i-fb-circle">
+                      </i>
+                    </span>
+                    Share with friends
+                  </button>
+                </div>
+                <div id="follow_compaign" class="follow_this_campaign">
+                  <button type="button">
+                    <i class="icon i-heart">
+                    </i>
+                    <span id="follow_compaign_text">
+                      Follow this campaign
+                    </span>
+                  </button>
+                  <input type="hidden" id="follow_statusfieild" value="0">
+                </div>
+                <p class="brokersText-4">
+                  <span class="bottom_line P12 text-center d-block">
+                    You only have the opportunity to donate to this campaign before 
+                    <span class="end_time">
+                      Tuesday Nov 14, 11:59 pm UTC
+                    </span>
+                  </span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="donate-now-sticky d-block d-lg-none">
+    <ul class="list-unstyled list-inline">
+      <li class="list-inline-item p-0 m-0">
+        <button type="button" class="share_with_friend bttn md-btn sec outline-blue" data-toggle="modal" data-target="#campaign-share-modal">
+          <span class="icons">
+            <i class="icon i-ws-circle">
+            </i>
+            <i class="icon i-twitter-circle">
+            </i>
+            <i class="icon i-fb-circle">
+            </i>
+          </span>
+          Share
+        </button>
+      </li>
+      <li class="list-inline-item p-0 m-0">
+        <a href="#/campaign_funds/?pre=8047957" class="asidebtn act-btn GA4-single-donate-now" onclick="if (!window.__cfRLUnblockHandlers) return false; ga('send', 'event', 'Donate', 'click', 'donate-top-btn');">
+          <button type="button" class="donate-btn bttn md-btn pri">
+            DONATE NOW
+          </button>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div id="myTabContent" class="tab-content">
+  </div>
+  <div class="row style-aIkoI" id="style-aIkoI">
+    <div class="col">
+      <div class="widget-wrapper style-DPkOi" id="mywidget3">
+        <div class="b-card horizontal widget style-RUcdY" id="style-RUcdY">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-  // IDs
-  var donationUser = document.getElementById("donation--user"),
-    donationProgress = document.getElementById("donation--progress"),
-    donationNumber = document.getElementById("donation--number"),
-    donationGoal = document.getElementById("donation--goal"),
-    donationStatus = document.getElementById("donation--status"),
-    donationAmount = document.getElementById("donation--amount"),
-    donate = document.getElementById("donate");
-
-  // How much percent to reach Goal
-  var percent = percentage(User.donationCollect, User.donationGoal);
-  // What we have so far to reach Goal
-  donationProgress.setAttribute("aria-valuenow", User.donationCollect);
-  // Goal
-  donationProgress.setAttribute("aria-valuemax", User.donationGoal);
-
-  // Default Data
-  donationUser.innerHTML = "Your Progress <span class='green'>" + user.name + "<span>";
-  donationProgress.setAttribute("style", "width:" + percent + "%");
-  donationNumber.setAttribute("style", "left:" + percent + "%");
-  donationNumber.innerHTML = "$" + User.donationCollect;
-  donationGoal.innerHTML = "Goal<br>$" + User.donationGoal;
-  donationStatus.innerHTML = "<i class='fa fa-window-close red'></i> You need <span class='red'>$" + (User.donationGoal - User.donationCollect) + "</span> to reach your Donation Goal";
-
-  //Events
-
-  //Only Positive Numbers allow in the Donation input
-  donationAmount.onkeydown = function(e) {
-    if (!((e.keyCode > 95 && e.keyCode < 106) || (e.keyCode > 47 && e.keyCode < 58) || e.keyCode === 8)) {
-      return false;
-    }
-  };
-
-  // Onclick event for the donate button
-  donate.onclick = function(e) {
-    e.preventDefault();
-    var newDonationCollect = (+User.donationCollect) + (+donationAmount.value);
-    var newPercent = percentage(newDonationCollect, User.donationGoal);
-    var newDonationNumber = User.donationCollect != User.donationGoal ? (+User.donationCollect) + (+donationAmount.value) : User.donationGoal;
-    User.donationCollect = newDonationNumber;
-    donationNumber.innerHTML = "$" + newDonationNumber;
-    donationProgress.setAttribute("style", "width:" + newPercent + "%");
-    donationNumber.setAttribute("style", "left:" + newPercent + "%");
-    donationStatus.innerHTML = User.donationGoal - newDonationNumber > 0 ? "<i class='fa fa-window-close red'></i> You need <span class='red'>$" + (User.donationGoal - newDonationNumber) + "</span> to reach your Donation Goal" : "<i class='fa fa-exclamation-circle green'></i> Your campaign has been funded";
-
-  };
-
-};
-    </script>
 {% endblock %}
