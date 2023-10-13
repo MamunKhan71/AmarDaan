@@ -30,7 +30,7 @@
                 <a class="nav-link" href="#">About</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{{url_for('views.campaign')}}">Campaign</a>
+                <a class="nav-link" href="{{url_for('views.campaign_list')}}">Campaigns</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="{{url_for('views.faq')}}">FAQ</a>
@@ -45,7 +45,7 @@
               </li>
               {% endif %}
               <li class="nav-item">
-                <button class="btn btn-start-campaign">Start Campaign</button>
+                <button class="btn btn-start-campaign"><a style="text-decoration:none; color:white" href="{{url_for('views.campaign')}}">Start Campaign</a></button>
               </li>
             </ul>
           </div>

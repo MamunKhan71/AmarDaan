@@ -218,6 +218,11 @@ def faq():
     return render_template('faq.html', user=current_user)
 
 
+@views.route('/campaign_list')
+def campaign_list():
+    return render_template('campaign_list.html', user=current_user)
+
+
 @views.route('/payment_gateway', methods=["POST", "GET"])
 @login_required
 def payment_gateway():
