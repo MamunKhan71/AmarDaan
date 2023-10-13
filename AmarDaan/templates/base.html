@@ -52,37 +52,35 @@
         </div>
       </nav>
       {% block content %} {% endblock %}
-      <footer>
-        <p>All rights reserved <i class="fa fa-heart"></i> by <a target="_blank" href="https://www.fb.com/mkmamun111">AmarDaan</a></p>
-      </footer>
+          <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+          <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+          <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+          <script>
+            const user = {
+                name: "{{ user.name }}",
+                imageSrc: 'path/to/user/image.jpg' // Replace with actual user image path
+            };
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-  <script>
-    const user = {
-        name: "{{ user.name }}",
-        imageSrc: 'path/to/user/image.jpg' // Replace with actual user image path
-    };
-
-    const userContainer = document.getElementById('user-profile');
-    if (userContainer) {
-        userContainer.innerHTML = `
-          <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-              ${user.name}
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-              <li><a class="dropdown-item" href="#">Profile Setting</a></li>
-              <li><a class="dropdown-item" href="{{url_for('views.dashboard')}}">Dashboard</a></li> <!-- Close double curly braces -->
-              <li><a class="dropdown-item" href="{{url_for('auth.logout')}}">Logout</a></li> <!-- Close double curly braces -->
-            </ul>
-          </div>
-        `;
-    }
-</script>
-{% block body %}
-{% endblock %}
+            const userContainer = document.getElementById('user-profile');
+            if (userContainer) {
+                userContainer.innerHTML = `
+                  <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                      ${user.name}
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                      <li><a class="dropdown-item" href="#">Profile Setting</a></li>
+                      <li><a class="dropdown-item" href="{{url_for('views.dashboard')}}">Dashboard</a></li> <!-- Close double curly braces -->
+                      <li><a class="dropdown-item" href="{{url_for('auth.logout')}}">Logout</a></li> <!-- Close double curly braces -->
+                    </ul>
+                  </div>
+                `;
+            }
+        </script>
+      {% block script %}{% endblock %}
 </body>
+<footer>
+  <p>All rights reserved <i class="fa fa-heart"></i> by <a target="_blank" href="https://www.fb.com/mkmamun111">AmarDaan</a></p>
+</footer>
 
 </html>

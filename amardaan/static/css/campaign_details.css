@@ -1270,7 +1270,8 @@ input {
 } 
 
 .sticky-content-area .bottom_line .end_time  { 
-    color: #2f435a;
+    color: #000000;
+    font-weight: 600;
 } 
 
 .col-sm-12 { 

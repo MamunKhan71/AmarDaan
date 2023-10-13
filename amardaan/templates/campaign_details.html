@@ -88,68 +88,6 @@
                   </a>
                 </div>
               </div>
-              <div class="sticky-content-area right-box for-mobile d-block d-lg-none">
-                <ul class="campaign-amount-ul list-inline list-unstyled m-0 p-0">
-                  <li class="list-inline-item m-0 p-0">
-                    <div class="campaign-amount-raised text-left">
-                      Tk 18,000
-                    </div>
-                    <div class="campaign-amount-goal H10 text-left">
-                      raised of Tk 800,000.00 goal goal 
-                    </div>
-                  </li>
-                </ul>
-                <div class="campaign-goal-progress">
-                  <div class="total-progress">
-                    <div class="current-progress" style="width: 2%">
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-6 progress-in-word H10 text-left">
-                      2% Funded
-                    </div>
-                    <div class="col-6 progress-in-word H10 text-right text-grayish-blue">
-                      4 Donors
-                    </div>
-                  </div>
-                </div>
-                <div class="time-left">
-                  <div class="time_label">
-                    <div class="clock">
-                    </div>
-                    <span class="P9">
-                      Time left
-                    </span>
-                  </div>
-                  <div class="time">
-                    <span class="days H5">
-                      48
-                    </span>
-                    <span class="hours H5">
-                      17
-                    </span>
-                    <span class="minutes H5">
-                      25
-                    </span>
-                  </div>
-                </div>
-                <div id="follow_compaign2" class="follow_this_campaign">
-                  <button type="button">
-                    <i class="fa fa-heart" aria-hidden="true"></i>
-                    </i>
-                    <span id="follow_compaign_text2">
-                      Follow this campaign
-                    </span>
-                  </button>
-                  <input type="hidden" id="follow_statusfieild" value="0">
-                </div>
-                <span class="bottom_line P12 text-center d-block">
-                  You only have the opportunity to donate to this campaign before 
-                  <span class="end_time">
-                    Tuesday Nov 14, 11:59 pm UTC
-                  </span>
-                </span>
-              </div>
               <div class="heading_with_links">
                 <h2 class="H3 text-left">
                   Campaign Story
@@ -586,15 +524,9 @@
                         Time left
                       </span>
                       <div class="time_left_div">
-                        <span class="days H6 text-left">
-                          48
-                        </span>
-                        <span class="hours H6 text-left">
-                          17
-                        </span>
-                        <span class="minutes H6 text-left">
-                          25
-                        </span>
+                        <span class="days H6 text-left" id="days"></span>
+                        <span class="hours H6 text-left" id="hours"></span>
+                        <span class="minutes H6 text-left" id="minutes"></span>
                       </div>
                     </div>
                   </div>
@@ -630,7 +562,7 @@
                 <p class="brokersText-4">
                   <span class="bottom_line P12 text-center d-block">
                     You only have the opportunity to donate to this campaign before 
-                    <span class="end_time">
+                    <span class="end_time" id="endtime">
                       Tuesday Nov 14, 11:59 pm UTC
                     </span>
                   </span>
@@ -677,5 +609,53 @@
     </div>
   </div>
 </div>
+{% block script %}
+<script>
+  function updateTimer() {
+      var daysElement = document.getElementById("days");
+      var hoursElement = document.getElementById("hours");
+      var minutesElement = document.getElementById("minutes");
+      var daysString = minutesElement.innerText.trim();
+      console.log(daysString);
+      var targetDate = new Date("2023-12-10T23:59:59");
+      // Get the target date (you'll need to replace this with your actual target date)
 
+      // Get the current date
+      var now = new Date();
+
+      // Calculate the time difference
+      var timeDifference = targetDate - now;
+
+
+
+      // Calculate days, hours, and minutes
+      var days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+      var hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+      // Update the HTML elements
+      daysElement.innerText = days;
+      hoursElement.innerText = hours;
+      minutesElement.innerText = minutes;
+  }
+
+  // Update the timer every second
+  setInterval(updateTimer, 1000);
+</script>
+<script>
+      var endTime = document.getElementById("endtime");
+      var targetDate = new Date("2023-12-15T23:59:59");
+      var options = {
+      weekday: 'short',
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+      timeZoneName: 'short'
+    };
+      var formattedDate = targetDate.toLocaleString('en-US', options);
+      endTime.innerText = formattedDate;
+</script>
+
+{% endblock %}
 {% endblock %}
