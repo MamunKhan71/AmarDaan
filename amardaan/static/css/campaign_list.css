@@ -21,7 +21,23 @@ a {
 hr{
     border-top: 1px dotted rgb(169, 165, 165);
 }
+.query-filters{
+    display: flex;
+    margin: 0 30px 0 30px ;
+    justify-content: center;
+    align-items: center;
+}
+.filter-section {
+    margin: 40px 20px 20px 20px;
+}
 
+#filter {
+    padding: 8px;
+    font-size: 16px;
+    border-radius: 10px;
+    width: 250px;
+    border-color: #ededed;
+}
 .products-container {
     width: 100;
     display: flex;
