@@ -215,7 +215,19 @@
                             <option value="Instagram">Instagram</option>
                             <option value="others">Others</option>
                             </select><br/>
-                            <button type="submit" value="Submit" class="btn btn-primary" style="width: 100%;">Submit</button>
+                            <label>
+                                <input type="checkbox" name="agree" required>
+                                <span>I agree with <a href="{{url_for('views.privacy_policy')}}">terms and conditions.</a></span>
+                            </label>
+                            <!-- Overlay and Alert Box -->
+                                <div class="overlay" id="overlay">
+                                    <div class="alert-box">
+                                        <p>Please check the terms and conditions box.</p>
+                                        <button class="close-btn" onclick="closeOverlay()">Close</button>
+                                    </div>
+                                </div>
+                            </br></br>
+                            <button type="submit" value="Submit" class="btn btn-primary" style="width: 100%;" onclick="checkAgreement()">Submit</button>
                         </div>
                         <!-- Add other form fields as needed -->
                     </div>
@@ -234,7 +246,21 @@
     </div>
 </div>
 
+<script>
+    function checkAgreement() {
+        var agreeCheckbox = document.getElementsByName("agree")[0];
 
+        if (agreeCheckbox.checked) {
+            document.getElementById("myForm").submit();
+        } else {
+            document.getElementById("overlay").style.display = "flex";
+        }
+    }
+
+    function closeOverlay() {
+        document.getElementById("overlay").style.display = "none";
+    }
+</script>
 <script>
     function navigateToStep(stepNumber) {
         // Remove the 'active' class from all steps in col1, col2, and col3
