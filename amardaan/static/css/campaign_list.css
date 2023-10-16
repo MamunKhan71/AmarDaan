@@ -31,13 +31,14 @@ hr{
     margin: 40px 20px 20px 20px;
 }
 
-#filter {
+#filter, #category {
     padding: 8px;
     font-size: 16px;
     border-radius: 10px;
     width: 250px;
     border-color: #ededed;
 }
+
 .products-container {
     width: 100;
     display: flex;
@@ -45,7 +46,6 @@ hr{
     flex-wrap: wrap;
     padding: 0 10% 0 10%;
 }
-
 .product-card {
     width: 350px;
     border-radius: 10px;
@@ -159,3 +159,4 @@ hr{
 .product-links a:hover {
     color: #fbb72c;
 }
+

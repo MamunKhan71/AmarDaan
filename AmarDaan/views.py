@@ -295,3 +295,8 @@ def payment_verification():
             response = sslcz.validationTransactionOrder(post_body['val_id'])
         else:
             print("Hash validation failed")
+
+
+@views.route('/privacy_policy')
+def privacy_policy():
+    return render_template('privacy_policy.html', user=current_user)
