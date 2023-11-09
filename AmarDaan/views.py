@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, current_app, redirect, url_for, session
+from flask import jsonify, Blueprint, render_template, request, current_app, redirect, url_for, session
 from flask_login import login_required, current_user
 from .models import Campaign
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -9,13 +9,18 @@ import time
 import smtplib
 from email.mime.text import MIMEText
 import random
-
+import requests
+import json
+SSLCZ_SESSION_API = 'https://sandbox.sslcommerz.com/gwprocess/v4/api.php'
+import uuid
+from werkzeug.local import LocalProxy
 views = Blueprint('views', __name__)
 
 
 @views.route('/')
 
 def home():
+    
     return render_template('index.html', user=current_user)
 
 
@@ -223,78 +228,76 @@ def campaign_list():
     return render_template('campaign_list.html', user=current_user)
 
 
-@views.route('/payment_gateway', methods=["POST", "GET"])
-@login_required
-def payment_gateway():
-    settings = {'store_id': 'amard65277e36db8a5', 'store_pass': 'amard65277e36db8a5@ssl', 'issandbox': True}
-    sslcz = SSLCOMMERZ(settings)
-    post_body = {}
-    post_body['total_amount'] = 100.26
-    post_body['currency'] = "BDT"
-    post_body['tran_id'] = "12345"
-    post_body['success_url'] = "your success url"
-    post_body['fail_url'] = "your fail url"
-    post_body['cancel_url'] = "your cancel url"
-    post_body['emi_option'] = 0
-    post_body['cus_name'] = "test"
-    post_body['cus_email'] = "test@test.com"
-    post_body['cus_phone'] = "01700000000"
-    post_body['cus_add1'] = "customer address"
-    post_body['cus_city'] = "Dhaka"
-    post_body['cus_country'] = "Bangladesh"
-    post_body['shipping_method'] = "NO"
-    post_body['multi_card_name'] = ""
-    post_body['num_of_item'] = 1
-    post_body['product_name'] = "Test"
-    post_body['product_category'] = "Test Category"
-    post_body['product_profile'] = "general"
+def get_session(name, amount):
+    post_data={
+    "store_id": "amard65277e36db8a5",
+    "store_passwd": "amard65277e36db8a5@ssl",
+    "total_amount": 500,
+    "currency": "BDT",
+    "tran_id":uuid.uuid4(),
+    "success_url": "http://ssltest.com:5000/success",
+    "fail_url": "http://ssltest.com:5000/fail",
+    "cancel_url": "http://ssltest.com:5000/cancel",
+    "ipn_url": "http://ssltest.com:5000/ipn",
+    "cus_name": "Md. Mamun",
+    "cus_email": "cust@yahoo.com",
+    "cus_add1": "Dhaka",
+    "cus_add2": "Dhaka",
+    "cus_city": "Dhaka",
+    "cus_state": "Dhaka",
+    "cus_postcode": "1000",
+    "cus_country": "Bangladesh",
+    "cus_phone": "01711111111",
+    "cus_fax": "01711111111",
+    "ship_name": "Customer Name",
+    "ship_add1": "Dhaka",
+    "ship_add2": "Dhaka",
+    "ship_city": "Dhaka",
+    "ship_state": "Dhaka",
+    "ship_postcode": "1000",
+    "ship_country": "Bangladesh",
+    "multi_card_name": "mastercard,visacard,amexcard",
+    "value_a": "ref001_A",
+    "value_b": "ref002_B",
+    "value_c": "ref003_C",
+    "value_d": "ref004_D",
+    "shipping_method": "YES",
+    "product_name": "credit",
+    "product_category": "general",
+    "product_profile": "general"
+    }
 
-    response = sslcz.createSession(post_body)
-    print(response)
+    response = requests.post(SSLCZ_SESSION_API, post_data)
+
+    return(response.json()["sessionkey"],response.json()["GatewayPageURL"])
 
 
+@views.route('/get-ssl-session', methods = ['GET', 'POST'])
+def get_ssl_session():
+    name = "Mamun"
+    amount = 500;
+    session, gateway = get_session(name, amount);
+    
+    return redirect(gateway) 
 
-@views.route('/payment_verification', methods=["POST", "GET"])
-def payment_verification():
-    if request.method == "POST":
-        return render_template('<h1>Payment Verified!</h1>')
-    else:
-        settings = {'store_id': 'amard65277e36db8a5', 'store_pass': 'amard65277e36db8a5@ssl', 'issandbox': True}
-        sslcz = SSLCOMMERZ(settings)
-        post_body = {}
-        post_body['tran_id'] = '5E121A0D01F92'
-        post_body['val_id'] = '200105225826116qFnATY9sHIwo'
-        post_body['amount'] = "10.00"
-        post_body['card_type'] = "VISA-Dutch Bangla"
-        post_body['store_amount'] = "9.75"
-        post_body['card_no'] = "418117XXXXXX6675"
-        post_body['bank_tran_id'] = "200105225825DBgSoRGLvczhFjj"
-        post_body['status'] = "VALID"
-        post_body['tran_date'] = "2020-01-05 22:58:21"
-        post_body['currency'] = "BDT"
-        post_body['card_issuer'] = "TRUST BANK, LTD."
-        post_body['card_brand'] = "VISA"
-        post_body['card_issuer_country'] = "Bangladesh"
-        post_body['card_issuer_country_code'] = "BD"
-        post_body['store_id'] = "test_testemi"
-        post_body['verify_sign'] = "d42fab70ae0bcbda5280e7baffef60b0"
-        post_body[
-            'verify_key'] = "amount,bank_tran_id,base_fair,card_brand,card_issuer,card_issuer_country,card_issuer_country_code,card_no,card_type,currency,currency_amount,currency_rate,currency_type,risk_level,risk_title,status,store_amount,store_id,tran_date,tran_id,val_id,value_a,value_b,value_c,value_d"
-        post_body['verify_sign_sha2'] = "02c0417ff467c109006382d56eedccecd68382e47245266e7b47abbb3d43976e"
-        post_body['currency_type'] = "BDT"
-        post_body['currency_amount'] = "100.00"
-        post_body['currency_rate'] = "1.0000"
-        post_body['base_fair'] = "0.00"
-        post_body['value_a'] = ""
-        post_body['value_b'] = ""
-        post_body['value_c'] = ""
-        post_body['value_d'] = ""
-        post_body['risk_level'] = "0"
-        post_body['risk_title'] = "Safe"
-        if sslcz.hash_validate_ipn(post_body):
-            response = sslcz.validationTransactionOrder(post_body['val_id'])
-        else:
-            print("Hash validation failed")
+@views.route('/success',methods = ['POST', 'GET'])
+def success():
+    response = request.form.to_dict()
+    # process your data store it or do anything you prefer
+
+    return render_template('payment_success.html', user=current_user);
+
+@views.route('/fail',methods = ['POST'])
+def fail():
+    response = request.form.to_dict()
+
+    return redirect('http://localhost:80/fail');
+
+@views.route('/cancel',methods = ['POST'])
+def cancel():
+    response = request.request.form.to_dict()
+
+    return redirect('http://localhost:80/cancel');
 
 
 @views.route('/privacy_policy')
