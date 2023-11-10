@@ -100,13 +100,16 @@
       <div class="ct-text">
         <h1>Discover amazing fundraising campaigns</h1>
       </div>
-      <button class="btn btn-start-campaign">Fund Someone</button>
+      <button class="btn btn-start-campaign" onclick="window.location.href='{{ url_for('views.campaign_list') }}'">Fund Someone</button>
+
+    </a>
     </div>
     <div class="box col-lg-6 img2">
       <div class="ct-text">
         <h1>Create your own campaign now</h1>
       </div>
-      <button class="btn btn-start-campaign">Start Fundraising</button>
+      <button class="btn btn-start-campaign" onclick="window.location.href='{{ url_for('views.campaign') }}'">Start Fundraising</button>
+
     </div>
   </div>
 </div>

@@ -11,7 +11,7 @@
         <div class="donations__text">
             Join the <span class="donations__donors">0</span> other donors who have already supported this project.
         </div>
-        <form class="donations__form">
+        <form class="donations__form" method="POST" action="{{url_for('views.get_ssl_session')}}">
             <span class="donations__input-icon">$</span>
             <input class="donations__input" type="number" value="50" title="$"/>
             <label class="checkbox hide_donation_checkbox">
@@ -42,7 +42,7 @@
                     <span class="checkbox-text">Yes, please email me updates on this campaign's progress</span>
                 </label>
             </div>
-            <button class="donations__reset">Proceed to Checkout</button>
+            <button class="donations__reset" type="submit" value="submit">Proceed to Checkout</button>
         </form>
         <p class="P11 text-center privacy-term-text">By continuing you are agreeing to GoGetFunding's <span class="link"><a href="#">&nbsp; terms &nbsp;</a></span> and<span class="link"><a href="#"> &nbsp; privacy policy</a></span>.</p>
 
