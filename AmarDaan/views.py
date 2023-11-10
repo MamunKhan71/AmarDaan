@@ -300,6 +300,10 @@ def cancel():
     return redirect('http://localhost:80/cancel');
 
 
+@views.route('/donation_page')
+def donation_page():
+    return render_template('donation_page.html', user=current_user)
+
 @views.route('/privacy_policy')
 def privacy_policy():
     return render_template('privacy_policy.html', user=current_user)

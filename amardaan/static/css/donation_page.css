@@ -1,0 +1,82 @@
+* { box-sizing: border-box; }
+
+body {
+    font-family: 'Bai Jamjuree', sans-serif;
+}
+
+.donations {
+    position: relative;
+    border-radius: 10px;
+    padding: 2em;
+    max-width: 800px;
+    margin: 10em auto;
+    background: white;
+    overflow: hidden;
+    box-shadow: 0 2px 7px #dfdfdf;
+}
+
+.donations__progress-bar {
+    background: orange;
+    height: 1em;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translate3D(-100%, 0, 0);
+    width: 100%;
+    transition: transform 500ms ease;
+}
+
+.donations__progress {
+    text-align: center;
+}
+
+.donations__text {
+    margin-bottom: 1em;
+    line-height: 1.5;
+}
+
+.donations__donors {
+    font-weight: bold;
+}
+
+.donations__form {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    font-size: 1.3em;
+}
+
+.donations__input,
+.donations__reset {
+    font-size: inherit;
+    border: none;
+    padding: 0.5em 0.8em;
+    border-radius: 5px;
+    width: 100%;
+    min-width: 100px;
+    margin-bottom: 1em;
+}
+
+.donations__submit {
+    background: #1cbc2c;
+    color: white;
+}
+
+.donations__reset {
+    background-color: #1cbc2c;
+    color: rgb(255, 255, 255);
+    flex-grow: 1;
+}
+
+.donations__input {
+    border: 1px solid #eee;
+    padding-left: 1em;
+}
+
+.donations__input-icon {
+    position: absolute;
+    color: gray;
+    line-height: 1.3;
+    padding: 0.5em 0.3em;
+    pointer-events: none;
+}
