@@ -267,7 +267,7 @@
                       </div>
                       <div class="text-right amount_div">
                         <span class="donation_amount">
-                          Ft5000.00
+                          Tk 5000.00
                         </span>
                       </div>
                     </div>
@@ -414,7 +414,7 @@
                   </button>
                 </a>
                 <div class="share_with_friend">
-                  <button type="button" class="bttn sec md-btn outline-blue" data-toggle="modal" data-target="#campaign-share-modal">
+                  <!-- <button type="button" class="bttn sec md-btn outline-blue" data-toggle="modal" data-target="#campaign-share-modal">
                     <span class="icons">
                       <i class="icon i-ws-circle">
                       </i>
@@ -424,7 +424,14 @@
                       </i>
                     </span>
                     Share with friends
-                  </button>
+                  </button> -->
+                  <button type="button" class="bttn sec md-btn outline-blue" id="facebook-share-button">
+                    <span class="icons">
+                       <i class="icon i-fb-circle"></i>
+                    </span>
+                    Share on Facebook
+                 </button>
+                 
                 </div>
                 <div id="follow_compaign" class="follow_this_campaign">
                   <button type="button">
@@ -487,6 +494,21 @@
   </div>
 </div>
 {% block script %}
+<script>
+   document.getElementById('facebook-share-button').addEventListener('click', function () {
+      // URL of the current page
+      var currentUrl = window.location.href;
+
+      // Facebook share URL with dynamic text and the current URL
+      var facebookShareUrl = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(currentUrl);
+
+      // Open Facebook share dialog in a new window
+      window.open(facebookShareUrl, '_blank');
+   });
+</script>
+
+
+
 <script>
   function updateTimer() {
       var daysElement = document.getElementById("days");
