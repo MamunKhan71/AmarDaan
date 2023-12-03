@@ -11,16 +11,16 @@ from email.mime.text import MIMEText
 import random
 import requests
 import json
+
 SSLCZ_SESSION_API = 'https://sandbox.sslcommerz.com/gwprocess/v4/api.php'
 import uuid
 from werkzeug.local import LocalProxy
+
 views = Blueprint('views', __name__)
 
 
 @views.route('/')
-
 def home():
-    
     return render_template('index.html', user=current_user)
 
 
@@ -124,11 +124,17 @@ def upload_profile_picture():
     return redirect(url_for('views.user_profile'))
 
 
-def send_email(subject, body, sender, recipients, password):
-    msg = MIMEText(body)
+def send_email(subject, body, sender, recipients, password, name=None):
+    if name != None:
+        f_msg = f"Message From : {name} \n{body}"
+        msg = MIMEText(f_msg)
+    else:
+        msg = MIMEText(body)
     msg['Subject'] = subject
     msg['From'] = sender
     msg['To'] = recipients
+
+
     with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp_server:
         smtp_server.login(sender, password)
         smtp_server.sendmail(sender, recipients, msg.as_string())
@@ -218,6 +224,17 @@ def campaign_details():
     return render_template('campaign_details.html', user=current_user)
 
 
+@views.route('/contact', methods=['POST'])
+def contact():
+    name = request.form.get('name')
+    email = request.form.get('email')
+    subject = request.form.get('subject')
+    message = request.form.get('message')
+    send_email(subject=subject, body=message, sender="amardaan247@gmail.com", recipients=email,
+               password="ecaflcbwzegogtnr", name=name)
+    return render_template("payment_success.html")
+
+
 @views.route('/faq')
 def faq():
     return render_template('faq.html', user=current_user)
@@ -229,71 +246,74 @@ def campaign_list():
 
 
 def get_session(name, amount):
-    post_data={
-    "store_id": "amard65277e36db8a5",
-    "store_passwd": "amard65277e36db8a5@ssl",
-    "total_amount": 500,
-    "currency": "BDT",
-    "tran_id":uuid.uuid4(),
-    "success_url": "http://ssltest.com:5000/success",
-    "fail_url": "http://ssltest.com:5000/fail",
-    "cancel_url": "http://ssltest.com:5000/cancel",
-    "ipn_url": "http://ssltest.com:5000/ipn",
-    "cus_name": "Md. Mamun",
-    "cus_email": "cust@yahoo.com",
-    "cus_add1": "Dhaka",
-    "cus_add2": "Dhaka",
-    "cus_city": "Dhaka",
-    "cus_state": "Dhaka",
-    "cus_postcode": "1000",
-    "cus_country": "Bangladesh",
-    "cus_phone": "01711111111",
-    "cus_fax": "01711111111",
-    "ship_name": "Customer Name",
-    "ship_add1": "Dhaka",
-    "ship_add2": "Dhaka",
-    "ship_city": "Dhaka",
-    "ship_state": "Dhaka",
-    "ship_postcode": "1000",
-    "ship_country": "Bangladesh",
-    "multi_card_name": "mastercard,visacard,amexcard",
-    "value_a": "ref001_A",
-    "value_b": "ref002_B",
-    "value_c": "ref003_C",
-    "value_d": "ref004_D",
-    "shipping_method": "YES",
-    "product_name": "credit",
-    "product_category": "general",
-    "product_profile": "general"
+    post_data = {
+        "store_id": "amard65277e36db8a5",
+        "store_passwd": "amard65277e36db8a5@ssl",
+        "total_amount": 500,
+        "currency": "BDT",
+        "tran_id": uuid.uuid4(),
+        "success_url": "http://ssltest.com:5000/success",
+        "fail_url": "http://ssltest.com:5000/fail",
+        "cancel_url": "http://ssltest.com:5000/cancel",
+        "ipn_url": "http://ssltest.com:5000/ipn",
+        "cus_name": "Md. Mamun",
+        "cus_email": "cust@yahoo.com",
+        "cus_add1": "Dhaka",
+        "cus_add2": "Dhaka",
+        "cus_city": "Dhaka",
+        "cus_state": "Dhaka",
+        "cus_postcode": "1000",
+        "cus_country": "Bangladesh",
+        "cus_phone": "01711111111",
+        "cus_fax": "01711111111",
+        "ship_name": "Customer Name",
+        "ship_add1": "Dhaka",
+        "ship_add2": "Dhaka",
+        "ship_city": "Dhaka",
+        "ship_state": "Dhaka",
+        "ship_postcode": "1000",
+        "ship_country": "Bangladesh",
+        "multi_card_name": "mastercard,visacard,amexcard",
+        "value_a": "ref001_A",
+        "value_b": "ref002_B",
+        "value_c": "ref003_C",
+        "value_d": "ref004_D",
+        "shipping_method": "YES",
+        "product_name": "credit",
+        "product_category": "general",
+        "product_profile": "general"
     }
 
     response = requests.post(SSLCZ_SESSION_API, post_data)
 
-    return(response.json()["sessionkey"],response.json()["GatewayPageURL"])
+    return (response.json()["sessionkey"], response.json()["GatewayPageURL"])
 
 
-@views.route('/get-ssl-session', methods = ['GET', 'POST'])
+@views.route('/get-ssl-session', methods=['GET', 'POST'])
 def get_ssl_session():
     name = "Mamun"
     amount = 500;
     session, gateway = get_session(name, amount);
-    
-    return redirect(gateway) 
 
-@views.route('/success',methods = ['POST', 'GET'])
+    return redirect(gateway)
+
+
+@views.route('/success', methods=['POST', 'GET'])
 def success():
     response = request.form.to_dict()
     # process your data store it or do anything you prefer
 
     return render_template('payment_success.html', user=current_user);
 
-@views.route('/fail',methods = ['POST'])
+
+@views.route('/fail', methods=['POST'])
 def fail():
     response = request.form.to_dict()
 
     return redirect('http://localhost:80/fail');
 
-@views.route('/cancel',methods = ['POST'])
+
+@views.route('/cancel', methods=['POST'])
 def cancel():
     response = request.request.form.to_dict()
 
@@ -303,6 +323,7 @@ def cancel():
 @views.route('/donation_page')
 def donation_page():
     return render_template('donation_page.html', user=current_user)
+
 
 @views.route('/privacy_policy')
 def privacy_policy():

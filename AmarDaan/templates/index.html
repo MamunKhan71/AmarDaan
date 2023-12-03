@@ -115,11 +115,11 @@
 </div>
 <div class="form-container">
   <div class="contact-us">
-    <div class="container-contact1 snipcss-2BGmQ">
+    <div class="container-contact1">
           <div class="contact1-pic js-tilt" data-tilt="">
             <img src="https://colorlib.com/etc/cf/ContactFrom_v1/images/img-01.png" alt="IMG">
           </div>
-          <form class="contact1-form validate-form">
+          <form class="contact1-form validate-form" action="{{ url_for('views.contact') }}" method="POST">
             <span class="contact1-form-title">
               Get in touch
             </span>
@@ -144,7 +144,7 @@
               </span>
             </div>
             <div class="container-contact1-form-btn">
-              <button class="contact1-form-btn">
+              <button class="contact1-form-btn" type="submit">
                 <span>
                   Send Email
                   <i class="fa fa-long-arrow-right" aria-hidden="true">
@@ -154,7 +154,7 @@
             </div>
           </form>
         </div>
-</div>
+    </div>
 </div>
 
 <script>
