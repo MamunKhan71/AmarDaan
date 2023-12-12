@@ -134,7 +134,6 @@ def send_email(subject, body, sender, recipients, password, name=None):
     msg['From'] = sender
     msg['To'] = recipients
 
-
     with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp_server:
         smtp_server.login(sender, password)
         smtp_server.sendmail(sender, recipients, msg.as_string())
@@ -328,3 +327,13 @@ def donation_page():
 @views.route('/privacy_policy')
 def privacy_policy():
     return render_template('privacy_policy.html', user=current_user)
+
+
+@views.route('/subscribe_newsletter', methods=["POST"])
+def subscribe_newsletter():
+    email = request.form.get('email')
+    message = f'Congratulations!\n\nYou have subscribe to the weekly newsletter!\n\nRegards,\n\nTeam AmarDaan'
+    send_email(subject="Subscriptions Successful!", body=message, sender='amardaan247@gmail.com', recipients=email,
+               password='ecaflcbwzegogtnr')
+    print("returned!")
+    return render_template('index.html', user=current_user)
