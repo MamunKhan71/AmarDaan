@@ -337,3 +337,8 @@ def subscribe_newsletter():
                password='ecaflcbwzegogtnr')
     print("returned!")
     return render_template('index.html', user=current_user)
+
+
+@views.route('/about_us', methods=["GET"])
+def about_us():
+    return render_template('about_us.html', user=current_user)
