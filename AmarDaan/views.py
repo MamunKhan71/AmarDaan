@@ -1,6 +1,6 @@
-from flask import jsonify, Blueprint, render_template, request, current_app, redirect, url_for, session
+from flask import jsonify, Blueprint, render_template, request, current_app, redirect, url_for, session, flash
 from flask_login import login_required, current_user
-from .models import Campaign
+from .models import Campaign, Campaign_Category
 from werkzeug.security import generate_password_hash, check_password_hash
 from . import db
 from sslcommerz_lib import SSLCOMMERZ
@@ -346,4 +346,41 @@ def about_us():
 
 @views.route('/add_campaign', methods=["GET", "POST"])
 def add_campaign():
-    return render_template('add_campaign.html', user=current_user)
+    campaigns = Campaign_Category.query.all()
+    return render_template('add_campaign.html', user=current_user, campaigns=campaigns)
+
+
+@views.route('/add_new_campaign', methods=["GET", "POST"])
+def add_new_campaign():
+    if request.method == 'POST':
+        camp_id = request.form['camp_id']
+        camp_name = request.form['camp_name']
+        camp_status = request.form['camp_status']
+        camp_action = request.form['camp_actions']
+
+        new_campaign = Campaign_Category(camp_id=camp_id, camp_name=camp_name, camp_status=camp_status, camp_actions=camp_action)
+
+        db.session.add(new_campaign)
+        db.session.commit()
+
+    # Fetch all campaign categories after adding a new one
+    campaigns = Campaign_Category.query.all()
+
+    return render_template('add_new_campaign.html', user=current_user)
+
+
+
+@views.route('/delete_campaign/<int:campaign_id>', methods=['POST', 'GET'])
+def delete_campaign(campaign_id):
+    # Fetch the campaign from the database using campaign_id
+    campaign = Campaign_Category.query.get(campaign_id)
+
+    # Delete the campaign from the database
+    db.session.delete(campaign)
+    db.session.commit()
+
+    flash('Campaign deleted successfully!', 'success')
+
+    # Redirect to the campaign list page or another appropriate page
+    return redirect(url_for('views.add_campaign'))
+

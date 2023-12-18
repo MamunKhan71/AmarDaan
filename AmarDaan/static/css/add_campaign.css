@@ -3,7 +3,99 @@ h1{
     padding: 20px;
 
 }
-.table-responsive{
-    width: 80%;
-    margin: auto;
+/*.table-responsive{*/
+/*    width: 80%;*/
+/*    margin: auto;*/
+/*}*/
+
+/* Add your custom styles here */
+body {
+    font-family: Arial, sans-serif;
 }
+
+.campaign_table {
+            margin: 20px;
+        }
+
+        table {
+            width: 85%;
+            border-collapse: collapse;
+            margin: auto;
+        }
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center; /* Center text in cells */
+}
+
+th, td {
+    text-align: center !important; /* Override other styles */
+}
+
+        th {
+            background-color: #333;
+            color: #fff;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        img {
+            max-width: 100px;
+            height: auto;
+        }
+
+        .badge {
+            padding: 5px;
+            border-radius: 3px;
+        }
+
+        .bg-success {
+            background-color: #28a745;
+            color: #fff;
+        }
+
+        .text-right {
+            text-align: right;
+        }
+
+        .btn {
+            padding: 5px 10px;
+            margin-right: 5px;
+            text-decoration: none;
+        }
+
+        .btn-success {
+            background-color: #28a745;
+            color: #fff;
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+            color: #fff;
+            width: 50%;
+            margin: auto;
+        }
+
+
+    .custom-button-container {
+        text-align: center;
+        margin-top: 20px; /* Adjust as needed */
+    }
+
+    .custom-button {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 4px;
+        text-decoration: none; /* Remove underline for links */
+        display: inline-block; /* Ensures the link behaves like a button */
+        cursor: pointer;
+    }
+
+    .custom-button:hover {
+        background-color: #0056b3;
+    }

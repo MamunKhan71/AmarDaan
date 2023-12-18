@@ -1,0 +1,75 @@
+{% extends 'statistics.html' %}
+{% block header %}
+    <link rel="stylesheet" href="../static/css/add_campaign.css">
+        <style>
+
+        h1 {
+            text-align: center;
+            color: #343a40;
+        }
+
+        form {
+            width: 80%;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #343a40;
+        }
+
+        input,
+        textarea, select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+{% endblock %}
+{% block maincontent %}
+    <h1>Add Campaign Category</h1>
+    <form method="post" action="{{ url_for('views.add_new_campaign') }}">
+        <label for="camp_id">Campaign ID</label>
+        <input type="text" id="camp_id" name="camp_id" required>
+
+        <label for="camp_name">Campaign Name</label>
+        <input type="text" id="camp_name" name="camp_name" required>
+
+        <label for="camp_status">Status</label>
+        <select id="camp_status" name="camp_status" required>
+        <option value="Active">Active</option>
+        <option value="Inactive">Inactive</option>
+        </select>
+
+
+        <label for="camp_actions">Actions</label>
+        <input type="text" id="camp_actions" name="camp_actions" required>
+
+        <input type="submit" value="Save">
+    </form>
+
+
+
+{% endblock %}
