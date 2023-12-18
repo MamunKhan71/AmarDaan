@@ -368,10 +368,10 @@
             <div class="right-box">
               <div class="sticky-content-area">
                 <div class="campaign-amount-raised">
-                  ৳ 18,000
+                  ৳ {{ campaign.camp_goal }}
                 </div>
                 <div class="campaign-amount-goal H10 text-center">
-                  raised of ৳ 800,000.00 goal
+                  raised of ৳ {{ campaign.camp_fund_raised}}
                 </div>
                 <div class="campaign-goal-progress">
                   <div class="total-progress">
@@ -380,7 +380,11 @@
                   </div>
                   <div class="row">
                     <div class="col-md-6 progress-in-word H10 text-left text-blue">
-                      2% Funded
+                      {% if campaign.camp_goal and campaign.camp_fund_raised %}
+                          {{ "{:.2%}".format(campaign.camp_fund_raised / campaign.camp_goal) }} Funded
+                        {% else %}
+                          0% Funded
+                        {% endif %}
                     </div>
                     <div class="col-md-6 progress-in-word H10 text-right text-grayish-blue">
                       4 Donors
@@ -403,7 +407,7 @@
                     </div>
                   </div>
                 </div>
-                <a href="{{url_for('views.donation_page')}}"" class="GA4-single-donate-now">
+                <a href="{{url_for('views.donation_page')}}" class="GA4-single-donate-now">
                   <button type="button" class="donate-btn bttn lg-btn pri">
                     DONATE NOW
                   </button>
