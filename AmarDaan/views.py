@@ -1,3 +1,5 @@
+import datetime
+
 from flask import jsonify, Blueprint, render_template, request, current_app, redirect, url_for, session, flash
 from flask_login import login_required, current_user
 from .models import Campaign, Campaign_Category
@@ -67,10 +69,11 @@ def campaign():
             camp_gender = request.form.get('camp_gender')
             camp_age = request.form.get('camp_age')
             camp_occupation = request.form.get('camp_occupation')
+            camp_goal = request.form.get('camp_goal')
             camp_video = request.form.get('camp_video')
             camp_social = request.form.get('camp_social')
             camp_aboutus = request.form.get('camp_aboutus')
-
+            camp_owner = current_user.name
             new_campaign = Campaign(
                 camp_name=camp_name,
                 camp_category=camp_category,
@@ -80,11 +83,13 @@ def campaign():
                 camp_payment=camp_payment,
                 camp_mobile=camp_mobile,
                 camp_deadline=camp_deadline,
+                camp_owner=camp_owner,
                 camp_story=camp_story,
                 camp_photo=filename,  # Saving the file path in the database
                 camp_gender=camp_gender,
                 camp_age=camp_age,
                 camp_occupation=camp_occupation,
+                camp_goal=camp_goal,
                 camp_video=camp_video,
                 camp_social=camp_social,
                 camp_aboutus=camp_aboutus,
@@ -358,7 +363,8 @@ def add_new_campaign():
         camp_status = request.form['camp_status']
         camp_action = request.form['camp_actions']
 
-        new_campaign = Campaign_Category(camp_id=camp_id, camp_name=camp_name, camp_status=camp_status, camp_actions=camp_action)
+        new_campaign = Campaign_Category(camp_id=camp_id, camp_name=camp_name, camp_status=camp_status,
+                                         camp_actions=camp_action)
 
         db.session.add(new_campaign)
         db.session.commit()
@@ -367,7 +373,6 @@ def add_new_campaign():
     campaigns = Campaign_Category.query.all()
 
     return render_template('add_new_campaign.html', user=current_user)
-
 
 
 @views.route('/delete_campaign/<int:campaign_id>', methods=['POST', 'GET'])
@@ -384,3 +389,39 @@ def delete_campaign(campaign_id):
     # Redirect to the campaign list page or another appropriate page
     return redirect(url_for('views.add_campaign'))
 
+
+@views.route('/edit_campaigns', methods=["GET", "POST"])
+def edit_campaigns():
+    campaigns = Campaign.query.all()
+
+    # Debugging: Print the campaigns to check if data is fetched
+    print("Campaigns:", campaigns)
+
+    return render_template('edit_campaigns.html', user=current_user, campaigns=campaigns)
+
+@views.route('/delete_campaigns/<int:campaign_id>', methods=['POST', 'GET'])
+def delete_campaigns(campaign_id):
+    # Fetch the campaign from the database using campaign_id
+    campaign = Campaign.query.get(campaign_id)
+
+    if not campaign:
+        flash('Campaign not found!', 'danger')
+        return redirect(url_for('views.edit_campaigns'))
+
+    try:
+        # Delete the campaign from the database
+        db.session.delete(campaign)
+        db.session.commit()
+        flash('Campaign deleted successfully!', 'success')
+    except Exception as e:
+        print("Error:", str(e))
+        db.session.rollback()
+        flash('Error deleting campaign!', 'danger')
+
+    # Redirect to the edit_campaigns page or another appropriate page
+    return redirect(url_for('views.edit_campaigns'))
+
+
+@views.route('/transactions', methods=["GET", "POST"])
+def transactions():
+    return render_template('transactions.html', user=current_user)

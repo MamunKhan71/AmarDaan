@@ -196,6 +196,11 @@
                     <div style="padding: 0px 0px 0px 45px; color: black;" class="text1">
                         <h3>Final Details</h3>
                         <div class="form-group">
+                            <label for="camp_goal" class="form-label">Campaign Goal</label>
+                            <input class="form-control" type="number" name="camp_goal">
+                            <small></small>
+                        </div>
+                        <div class="form-group">
                             <label for="camp_video" class="form-label">Your video URL</label>
                             <input class="form-control" value="https://" type="text" name="camp_video">
                             <small></small>
@@ -215,6 +220,7 @@
                             <option value="Instagram">Instagram</option>
                             <option value="others">Others</option>
                             </select><br/>
+
                             <label>
                                 <input type="checkbox" name="agree" required>
                                 <span>I agree with <a href="{{url_for('views.privacy_policy')}}">terms and conditions.</a></span>

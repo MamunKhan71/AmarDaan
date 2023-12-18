@@ -1,0 +1,48 @@
+{% extends 'statistics.html' %}
+{% block header %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/add_campaign.css') }}">
+{% endblock %}
+{% block maincontent %}
+    <h1>Edit Campaigns</h1>
+    <div class="campaign_table">
+        <div class="table-responsive">
+            <table>
+                <thead style="background-color: #343a40; color: #fff;">
+                    <tr>
+                        <th>#</th>
+                        <th>ID</th>
+                        <th>Campaign Name</th>
+                        <th>User</th>
+                        <th>Goal</th>
+                        <th>Fund Raised</th>
+                        <th>Status</th>
+                        <th>Date</th>
+                        <th>Deadline</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for campaign in campaigns %}
+                        <tr>
+                            <th scope="row">{{ loop.index }}</th>
+                            <td>{{ campaign.id }}</td>
+                            <td>{{ campaign.camp_name }}</td>
+                            <td>{{ campaign.user.name if campaign.user else 'N/A' }}</td>
+                            <td>{{ campaign.camp_goal }}</td>
+                            <td>{{ campaign.camp_fund_raised }}</td>
+                            <td>{{ campaign.camp_status }}</td>
+                            <td>{{ campaign.date.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                            <td>{{ campaign.camp_deadline }}</td>
+                            <td class="text-right">
+                                <a class="btn btn-danger" href="{{ url_for('views.delete_campaigns', campaign_id=campaign.id) }}" data-toggle="modal" data-target="#delete">Delete</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div class="custom-button-container">
+                <a class="btn custom-button" href="{{ url_for('views.campaign') }}">Add New Campaign</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

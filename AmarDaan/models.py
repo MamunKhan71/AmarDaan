@@ -5,6 +5,7 @@ from sqlalchemy.sql import func
 
 class Campaign(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    camp_owner = db.Column(db.String(200))
     camp_name = db.Column(db.String(200))
     camp_category = db.Column(db.String(200))
     camp_division = db.Column(db.String(200))
@@ -18,9 +19,12 @@ class Campaign(db.Model):
     camp_gender = db.Column(db.String(200))
     camp_age = db.Column(db.String(200))
     camp_occupation = db.Column(db.String(200))
+    camp_goal = db.Column(db.Integer)
     camp_video = db.Column(db.String(200))
     camp_social = db.Column(db.String(200))
     camp_aboutus = db.Column(db.String(200))
+    camp_status = db.Column(db.String(20))  # Add this field
+    camp_fund_raised = db.Column(db.Integer)  # Add this field
     date = db.Column(db.DateTime(timezone=True), default=func.now())
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
