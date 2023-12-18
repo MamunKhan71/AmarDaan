@@ -342,3 +342,8 @@ def subscribe_newsletter():
 @views.route('/about_us', methods=["GET"])
 def about_us():
     return render_template('about_us.html', user=current_user)
+
+
+@views.route('/add_campaign', methods=["GET", "POST"])
+def add_campaign():
+    return render_template('add_campaign.html', user=current_user)
