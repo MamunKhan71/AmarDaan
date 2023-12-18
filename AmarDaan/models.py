@@ -7,6 +7,7 @@ class Campaign(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     camp_owner = db.Column(db.String(200))
     camp_name = db.Column(db.String(200))
+    camp_sub_name = db.Column(db.String(200))
     camp_category = db.Column(db.String(200))
     camp_division = db.Column(db.String(200))
     camp_zilla = db.Column(db.String(200))

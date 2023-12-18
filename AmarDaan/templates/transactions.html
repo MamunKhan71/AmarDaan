@@ -3,46 +3,40 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/add_campaign.css') }}">
 {% endblock %}
 {% block maincontent %}
-    <h1>Edit Campaigns</h1>
+    <h1>Transaction Details</h1>
     <div class="campaign_table">
         <div class="table-responsive">
             <table>
                 <thead style="background-color: #343a40; color: #fff;">
                     <tr>
-                        <th>#</th>
                         <th>ID</th>
-                        <th>Campaign Name</th>
-                        <th>User</th>
-                        <th>Goal</th>
-                        <th>Fund Raised</th>
+                        <th>Campaign</th>
+                        <th>Amount</th>
+                        <th>Method</th>
                         <th>Status</th>
                         <th>Date</th>
-                        <th>Deadline</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {% for campaign in campaigns %}
+                    {% for transaction in transactions %}
                         <tr>
-                            <th scope="row">{{ loop.index }}</th>
-                            <td>{{ campaign.id }}</td>
-                            <td>{{ campaign.camp_name }}</td>
-                            <td>{{ campaign.user.name if campaign.user else 'N/A' }}</td>
-                            <td>{{ campaign.camp_goal }}</td>
-                            <td>{{ campaign.camp_fund_raised }}</td>
-                            <td>{{ campaign.camp_status }}</td>
-                            <td>{{ campaign.date.strftime('%Y-%m-%d %H:%M:%S') }}</td>
-                            <td>{{ campaign.camp_deadline }}</td>
+                            <td>{{ transaction.id }}</td>
+                            <td>{{ transaction.campaign.camp_name if transaction.campaign else 'N/A' }}</td>
+                            <td>{{ transaction.amount }}</td>
+                            <td>{{ transaction.method }}</td>
+                            <td>{{ transaction.status }}</td>
+                            <td>{{ transaction.date.strftime('%Y-%m-%d %H:%M:%S') }}</td>
                             <td class="text-right">
-                                <a class="btn btn-danger" href="{{ url_for('views.delete_campaigns', campaign_id=campaign.id) }}" data-toggle="modal" data-target="#delete">Delete</a>
+                                <a class="btn btn-danger" href="{{ url_for('views.delete_transaction', transaction_id=transaction.id) }}" data-toggle="modal" data-target="#delete">Delete</a>
                             </td>
                         </tr>
                     {% endfor %}
                 </tbody>
             </table>
-            <div class="custom-button-container">
-                <a class="btn custom-button" href="{{ url_for('views.campaign') }}">Add New Campaign</a>
-            </div>
+{#            <div class="custom-button-container">#}
+{#                <a class="btn custom-button" href="{{ url_for('views.add_transaction') }}">Add New Transaction</a>#}
+{#            </div>#}
         </div>
     </div>
 {% endblock %}

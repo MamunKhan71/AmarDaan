@@ -5,6 +5,8 @@ from flask_login import login_required, current_user
 from .models import Campaign, Campaign_Category
 from werkzeug.security import generate_password_hash, check_password_hash
 from . import db
+from werkzeug.utils import secure_filename
+
 from sslcommerz_lib import SSLCOMMERZ
 import os
 import time
@@ -23,7 +25,8 @@ views = Blueprint('views', __name__)
 
 @views.route('/')
 def home():
-    return render_template('index.html', user=current_user)
+    campaigns = Campaign.query.all()
+    return render_template('index.html', user=current_user, campaign=campaigns)
 
 
 @views.route('/dashboard', methods=["POST", "GET"])
@@ -49,6 +52,7 @@ def campaign():
     else:
         if request.method == "POST":
             camp_name = request.form.get('camp_name')
+            camp_sub_name = request.form.get('camp_sub_name')
             camp_category = request.form.get('camp_category')
             camp_division = request.form.get('camp_division')
             camp_zilla = request.form.get('camp_zilla')
@@ -63,8 +67,13 @@ def campaign():
             else:
                 upload_folder = os.path.join(current_app.root_path, 'static', current_app.config['UPLOAD_FOLDER'])
                 os.makedirs(upload_folder, exist_ok=True)
-                filename = os.path.join(upload_folder, photo.filename)
-                photo.save(filename)
+                filename = secure_filename(photo.filename)
+                relative_path = os.path.join(current_app.config['UPLOAD_FOLDER'], filename).replace(os.path.sep, '/')
+                full_path = os.path.join(upload_folder, filename)
+                photo.save(full_path)
+
+            print("Relative Path:", relative_path)
+            print("Full Path:", full_path)
 
             camp_gender = request.form.get('camp_gender')
             camp_age = request.form.get('camp_age')
@@ -76,6 +85,7 @@ def campaign():
             camp_owner = current_user.name
             new_campaign = Campaign(
                 camp_name=camp_name,
+                camp_sub_name=camp_sub_name,
                 camp_category=camp_category,
                 camp_division=camp_division,
                 camp_zilla=camp_zilla,
@@ -85,7 +95,7 @@ def campaign():
                 camp_deadline=camp_deadline,
                 camp_owner=camp_owner,
                 camp_story=camp_story,
-                camp_photo=filename,  # Saving the file path in the database
+                camp_photo=relative_path,  # Saving the file path in the database
                 camp_gender=camp_gender,
                 camp_age=camp_age,
                 camp_occupation=camp_occupation,
@@ -223,8 +233,22 @@ def profile():
     return render_template('user_profile.html', user=current_user)
 
 
-@views.route('/campaign_details')
+@views.route('/campaign_details', methods=["GET", "POST"])
 def campaign_details():
+    campaign_id = request.form.get('campaign_id')
+
+    # Query the database to retrieve the campaign based on the campaign_id
+    campaigns = Campaign.query.filter_by(id=campaign_id).first()
+
+    # Check if the campaign exists
+    if campaigns:
+        # Process the donation or redirect to a donation page
+        # For now, let's redirect to the campaign details page
+        return render_template('campaign_details.html', user=current_user, campaign=campaigns)
+    else:
+        # Handle the case where the campaign is not found
+        return render_template('error.html')
+
     return render_template('campaign_details.html', user=current_user)
 
 

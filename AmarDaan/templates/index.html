@@ -17,30 +17,24 @@
 </header>
 <div class="container">
   <h1 class="text-center mt-5">Campaigns</h1>
-  <!-- <div class="navigation-buttons">
-    <button class="btn btn-primary left-button" id="prevBtn">&lt;</button>
-    <button class="btn btn-primary right-button" id="nextBtn">&gt;</button>
-  </div>
-  <div class="row row-cols-1 row-cols-md-4 g-4 mt-4" id="cardRow">
-    Card columns will be dynamically added here -->
-  <!-- </div> -->
 
-  <div class="row row-cols-1 row-cols-md-4 g-4 mt-4 containers">
-  <section class="product_card__block"></section>
-
-  </div>
-<!--   
-  {% for campaign in campaignData %}
-  <div class="col">
-    <div class="card">
-      <img src="{{ campaign.imageUrl }}" class="card-img-top" alt="Campaign Image">
-      <div class="card-body">
-        <h5 class="card-title">{{ campaign.name }}</h5>
-        <p class="card-text">Budget: {{ campaign.budget }} | Collected: {{ campaign.collected }}</p>
+<div class="row row-cols-1 row-cols-md-4 g-4 mt-4 containers">
+  <section class="product_card__block">
+    {% for campaigns in campaign %}
+      <div class="product_card__content">
+        <img src="{{ url_for('static', filename=campaigns.camp_photo) }}" alt="" class="product_card__img">
+            <h3 class="product_card__title">{{ campaigns.camp_name }}</h3>
+            <p class="product_card__description">{{ campaigns.camp_sub_name }}</p>
+            <p class="product_card__price">Goal: {{ campaigns.camp_goal }} ৳</p>
+          <form action="{{ url_for('views.campaign_details') }}" method="post">
+              <input type="hidden" name="campaign_id" value="{{ campaigns.id }}">
+              <button type="submit" class="product_card__btn">Donate Now</button>
+          </form>
       </div>
-    </div>
-  </div>
-  {% endfor %} -->
+    {% endfor %}
+  </section>
+</div>
+
 </div>
 
 <div class="s-story">
@@ -196,67 +190,68 @@ const campaignData = [
     });
   });
 </script>
-<script>
-  let productCardBlock = document.querySelector(".product_card__block");
-const productCardContent = [
-  {
-    img: "{{url_for('static', filename='images/header-img-4.jpg')}}",
-    title: "Run for Ratan",
-    content: "Empower change, join the 'Run for Ratan' campaign and make a lasting impact today!",
-    price: "Goal: 20,000 ৳",
-  },
-  {
-    img: "{{url_for('static', filename='images/header-img-3.jpg')}}",
-    title: "Music for Hunger",
-    content:
-      "Harmonize for a cause: Join Music Against Hunger to fight food insecurity through uplifting melodies",
-    price: "Goal: 5,00000 ৳",
-  },
-  {
-    img: "{{url_for('static', filename='images/header-img-5.jpg')}}",
-    title: "Project Trishna",
-    content:
-      "Empower Footsteps Bangladesh's life-changing initiatives. Every contribution makes a difference.",
-    price: "Goal: 2,00000 ৳",
-  },
-  {
-    img: "{{url_for('static', filename='images/header-img-6.jpg')}}",
-    title: "Beach Island",
-    content:
-      "Join Chattogram Challengers in the fight against COVID-19. Every contribution makes a life-saving impact.",
-    price: "Goal: 3,20,000 ৳",
-  },
-  {
-    img: "{{url_for('static', filename='images/header-img-7.jpg')}}",
-    title: "Corona Relief: Jaago",
-    content:
-      "Join us in healing the world by Jaago Foundation: Support our Coronavirus Relief campaign for immediate impact.",
-    price: "Goal: 4,50,000 ৳",
-  },
-  {
-    img: "{{url_for('static', filename='images/header-img-8.jpg')}}",
-    title: "IHF Zaakat Campaign",
-    content:
-      "Elevate lives through our IHF Zaakat Campaign; your support brings hope and transforms communities.",
-    price: "Goal: 1,20,000 ৳",
-  },
-];
-
-productCardContent.map((product, i) => {
-  return (productCardBlock.innerHTML += `
-    <div class="product_card__content delay-${i}">
-    <img src="${product.img}"
-        alt="" class="product_card__img">
-    <h3 class="product_card__title">${product.title}</h3>
-    <p class="product_card__description">${product.content}</p>
-    <p class="product_card__price">${product.price}</p>
-    <a href="{{url_for('views.campaign_details')}}"><button class="product_card__btn">Donate Now</button></a>
-</div>
-    
-    
-    `);
-});
-</script>
+{#<script>#}
+{#  let productCardBlock = document.querySelector(".product_card__block");#}
+{#const productCardContent = [#}
+{#  {#}
+{#    img: "{{url_for('static', filename='images/header-img-4.jpg')}}",#}
+{#    title: "Run for Ratan",#}
+{#    content: "Empower change, join the 'Run for Ratan' campaign and make a lasting impact today!",#}
+{#    price: "Goal: 20,000 ৳",#}
+{#  },#}
+{#  {#}
+{#    img: "{{url_for('static', filename='images/header-img-3.jpg')}}",#}
+{#    title: "Music for Hunger",#}
+{#    content:#}
+{#      "Harmonize for a cause: Join Music Against Hunger to fight food insecurity through uplifting melodies",#}
+{#    price: "Goal: 5,00000 ৳",#}
+{#  },#}
+{#  {#}
+{#    img: "{{url_for('static', filename='images/header-img-5.jpg')}}",#}
+{#    title: "Project Trishna",#}
+{#    content:#}
+{#      "Empower Footsteps Bangladesh's life-changing initiatives. Every contribution makes a difference.",#}
+{#    price: "Goal: 2,00000 ৳",#}
+{#  },#}
+{#  {#}
+{#    img: "{{url_for('static', filename='images/header-img-6.jpg')}}",#}
+{#    title: "Beach Island",#}
+{#    content:#}
+{#      "Join Chattogram Challengers in the fight against COVID-19. Every contribution makes a life-saving impact.",#}
+{#    price: "Goal: 3,20,000 ৳",#}
+{#  },#}
+{#  {#}
+{#    img: "{{url_for('static', filename='images/header-img-7.jpg')}}",#}
+{#    title: "Corona Relief: Jaago",#}
+{#    content:#}
+{#      "Join us in healing the world by Jaago Foundation: Support our Coronavirus Relief campaign for immediate impact.",#}
+{#    price: "Goal: 4,50,000 ৳",#}
+{#  },#}
+{#  {#}
+{#    img: "{{url_for('static', filename='images/header-img-8.jpg')}}",#}
+{#    title: "IHF Zaakat Campaign",#}
+{#    content:#}
+{#      "Elevate lives through our IHF Zaakat Campaign; your support brings hope and transforms communities.",#}
+{#    price: "Goal: 1,20,000 ৳",#}
+{#  },#}
+{#];#}
+{##}
+{#productCardContent.map((product, i) => {#}
+{#  return (productCardBlock.innerHTML += `#}
+{#    <div class="product_card__content delay-${i}">#}
+{#    <img src="${product.img}"#}
+{#        alt="" class="product_card__img">#}
+{#    <h3 class="product_card__title">${product.title}</h3>#}
+{#    <p class="product_card__description">${product.content}</p>#}
+{#    <p class="product_card__price">${product.price}</p>#}
+{#    <a href="{{url_for('views.campaign_details')}}"><button class="product_card__btn">Donate Now</button></a>#}
+{#</div>#}
+{#    #}
+{#    #}
+{#    `);#}
+{#});#}
+{#</script>#}
+    <script type="text/javascript" src="{{ url_for('static', filename='index.js') }}"></script>
 {% endblock %}
 
 </body>

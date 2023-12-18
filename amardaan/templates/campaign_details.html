@@ -10,8 +10,8 @@
       <div class="row">
         <div class="col-lg-12 text-center">
           <h1 class="H1">
-            Run for Ratan <br> 
-          <p>Empower change, join the 'Run for Ratan' campaign and make a lasting impact today!</p>
+            {{ campaign.camp_name }} <br>
+          <p>{{ campaign.camp_sub_name }}</p>
 
           </h1>
         </div>
@@ -22,19 +22,19 @@
             <div class="part">
               Fundraising campaign by
               <a href="#/user/?uid=1192150" class="owner link">
-                Md. Mamun
+                  {{ campaign.camp_owner }}
               </a>
             </div>
             <div class="part">
               <span class="dot d-sm-none d-none d-md-inline-block">
               </span>
               <a href="#/campaigns?country=bd" class="owner link">
-                Ashulia, Savar
+                  {{ campaign.camp_zilla }}
               </a>
               <span class="dot d-md-inline-block">
               </span>
               <a href="#/category/sports" class="category text-cat-sports">
-                Health
+                  {{ campaign.camp_category }}
               </a>
             </div>
           </h5>
@@ -93,22 +93,17 @@
                   Campaign Story
                 </h2>
               </div>
-              <div class="story-content-area  style-Y6yLD" id="style-Y6yLD">
-                <p style="text-align: justify;">
-                  In the quiet town of Hopeville, a heart beats with boundless dreams - Ratan's. At just 10, he was diagnosed with a rare heart condition, but his spirit soared higher than any ailment could reach. Every day, he'd gaze at the horizon, longing to run like the wind.
+            <div class="story-content-area style-Y6yLD" id="style-Y6yLD">
+              {% for paragraph in campaign.camp_story.split('\n') %}
+                {% if paragraph %}
+                  <p style="text-align: justify;">
+                    {{ paragraph }}
+                  </p>
+                {% endif %}
+              {% endfor %}
+              <div class="story_content_spacer"></div>
+            </div>
 
-                </br></br>
-                  "Run for Ratan" is more than a campaign; it's a race against time, a sprint towards hope. We envision a world where Ratan's laughter fills the air, where his tiny feet dance with abandon. With your support, we aim to give him the gift of a new heart and a chance to chase his dreams.
-
-                </br></br>
-                  Together, let's turn every heartbeat into a promise. Every dollar brings us closer to the finish line. Join us in this journey of love, hope, and unwavering determination. Run alongside Ratan as he races towards a future full of possibilities.
-
-                </br></br>
-                  Donate today and let's make Ratan's dreams take flight. Every step counts. Every heartbeat matters. Run for Ratan.
-                </p>
-                <div class="story_content_spacer">
-                </div>
-              </div>
               <div class="story-section fundraising_team_section">
                 <div class="row">
                   <div class="col-sm-12">
