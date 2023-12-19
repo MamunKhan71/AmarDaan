@@ -59,7 +59,7 @@ def campaign():
             camp_upzilla = request.form.get('camp_upzilla')
             camp_payment = request.form.get('camp_payment')
             camp_mobile = request.form.get('camp_mobile')
-            camp_deadline = request.form.get('camp_deadline')
+            camp_deadline = datetime.datetime.strptime(request.form.get('camp_deadline'), '%Y-%m-%d')
             camp_story = request.form.get('camp_story')
             photo = request.files['camp_photo']
             if photo.filename == '':
@@ -317,13 +317,24 @@ def get_session(name, amount):
     return (response.json()["sessionkey"], response.json()["GatewayPageURL"])
 
 
-@views.route('/get-ssl-session', methods=['GET', 'POST'])
+@views.route('/get-ssl-session', methods=['POST', 'GET'])
 def get_ssl_session():
-    name = "Mamun"
-    amount = 500;
-    session, gateway = get_session(name, amount);
+    campaign_id = request.form.get('campaign_id')
+    campaign = Campaign.query.get(campaign_id)
 
-    return redirect(gateway)
+    if campaign:
+        name = "Mamun"  # Replace with the actual name
+        amount = int(request.form.get('donation_amount', 0))  # Assuming the form field is named 'donation_amount'
+        session, gateway = get_session(name, amount)
+
+        # Redirect to the payment gateway
+        return redirect(gateway)
+
+    # Redirect to an error page or handle the case where the campaign is not found
+    return render_template('error.html', user=current_user)
+
+# Your other routes and code here
+
 
 
 @views.route('/success', methods=['POST', 'GET'])
@@ -343,14 +354,23 @@ def fail():
 
 @views.route('/cancel', methods=['POST'])
 def cancel():
-    response = request.request.form.to_dict()
+    response = request.form.to_dict()
 
-    return redirect('http://localhost:80/cancel');
+    return redirect('http://localhost:80/cancel')
 
 
-@views.route('/donation_page')
-def donation_page():
-    return render_template('donation_page.html', user=current_user)
+@views.route('/donation_page/<id>', methods=["POST", "GET"])
+def donation_page(id):
+    if request.method == "POST":
+        campaign_id = request.form.get('campaignId')
+        print(campaign_id)
+        # Process the donation and campaign_id as needed
+
+    # Retrieve the campaign information for the GET request
+    campaign = Campaign.query.filter_by(id=id).first()
+
+    return render_template('donation_page.html', user=current_user, campaign=campaign)
+
 
 
 @views.route('/privacy_policy')

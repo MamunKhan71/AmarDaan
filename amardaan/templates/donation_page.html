@@ -7,12 +7,12 @@
         <h1 style="text-align: center;">Make a Donation</h1><hr style="border: 1px dashed rgb(207, 207, 207);">
 
         <div class="donations__progress-bar"></div>
-        <h2 class="donations__progress">$<span class="donations__amount">0</span> / $75,000</h2>
+        <h2 class="donations__progress">$<span class="donations__amount">0</span> / ৳ {{campaign.camp_goal}}</h2>
         <div class="donations__text">
             Join the <span class="donations__donors">0</span> other donors who have already supported this project.
         </div>
         <form class="donations__form" method="POST" action="{{url_for('views.get_ssl_session')}}">
-            <span class="donations__input-icon">$</span>
+            <span class="donations__input-icon">৳ </span>
             <input class="donations__input" type="number" value="50" title="$"/>
             <label class="checkbox hide_donation_checkbox">
                 <input type="checkbox" id="chk_hide_amount" name="chk_hide_amount" data-gtm-form-interact-field-id="1">
@@ -41,11 +41,11 @@
                     <span class="checkbox-check"></span>
                     <span class="checkbox-text">Yes, please email me updates on this campaign's progress</span>
                 </label>
+                <input type="hidden" name="campaign_id" value="{{ campaign.id }}">
             </div>
             <button class="donations__reset" type="submit" value="submit" onclick="window.location.href='{{url_for('views.get_ssl_session')}}'">Proceed to Checkout</button>
         </form>
         <p class="P11 text-center privacy-term-text">By continuing you are agreeing to GoGetFunding's <span class="link"><a href="#">&nbsp; terms &nbsp;</a></span> and<span class="link"><a href="#"> &nbsp; privacy policy</a></span>.</p>
-
     </div>
     {% block script %}
 <script>

@@ -407,11 +407,13 @@
                     </div>
                   </div>
                 </div>
-                <a href="{{url_for('views.donation_page')}}" class="GA4-single-donate-now">
-                  <button type="button" class="donate-btn bttn lg-btn pri">
-                    DONATE NOW
-                  </button>
-                </a>
+                <form method="post" action="{{ url_for('views.donation_page', id=campaign.id) }}" id="donateForm">
+                    <input type="hidden" name="campaignId" value="{{ campaign.id }}">
+                    <button type="submit" class="donate-btn bttn lg-btn pri">
+                        DONATE NOW
+                    </button>
+                </form>
+
                 <div class="share_with_friend">
                   <!-- <button type="button" class="bttn sec md-btn outline-blue" data-toggle="modal" data-target="#campaign-share-modal">
                     <span class="icons">
@@ -457,41 +459,6 @@
       </div>
     </div>
   </section>
-  <div class="donate-now-sticky d-block d-lg-none">
-    <ul class="list-unstyled list-inline">
-      <li class="list-inline-item p-0 m-0">
-        <button type="button" class="share_with_friend bttn md-btn sec outline-blue" data-toggle="modal" data-target="#campaign-share-modal">
-          <span class="icons">
-            <i class="icon i-ws-circle">
-            </i>
-            <i class="icon i-twitter-circle">
-            </i>
-            <i class="icon i-fb-circle">
-            </i>
-          </span>
-          Share
-        </button>
-      </li>
-      <li class="list-inline-item p-0 m-0">
-        <a href="{{url_for('views.donation_page')}}" class="asidebtn act-btn GA4-single-donate-now" onclick="if (!window.__cfRLUnblockHandlers) return false; ga('send', 'event', 'Donate', 'click', 'donate-top-btn');">
-          <button type="button" class="donate-btn bttn md-btn pri">
-            DONATE NOW
-          </button>
-        </a>
-      </li>
-    </ul>
-  </div>
-  <div id="myTabContent" class="tab-content">
-  </div>
-  <div class="row style-aIkoI" id="style-aIkoI">
-    <div class="col">
-      <div class="widget-wrapper style-DPkOi" id="mywidget3">
-        <div class="b-card horizontal widget style-RUcdY" id="style-RUcdY">
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 {% block script %}
 <script>
    document.getElementById('facebook-share-button').addEventListener('click', function () {
@@ -510,50 +477,53 @@
 
 <script>
   function updateTimer() {
-      var daysElement = document.getElementById("days");
-      var hoursElement = document.getElementById("hours");
-      var minutesElement = document.getElementById("minutes");
-      var daysString = minutesElement.innerText.trim();
-      console.log(daysString);
-      var targetDate = new Date("2023-12-10T23:59:59");
-      // Get the target date (you'll need to replace this with your actual target date)
+    var daysElement = document.getElementById("days");
+    var hoursElement = document.getElementById("hours");
+    var minutesElement = document.getElementById("minutes");
 
-      // Get the current date
-      var now = new Date();
+    // Get the target date from campaign.camp_deadline
+    var targetDate = new Date("{{ campaign.camp_deadline }}");
 
-      // Calculate the time difference
-      var timeDifference = targetDate - now;
+    // Get the current date
+    var now = new Date();
 
+    // Calculate the time difference
+    var timeDifference = targetDate - now;
 
+    // Ensure timeDifference is not negative
+    timeDifference = Math.max(timeDifference, 0);
 
-      // Calculate days, hours, and minutes
-      var days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
-      var hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      var minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
-      // Update the HTML elements
-      daysElement.innerText = days;
-      hoursElement.innerText = hours;
-      minutesElement.innerText = minutes;
-  }
+    // Calculate days, hours, and minutes
+    var days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+
+    // Update the HTML elements
+    daysElement.innerText = days;
+    hoursElement.innerText = hours;
+    minutesElement.innerText = minutes;
+}
+
 
   // Update the timer every second
   setInterval(updateTimer, 1000);
+
+  // Display the formatted deadline date
+  var endTime = document.getElementById("endtime");
+  var deadlineDate = new Date("{{ campaign.camp_deadline }}T23:59:59");
+  var options = {
+    weekday: 'short',
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+    timeZoneName: 'short'
+  };
+  var formattedDate = deadlineDate.toLocaleString('en-US', options);
+  endTime.innerText = formattedDate;
 </script>
-<script>
-      var endTime = document.getElementById("endtime");
-      var targetDate = new Date("2023-12-15T23:59:59");
-      var options = {
-      weekday: 'short',
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit',
-      timeZoneName: 'short'
-    };
-      var formattedDate = targetDate.toLocaleString('en-US', options);
-      endTime.innerText = formattedDate;
-</script>
+
 
 {% endblock %}
 {% endblock %}

@@ -14,7 +14,7 @@ class Campaign(db.Model):
     camp_upzilla = db.Column(db.String(200))
     camp_payment = db.Column(db.String(200))
     camp_mobile = db.Column(db.String(200))
-    camp_deadline = db.Column(db.String(200))
+    camp_deadline = db.Column(db.DateTime(timezone=True))
     camp_story = db.Column(db.String(200))
     camp_photo = db.Column(db.String(200))
     camp_gender = db.Column(db.String(200))
@@ -48,3 +48,13 @@ class Campaign_Category(db.Model):
     camp_name = db.Column(db.String(100))
     camp_status = db.Column(db.String(20))
     camp_actions = db.Column(db.String(20))
+
+
+class Transactions(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    donation_amount = db.Column(db.Integer)
+    donation_comment = db.Column(db.String(200))
+    transaction_date = db.Column(db.DateTime(timezone=True), default=func.now())
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    user = db.relationship('User', backref='transactions', lazy=True)
+
