@@ -52,9 +52,17 @@ class Campaign_Category(db.Model):
 
 class Transactions(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    campaign_name = db.Column(db.String(200))
     donation_amount = db.Column(db.Integer)
+    hide_amount = db.Column(db.Integer)
+    hide_comments = db.Column(db.Integer)
+    hide_name = db.Column(db.Integer)
+    follower = db.Column(db.Integer)
     donation_comment = db.Column(db.String(200))
     transaction_date = db.Column(db.DateTime(timezone=True), default=func.now())
+    status = db.Column(db.String(200))
+    method = db.Column(db.String(200))
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     user = db.relationship('User', backref='transactions', lazy=True)
 
+# ID	Campaign	Amount	Method	Status	Date	Actions

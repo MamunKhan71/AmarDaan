@@ -2,7 +2,7 @@ import datetime
 
 from flask import jsonify, Blueprint, render_template, request, current_app, redirect, url_for, session, flash
 from flask_login import login_required, current_user
-from .models import Campaign, Campaign_Category
+from .models import Campaign, Campaign_Category, Transactions
 from werkzeug.security import generate_password_hash, check_password_hash
 from . import db
 from werkzeug.utils import secure_filename
@@ -277,14 +277,14 @@ def get_session(name, amount):
     post_data = {
         "store_id": "amard65277e36db8a5",
         "store_passwd": "amard65277e36db8a5@ssl",
-        "total_amount": 500,
+        "total_amount": amount,
         "currency": "BDT",
         "tran_id": uuid.uuid4(),
         "success_url": "http://ssltest.com:5000/success",
         "fail_url": "http://ssltest.com:5000/fail",
         "cancel_url": "http://ssltest.com:5000/cancel",
         "ipn_url": "http://ssltest.com:5000/ipn",
-        "cus_name": "Md. Mamun",
+        "cus_name": name,
         "cus_email": "cust@yahoo.com",
         "cus_add1": "Dhaka",
         "cus_add2": "Dhaka",
@@ -317,14 +317,47 @@ def get_session(name, amount):
     return (response.json()["sessionkey"], response.json()["GatewayPageURL"])
 
 
-@views.route('/get-ssl-session', methods=['POST', 'GET'])
+@views.route('/get-ssl-session', methods=['POST'])
 def get_ssl_session():
+    donation_amount = request.form.get('donation_amount')
+    chk_hide_amount = request.form.get('chk_hide_amount')
+    comments = request.form.get('msgarea')
+    hide_your_comments = request.form.get('hide_your_comments')
+    chk_hide_name = request.form.get('chk_hide_name')
+    make_follower = request.form.get('make_follower')
     campaign_id = request.form.get('campaign_id')
-    campaign = Campaign.query.get(campaign_id)
+    campaignS = Campaign.query.filter_by(id=campaign_id).first()
+    print(campaign_id)
+    print(donation_amount)
+    if campaignS:
+        # id = db.Column(db.Integer, primary_key=True)
+        # campaign_name = db.Column(db.String(200))
+        # donation_amount = db.Column(db.Integer)
+        # hide_amount = db.Column(db.Integer)
+        # hide_comments = db.Column(db.Integer)
+        # hide_name = db.Column(db.Integer)
+        # follower = db.Column(db.Integer)
+        # donation_comment = db.Column(db.String(200))
+        # status = db.Column(db.String(200))
+        # method = db.Column(db.String(200))
+        # actions = db.Column(db.String(200))
+        transaction = Transactions(
+            campaign_name=campaignS.camp_name,
+            donation_amount=donation_amount,
+            hide_amount=chk_hide_amount,
+            hide_comments=hide_your_comments,
+            hide_name=chk_hide_name,
+            follower=make_follower,
+            donation_comment=comments,
+            status="Successful",
+            method="SSLcommerz",
+        )
+        db.session.add(transaction)
+        db.session.commit()
 
-    if campaign:
-        name = "Mamun"  # Replace with the actual name
-        amount = int(request.form.get('donation_amount', 0))  # Assuming the form field is named 'donation_amount'
+        name = campaignS.camp_owner  # Replace with the actual name
+        amount = donation_amount  # Assuming the form field is named 'donation_amount'
+
         session, gateway = get_session(name, amount)
 
         # Redirect to the payment gateway
@@ -363,7 +396,6 @@ def cancel():
 def donation_page(id):
     if request.method == "POST":
         campaign_id = request.form.get('campaignId')
-        print(campaign_id)
         # Process the donation and campaign_id as needed
 
     # Retrieve the campaign information for the GET request
