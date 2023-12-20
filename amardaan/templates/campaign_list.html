@@ -23,161 +23,35 @@
         </select>
     </div>
 </div>
+<!-- campaign_list.html -->
+
 <div class="camp_container">
     <div class="products-container">
-        <!-- Your product cards go here -->
-        <div class="product-card">
-            <div class="product-tumb">
-                <img class="product-image" src="../static/images/header-img-1.jpg" alt="">
-            </div>
-            <div class="product-details">
-                <span class="product-catagory">Ashulia, Health</span>
-                <h4><a href="#">Run for Ratan</a></h4>
-                <p>Empower change, join the 'Run for Ratan' campaign and make a lasting impact today!</p>
-                <div class="product-bottom-details">
-                    <div class="product-price">
-                        <small>৳ 96.00</small>৳ 230.99
-                    </div>
-                    <div class="product-links">
-                        <a href=""><i class="fa fa-heart"></i></a>
-                        <a href=""><i class="fa fa-shopping-cart"></i></a>
+        {% for campaign in campaign %}
+            <div class="product-card">
+                <div class="product-tumb">
+                    <img class="product-image" src="{{ url_for('static', filename=campaign.camp_photo) }}" alt="">
+                </div>
+                <div class="product-details">
+                    <span class="product-catagory">{{ campaign.camp_category }}</span>
+                    <h4><a href="#">{{ campaign.camp_name }}</a></h4>
+                    <p>{{ campaign.camp_sub_name }}</p>
+                    <div class="product-bottom-details">
+                        <div class="product-price">
+                            ৳ {{ campaign.camp_goal }}
+                        </div>
+                        <div class="product-links">
+                            <a href=""><i class="fa fa-heart"></i></a>
+                            <a href=""><i class="fa fa-shopping-cart"></i></a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="product-card">
-            <div class="product-tumb">
-                <img src="../static/images/Mamun Formal Pic.png" alt="">
-            </div>
-            <div class="product-details">
-                <span class="product-catagory">Birulia,Education</span>
-                <h4><a href="#">Music for hunger</a></h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero, possimus nostrum!</p>
-                <div class="product-bottom-details">
-                    <div class="product-price">
-                        <small>৳ 96.00</small>৳ 230.99
-                    </div>
-                    <div class="product-links">
-                        <a href=""><i class="fa fa-heart"></i></a>
-                        <a href=""><i class="fa fa-shopping-cart"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="product-card">
-            <div class="product-tumb">
-                <img src="../static/images/header-img-3.jpg" alt="">
-            </div>
-            <div class="product-details">
-                <span class="product-catagory">Women,bag</span>
-                <h4><a href="#">Project Trishna</a></h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero, possimus nostrum!</p>
-                <div class="product-bottom-details">
-                    <div class="product-price">
-                        <small>৳ 96.00</small>৳ 230.99
-                    </div>
-                    <div class="product-links">
-                        <a href=""><i class="fa fa-heart"></i></a>
-                        <a href=""><i class="fa fa-shopping-cart"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="product-card">
-            <div class="product-tumb">
-                <img src="../static/images/header-img-4.jpg" alt="">
-            </div>
-            <div class="product-details">
-                <span class="product-catagory">Women,bag</span>
-                <h4><a href="#">Beach Island</a></h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero, possimus nostrum!</p>
-                <div class="product-bottom-details">
-                    <div class="product-price">
-                        <small>৳ 96.00</small>৳ 230.99
-                    </div>
-                    <div class="product-links">
-                        <a href=""><i class="fa fa-heart"></i></a>
-                        <a href=""><i class="fa fa-shopping-cart"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="product-card">
-            <div class="product-tumb">
-                <img src="../static/images/header-img-5.jpg" alt="">
-            </div>
-            <div class="product-details">
-                <span class="product-catagory">Ashulia, Health</span>
-                <h4><a href="#">Corona Relief: Jaago</a></h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero, possimus nostrum!</p>
-                <div class="product-bottom-details">
-                    <div class="product-price">
-                        <small>৳ 96.00</small>৳ 230.99
-                    </div>
-                    <div class="product-links">
-                        <a href=""><i class="fa fa-heart"></i></a>
-                        <a href=""><i class="fa fa-shopping-cart"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="product-card">
-            <div class="product-tumb">
-                <img src="../static/images/header-img-6.jpg" alt="">
-            </div>
-            <div class="product-details">
-                <span class="product-catagory">Savar,Education</span>
-                <h4><a href="#">IHF Zaakat Campaign</a></h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero, possimus nostrum!</p>
-                <div class="product-bottom-details">
-                    <div class="product-price">
-                        <small>৳ 96.00</small>৳ 230.99
-                    </div>
-                    <div class="product-links">
-                        <a href=""><i class="fa fa-heart"></i></a>
-                        <a href=""><i class="fa fa-shopping-cart"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="product-card">
-            <div class="product-tumb">
-                <img src="../static/images/header-img-7.jpg" alt="">
-            </div>
-            <div class="product-details">
-                <span class="product-catagory">/,bag</span>
-                <h4><a href="#">Women leather bag</a></h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero, possimus nostrum!</p>
-                <div class="product-bottom-details">
-                    <div class="product-price">
-                        <small>৳ 96.00</small>৳ 230.99
-                    </div>
-                    <div class="product-links">
-                        <a href=""><i class="fa fa-heart"></i></a>
-                        <a href=""><i class="fa fa-shopping-cart"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="product-card">
-            <div class="product-tumb">
-                <img src="../static/images/header-img-7.jpg" alt="" >
-            </div>
-            <div class="product-details">
-                <span class="product-catagory">/,bag</span>
-                <h4><a href="#">Women leather bag</a></h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero, possimus nostrum!</p>
-                <div class="product-bottom-details">
-                    <div class="product-price">
-                        <small>৳ 96.00</small>৳ 230.99
-                    </div>
-                    <div class="product-links">
-                        <a href=""><i class="fa fa-heart"></i></a>
-                        <a href=""><i class="fa fa-shopping-cart"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
         <!-- Add more product cards as needed -->
 
     </div>

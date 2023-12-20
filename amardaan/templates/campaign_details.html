@@ -375,7 +375,7 @@
                 </div>
                 <div class="campaign-goal-progress">
                   <div class="total-progress">
-                    <div class="current-progress" style="width: 2%">
+                    <div class="current-progress" style="width: {{ campaign.camp_fund_raised / campaign.camp_goal * 100 }}%">
                     </div>
                   </div>
                   <div class="row">
@@ -458,6 +458,7 @@
         </div>
       </div>
     </div>
+
   </section>
 {% block script %}
 <script>

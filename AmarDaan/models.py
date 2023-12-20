@@ -22,6 +22,27 @@ class Campaign(db.Model):
     camp_name = db.Column(db.String(200))
     camp_sub_name = db.Column(db.String(200))
     camp_category = db.Column(db.String(200))
+    CATEGORY_CHOICES = {
+        "18": "Animals & Pets",
+        "19": "Business & Startups",
+        "20": "Causes & Charities",
+        "8": "Community",
+        "21": "Creative",
+        "22": "Education & Learning",
+        "7": "Family",
+        "23": "Funerals & Tributes",
+        "62": "Legal",
+        "25": "Medical & Healing",
+        "28": "Other Funding",
+        "6": "Personal",
+        "29": "Religious",
+        "30": "Special Events",
+        "31": "Sports",
+        "33": "Volunteer & Travel",
+        "35": "Weddings & Honeymoon",
+    }
+    # Add this field to store the category name
+    camp_category_name = db.Column(db.String(100))
     camp_division = db.Column(db.String(200))
     camp_zilla = db.Column(db.String(200))
     camp_upzilla = db.Column(db.String(200))
@@ -49,6 +70,7 @@ class Campaign_Category(db.Model):
     camp_name = db.Column(db.String(100))
     camp_status = db.Column(db.String(20))
     camp_actions = db.Column(db.String(20))
+
 
 
 class Transactions(db.Model):

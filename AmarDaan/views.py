@@ -54,6 +54,7 @@ def campaign():
             camp_name = request.form.get('camp_name')
             camp_sub_name = request.form.get('camp_sub_name')
             camp_category = request.form.get('camp_category')
+            camp_category_name = Campaign.CATEGORY_CHOICES.get(camp_category, "Unknown")
             camp_division = request.form.get('camp_division')
             camp_zilla = request.form.get('camp_zilla')
             camp_upzilla = request.form.get('camp_upzilla')
@@ -87,6 +88,7 @@ def campaign():
                 camp_name=camp_name,
                 camp_sub_name=camp_sub_name,
                 camp_category=camp_category,
+                camp_category_name=camp_category_name,
                 camp_division=camp_division,
                 camp_zilla=camp_zilla,
                 camp_upzilla=camp_upzilla,
@@ -270,7 +272,8 @@ def faq():
 
 @views.route('/campaign_list')
 def campaign_list():
-    return render_template('campaign_list.html', user=current_user)
+    campaign = Campaign.query.all()
+    return render_template('campaign_list.html', user=current_user, campaign=campaign)
 
 
 def get_session(name, amount):
@@ -327,7 +330,9 @@ def get_ssl_session():
     make_follower = request.form.get('make_follower')
     campaign_id = request.form.get('campaign_id')
     campaignS = Campaign.query.filter_by(id=campaign_id).first()
+
     if campaignS:
+        # Create a new transaction
         transaction = Transactions(
             campaign_name=campaignS.camp_name,
             donation_amount=donation_amount,
@@ -340,12 +345,21 @@ def get_ssl_session():
             method="SSLcommerz",
             user_id=current_user.id,
         )
+
+        # Update the total funds raised for the campaign
+        if campaignS.camp_fund_raised is not None:
+            campaignS.camp_fund_raised += int(donation_amount)
+        else:
+            campaignS.camp_fund_raised = int(donation_amount)
+
+        # Add the transaction to the database
         db.session.add(transaction)
         db.session.commit()
 
         name = campaignS.camp_owner  # Replace with the actual name
         amount = donation_amount  # Assuming the form field is named 'donation_amount'
 
+        # Retrieve SSL session and gateway
         session, gateway = get_session(name, amount)
 
         # Redirect to the payment gateway
@@ -353,6 +367,8 @@ def get_ssl_session():
 
     # Redirect to an error page or handle the case where the campaign is not found
     return render_template('error.html', user=current_user)
+
+
 
 
 # Your other routes and code here
@@ -494,7 +510,29 @@ def transactions():
 
 @views.route('/delete_transaction/<int:transaction_id>', methods=["GET"])
 def delete_transaction(transaction_id):
-    campaign = Transactions.query.get(transaction_id)
-    db.session.delete(campaign)
-    db.session.commit()
+    transaction = Transactions.query.get(transaction_id)
+
+    if not transaction:
+        flash('Transaction not found!', 'danger')
+        return redirect(url_for('views.transactions'))
+
+    try:
+        # Retrieve the associated campaign through the user's campaigns relationship
+        campaign = Campaign.query.filter_by(camp_name=transaction.campaign_name, user_id=transaction.user_id).first()
+
+        if campaign:
+            # Update the camp_fund_raised field by subtracting the deleted donation amount
+            campaign.camp_fund_raised -= transaction.donation_amount
+
+        # Delete the transaction
+        db.session.delete(transaction)
+        db.session.commit()
+
+        flash('Transaction deleted successfully!', 'success')
+    except Exception as e:
+        print("Error:", str(e))
+        db.session.rollback()
+        flash('Error deleting transaction!', 'danger')
+
+    # Redirect to the transactions page or another appropriate page
     return redirect(url_for('views.transactions'))
