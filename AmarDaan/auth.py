@@ -33,6 +33,11 @@ def logout():
     return redirect(url_for('auth.login'))
 
 
+@auth.route('/forgot_password')
+def forgot_password():
+
+    return render_template('forgot_password.html', user=current_user)
+
 @auth.route('/signup', methods=["GET", "POST"])
 def signup():
     if request.method == "POST":
