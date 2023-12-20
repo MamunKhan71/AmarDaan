@@ -327,20 +327,7 @@ def get_ssl_session():
     make_follower = request.form.get('make_follower')
     campaign_id = request.form.get('campaign_id')
     campaignS = Campaign.query.filter_by(id=campaign_id).first()
-    print(campaign_id)
-    print(donation_amount)
     if campaignS:
-        # id = db.Column(db.Integer, primary_key=True)
-        # campaign_name = db.Column(db.String(200))
-        # donation_amount = db.Column(db.Integer)
-        # hide_amount = db.Column(db.Integer)
-        # hide_comments = db.Column(db.Integer)
-        # hide_name = db.Column(db.Integer)
-        # follower = db.Column(db.Integer)
-        # donation_comment = db.Column(db.String(200))
-        # status = db.Column(db.String(200))
-        # method = db.Column(db.String(200))
-        # actions = db.Column(db.String(200))
         transaction = Transactions(
             campaign_name=campaignS.camp_name,
             donation_amount=donation_amount,
@@ -351,6 +338,7 @@ def get_ssl_session():
             donation_comment=comments,
             status="Successful",
             method="SSLcommerz",
+            user_id=current_user.id,
         )
         db.session.add(transaction)
         db.session.commit()
@@ -366,8 +354,8 @@ def get_ssl_session():
     # Redirect to an error page or handle the case where the campaign is not found
     return render_template('error.html', user=current_user)
 
-# Your other routes and code here
 
+# Your other routes and code here
 
 
 @views.route('/success', methods=['POST', 'GET'])
@@ -375,7 +363,7 @@ def success():
     response = request.form.to_dict()
     # process your data store it or do anything you prefer
 
-    return render_template('payment_success.html', user=current_user);
+    return render_template('payment_success.html', user=current_user)
 
 
 @views.route('/fail', methods=['POST'])
@@ -402,7 +390,6 @@ def donation_page(id):
     campaign = Campaign.query.filter_by(id=id).first()
 
     return render_template('donation_page.html', user=current_user, campaign=campaign)
-
 
 
 @views.route('/privacy_policy')
@@ -475,6 +462,7 @@ def edit_campaigns():
 
     return render_template('edit_campaigns.html', user=current_user, campaigns=campaigns)
 
+
 @views.route('/delete_campaigns/<int:campaign_id>', methods=['POST', 'GET'])
 def delete_campaigns(campaign_id):
     # Fetch the campaign from the database using campaign_id
@@ -500,4 +488,13 @@ def delete_campaigns(campaign_id):
 
 @views.route('/transactions', methods=["GET", "POST"])
 def transactions():
-    return render_template('transactions.html', user=current_user)
+    transaction = Transactions.query.all()
+    return render_template('transactions.html', user=current_user, transaction=transaction)
+
+
+@views.route('/delete_transaction/<int:transaction_id>', methods=["GET"])
+def delete_transaction(transaction_id):
+    campaign = Transactions.query.get(transaction_id)
+    db.session.delete(campaign)
+    db.session.commit()
+    return redirect(url_for('views.transactions'))

@@ -9,7 +9,7 @@
             <table>
                 <thead style="background-color: #343a40; color: #fff;">
                     <tr>
-                        <th>ID</th>
+                        <th>Id</th>
                         <th>Campaign</th>
                         <th>Amount</th>
                         <th>Method</th>
@@ -19,16 +19,28 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for transaction in transactions %}
+{#                 id = db.Column(db.Integer, primary_key=True)#}
+{#    campaign_name = db.Column(db.String(200))#}
+{#    donation_amount = db.Column(db.Integer)#}
+{#    hide_amount = db.Column(db.Integer)#}
+{#    hide_comments = db.Column(db.Integer)#}
+{#    hide_name = db.Column(db.Integer)#}
+{#    follower = db.Column(db.Integer)#}
+{#    donation_comment = db.Column(db.String(200))#}
+{#    transaction_date = db.Column(db.DateTime(timezone=True), default=func.now())#}
+{#    status = db.Column(db.String(200))#}
+{#    method = db.Column(db.String(200))#}
+{#    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))#}
+                    {% for trans in transaction %}
                         <tr>
-                            <td>{{ transaction.id }}</td>
-                            <td>{{ transaction.campaign.camp_name if transaction.campaign else 'N/A' }}</td>
-                            <td>{{ transaction.amount }}</td>
-                            <td>{{ transaction.method }}</td>
-                            <td>{{ transaction.status }}</td>
-                            <td>{{ transaction.date.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                            <th scope="row">{{ trans.id }}</th>
+                            <td>{{ trans.campaign_name if trans.campaign_name else 'N/A' }}</td>
+                            <td>{{ trans.donation_amount }}</td>
+                            <td>{{ trans.method }}</td>
+                            <td>{{ trans.status }}</td>
+                            <td>{{ trans.transaction_date.strftime('%Y-%m-%d %H:%M:%S') }}</td>
                             <td class="text-right">
-                                <a class="btn btn-danger" href="{{ url_for('views.delete_transaction', transaction_id=transaction.id) }}" data-toggle="modal" data-target="#delete">Delete</a>
+                                <a class="btn btn-danger" href="{{ url_for('views.delete_transaction', transaction_id=trans.id) }}" data-toggle="modal" data-target="#delete">Delete</a>
                             </td>
                         </tr>
                     {% endfor %}

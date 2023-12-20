@@ -120,7 +120,7 @@
                       <div class="member_info">
                         <ul class="list-inline">
                           <li class="d-block d-lg-inline member-name H8 text-left" id="flname1192150">
-                            Md. Mamun
+                              {{ campaign.camp_owner }}
                           </li>
                         </ul>
                         <div class="d-none d-lg-block member_info_bottom">
@@ -158,7 +158,7 @@
                         </div>
                         <ul>
                           <li class="donor_name">
-                            Mh Limon
+                              {{ campaign.camp_owner}}
                           </li>
                           <li class="donation_date style-TtsKy" id="style-TtsKy">
                             Donated on Aug 20, 2023
@@ -241,7 +241,7 @@
                   </div>
                   <div class="col-4 text-right">
                     <span class="P10 count donors-count">
-                      4 donors 
+                      4 donors
                     </span>
                   </div>
                 </div>
@@ -323,7 +323,7 @@
                           </li>
                           <li class="donor_msg">
                             <p>
-                              legyen 7!, szép szerencsés szám! 
+                              legyen 7!, szép szerencsés szám!
                             </p>
                           </li>
                         </ul>
@@ -448,7 +448,7 @@
                   <span class="bottom_line P12 text-center d-block">
                     You only have the opportunity to donate to this campaign before 
                     <span class="end_time" id="endtime">
-                      Tuesday Nov 14, 11:59 pm UTC
+                      {{ campaign.camp_deadline }}
                     </span>
                   </span>
                 </p>

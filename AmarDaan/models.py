@@ -3,6 +3,19 @@ from flask_login import UserMixin
 from sqlalchemy.sql import func
 
 
+class User(db.Model, UserMixin):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(30))
+    email = db.Column(db.String(150), unique=True)
+    password = db.Column(db.String(150))
+    facebook = db.Column(db.String(150))
+    instagram = db.Column(db.String(150))
+    profile_picture = db.Column(db.String(150))
+    date = db.Column(db.DateTime(timezone=True), default=func.now())
+    campaigns = db.relationship('Campaign', backref='user_campaigns', lazy=True)
+    transactions = db.relationship('Transactions', backref='user_transactions', lazy=True)
+
+
 class Campaign(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     camp_owner = db.Column(db.String(200))
@@ -30,18 +43,6 @@ class Campaign(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
 
-class User(db.Model, UserMixin):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(30))
-    email = db.Column(db.String(150), unique=True)
-    password = db.Column(db.String(150))
-    facebook = db.Column(db.String(150))
-    instagram = db.Column(db.String(150))
-    profile_picture = db.Column(db.String(150))
-    date = db.Column(db.DateTime(timezone=True), default=func.now())
-    campaigns = db.relationship('Campaign', backref='user', lazy=True)
-
-
 class Campaign_Category(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     camp_id = db.Column(db.Integer)
@@ -63,6 +64,3 @@ class Transactions(db.Model):
     status = db.Column(db.String(200))
     method = db.Column(db.String(200))
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    user = db.relationship('User', backref='transactions', lazy=True)
-
-# ID	Campaign	Amount	Method	Status	Date	Actions

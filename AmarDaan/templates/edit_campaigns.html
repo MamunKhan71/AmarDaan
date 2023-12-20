@@ -27,7 +27,7 @@
                             <th scope="row">{{ loop.index }}</th>
                             <td>{{ campaign.id }}</td>
                             <td>{{ campaign.camp_name }}</td>
-                            <td>{{ campaign.user.name if campaign.user else 'N/A' }}</td>
+                            <td>{{ campaign.camp_owner if campaign.camp_owner else 'N/A' }}</td>
                             <td>{{ campaign.camp_goal }}</td>
                             <td>{{ campaign.camp_fund_raised }}</td>
                             <td>{{ campaign.camp_status }}</td>
