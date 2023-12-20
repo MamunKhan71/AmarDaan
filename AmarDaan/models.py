@@ -35,7 +35,7 @@ class Campaign(db.Model):
     camp_name = db.Column(db.String(200))
     camp_sub_name = db.Column(db.String(200))
     camp_category = db.Column(db.String(200))
-
+    CATEGORY_CHOICES = {}
     @classmethod
     def update_category_choices(cls):
         """

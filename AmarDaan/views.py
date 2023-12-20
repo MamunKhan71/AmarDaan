@@ -52,6 +52,7 @@ def dashboard():
 
 @views.route('/campaign', methods=["GET", "POST"])
 def campaign():
+    Campaign.update_category_choices()
     user = current_user if current_user.is_authenticated else None
 
     if user is None:
