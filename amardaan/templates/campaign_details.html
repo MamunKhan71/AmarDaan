@@ -375,9 +375,14 @@
                 </div>
                 <div class="campaign-goal-progress">
                   <div class="total-progress">
+                    {% if campaign.camp_fund_raised is not none and campaign.camp_goal is not none %}
                     <div class="current-progress" style="width: {{ campaign.camp_fund_raised / campaign.camp_goal * 100 }}%">
                     </div>
-                  </div>
+                    {% else %}
+                    <div class="current-progress" style="width: 0%">
+                    </div>
+                    {% endif %}
+              </div>
                   <div class="row">
                     <div class="col-md-6 progress-in-word H10 text-left text-blue">
                       {% if campaign.camp_goal and campaign.camp_fund_raised %}
@@ -436,8 +441,8 @@
                 </div>
                 <div id="follow_compaign" class="follow_this_campaign">
                   <button type="button">
-                    <i class="icon i-heart">
-                    </i>
+                    <span >❤
+                    </span>
                     <span id="follow_compaign_text">
                       Follow this campaign
                     </span>
@@ -458,7 +463,6 @@
         </div>
       </div>
     </div>
-
   </section>
 {% block script %}
 <script>

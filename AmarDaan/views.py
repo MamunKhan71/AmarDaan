@@ -2,6 +2,8 @@ import datetime
 
 from flask import jsonify, Blueprint, render_template, request, current_app, redirect, url_for, session, flash
 from flask_login import login_required, current_user
+from sqlalchemy import func
+
 from .models import Campaign, Campaign_Category, Transactions
 from werkzeug.security import generate_password_hash, check_password_hash
 from . import db
@@ -34,6 +36,10 @@ def home():
 def dashboard():
     user = current_user
     print(user.profile_picture)
+    total_donation_amount = db.session.query(func.sum(Transactions.donation_amount)).scalar()
+    total_donation_amount = total_donation_amount or 0
+    formatted_amount = "৳ {:,}".format(total_donation_amount)
+
     user_campaigns = Campaign.query.filter_by(user_id=user.id).all()
     if request.method == "POST":
         note = request.form.get('note')
@@ -41,7 +47,7 @@ def dashboard():
         db.session.add(new_note)
         db.session.commit()
         print("Note added successfully!")
-    return render_template('statistics.html', user=user, campaigns=user_campaigns)
+    return render_template('statistics.html', user=user, campaigns=user_campaigns, total_amt=formatted_amount)
 
 
 @views.route('/campaign', methods=["GET", "POST"])
