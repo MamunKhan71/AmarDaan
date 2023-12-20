@@ -77,23 +77,9 @@
                         <div class="form-group">
                             <label for="camp_category">Fundraiser category / partner</label>
                             <select class="form-control" name="camp_category">
-                                <option value="18">Animals &amp; Pets</option>
-                                <option value="19">Business &amp; Startups</option>
-                                <option value="20">Causes &amp; Charities</option>
-                                <option value="8">Community</option>
-                                <option value="21">Creative</option>
-                                <option value="22">Education &amp; Learning</option>
-                                <option value="7">Family</option>
-                                <option value="23">Funerals &amp; Tributes</option>
-                                <option value="62">Legal</option>
-                                <option value="25">Medical &amp; Healing</option>
-                                <option value="28">Other Funding</option>
-                                <option value="6">Personal</option>
-                                <option value="29">Religious</option>
-                                <option value="30">Special Events</option>
-                                <option value="31">Sports</option>
-                                <option value="33">Volunteer &amp; Travel</option>
-                                <option value="35">Weddings &amp; Honeymoon</option>
+                                {% for key, value in Campaign.CATEGORY_CHOICES.items() %}
+                                    <option value="{{ key }}">{{ value }}</option>
+                                {% endfor %}
                             </select>
                         </div>
                         <div class="address-block">

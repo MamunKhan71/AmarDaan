@@ -47,6 +47,7 @@ def dashboard():
 @views.route('/campaign', methods=["GET", "POST"])
 def campaign():
     user = current_user if current_user.is_authenticated else None
+
     if user is None:
         return render_template('campaign_list.html', user=None)
     else:
@@ -62,6 +63,7 @@ def campaign():
             camp_mobile = request.form.get('camp_mobile')
             camp_deadline = datetime.datetime.strptime(request.form.get('camp_deadline'), '%Y-%m-%d')
             camp_story = request.form.get('camp_story')
+
             photo = request.files['camp_photo']
             if photo.filename == '':
                 return 'No selected file'
@@ -84,6 +86,7 @@ def campaign():
             camp_social = request.form.get('camp_social')
             camp_aboutus = request.form.get('camp_aboutus')
             camp_owner = current_user.name
+
             new_campaign = Campaign(
                 camp_name=camp_name,
                 camp_sub_name=camp_sub_name,
@@ -111,7 +114,8 @@ def campaign():
             db.session.commit()
             print("Data Saved Successfully!")
 
-    return render_template('campaign.html', user=user)
+    return render_template('campaign.html', user=user, Campaign=Campaign)
+
 
 
 @views.route('/upload_profile_picture', methods=["POST"])
@@ -440,18 +444,22 @@ def add_new_campaign():
         camp_id = request.form['camp_id']
         camp_name = request.form['camp_name']
         camp_status = request.form['camp_status']
-        camp_action = request.form['camp_actions']
 
         new_campaign = Campaign_Category(camp_id=camp_id, camp_name=camp_name, camp_status=camp_status,
-                                         camp_actions=camp_action)
+                                         )
 
         db.session.add(new_campaign)
         db.session.commit()
+
+        # Call the update_category_choices method to update the CATEGORY_CHOICES dictionary
+        Campaign.update_category_choices()
 
     # Fetch all campaign categories after adding a new one
     campaigns = Campaign_Category.query.all()
 
     return render_template('add_new_campaign.html', user=current_user)
+
+
 
 
 @views.route('/delete_campaign/<int:campaign_id>', methods=['POST', 'GET'])

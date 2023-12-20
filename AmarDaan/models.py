@@ -16,31 +16,34 @@ class User(db.Model, UserMixin):
     transactions = db.relationship('Transactions', backref='user_transactions', lazy=True)
 
 
+class Campaign_Category(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    camp_id = db.Column(db.Integer)
+    camp_name = db.Column(db.String(100))
+    camp_status = db.Column(db.String(20))
+
+    # ForeignKey to establish a relationship with the Campaign model
+    campaign_id = db.Column(db.Integer, db.ForeignKey('campaign.id'))
+
+    # Relationship definition (optional, depending on your use case)
+    campaign = db.relationship('Campaign', backref='campaign_categories', lazy=True)
+
+
 class Campaign(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     camp_owner = db.Column(db.String(200))
     camp_name = db.Column(db.String(200))
     camp_sub_name = db.Column(db.String(200))
     camp_category = db.Column(db.String(200))
-    CATEGORY_CHOICES = {
-        "18": "Animals & Pets",
-        "19": "Business & Startups",
-        "20": "Causes & Charities",
-        "8": "Community",
-        "21": "Creative",
-        "22": "Education & Learning",
-        "7": "Family",
-        "23": "Funerals & Tributes",
-        "62": "Legal",
-        "25": "Medical & Healing",
-        "28": "Other Funding",
-        "6": "Personal",
-        "29": "Religious",
-        "30": "Special Events",
-        "31": "Sports",
-        "33": "Volunteer & Travel",
-        "35": "Weddings & Honeymoon",
-    }
+
+    @classmethod
+    def update_category_choices(cls):
+        """
+        Update the CATEGORY_CHOICES dictionary based on Campaign_Category entries.
+        """
+        categories = Campaign_Category.query.all()
+        cls.CATEGORY_CHOICES = {str(category.camp_id): category.camp_name for category in categories}
+
     # Add this field to store the category name
     camp_category_name = db.Column(db.String(100))
     camp_division = db.Column(db.String(200))
@@ -63,13 +66,6 @@ class Campaign(db.Model):
     date = db.Column(db.DateTime(timezone=True), default=func.now())
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
-
-class Campaign_Category(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    camp_id = db.Column(db.Integer)
-    camp_name = db.Column(db.String(100))
-    camp_status = db.Column(db.String(20))
-    camp_actions = db.Column(db.String(20))
 
 
 
