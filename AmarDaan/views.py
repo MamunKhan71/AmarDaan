@@ -1,10 +1,10 @@
 import datetime
 
-from flask import jsonify, Blueprint, render_template, request, current_app, redirect, url_for, session, flash
+from flask import jsonify, Blueprint, render_template, request, current_app, redirect, url_for, session, flash, abort
 from flask_login import login_required, current_user
 from sqlalchemy import func
 
-from .models import Campaign, Campaign_Category, Transactions
+from .models import Campaign, Campaign_Category, Transactions, Inbox
 from werkzeug.security import generate_password_hash, check_password_hash
 from . import db
 from werkzeug.utils import secure_filename
@@ -271,9 +271,12 @@ def contact():
     email = request.form.get('email')
     subject = request.form.get('subject')
     message = request.form.get('message')
+    inbox_entry = Inbox(name=name, subject=subject, status="New")
+    db.session.add(inbox_entry)
+    db.session.commit()
     send_email(subject=subject, body=message, sender="amardaan247@gmail.com", recipients=email,
                password="ecaflcbwzegogtnr", name=name)
-    return render_template("payment_success.html")
+    return render_template("payment_success.html", user=current_user)
 
 
 @views.route('/faq')
@@ -551,3 +554,26 @@ def delete_transaction(transaction_id):
 
     # Redirect to the transactions page or another appropriate page
     return redirect(url_for('views.transactions'))
+
+
+@views.route('/inbox')
+def inbox():
+    inbx = Inbox.query.all()
+    return render_template('inbox.html', user=current_user, inbox=inbx)
+
+
+def delete_inbox(inbox_id):
+    inbox_entry = Inbox.query.get(inbox_id)
+
+    if inbox_entry:
+        db.session.delete(inbox_entry)
+        db.session.commit()
+        flash('Inbox entry deleted successfully.')
+    else:
+        abort(404, description='Inbox entry not found.')
+
+
+@views.route('/delete_inbox/<int:inbox_id>', methods=['POST', 'GET'])
+def delete_inbox_route(inbox_id):
+    delete_inbox(inbox_id)
+    return redirect(url_for('views.inbox'))

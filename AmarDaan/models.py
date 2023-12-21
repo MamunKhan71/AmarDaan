@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from amardaan import db
 from flask_login import UserMixin
 from sqlalchemy.sql import func
@@ -36,6 +38,7 @@ class Campaign(db.Model):
     camp_sub_name = db.Column(db.String(200))
     camp_category = db.Column(db.String(200))
     CATEGORY_CHOICES = {}
+
     @classmethod
     def update_category_choices(cls):
         """
@@ -67,8 +70,6 @@ class Campaign(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
 
-
-
 class Transactions(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     campaign_name = db.Column(db.String(200))
@@ -82,3 +83,14 @@ class Transactions(db.Model):
     status = db.Column(db.String(200))
     method = db.Column(db.String(200))
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+
+
+class Inbox(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    subject = db.Column(db.String(255), nullable=False)
+    status = db.Column(db.String(50), nullable=False)
+    created_on = db.Column(db.DateTime(timezone=True), default=func.now())
+
+    def __repr__(self):
+        return f"Inbox(id={self.id}, name={self.name}, subject={self.subject}, status={self.status}, created_on={self.created_on})"

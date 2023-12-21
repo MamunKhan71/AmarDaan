@@ -1,0 +1,49 @@
+{% extends 'statistics.html' %}
+{% block header %}
+    <link rel="stylesheet" href="../static/css/add_campaign.css">
+{% endblock %}
+{% block maincontent %}
+{#    NAME#}
+{#SUBJECT#}
+{#STATUS	#}
+{#CREATED ON#}
+{#ACTION#}
+    <h1>Inquiries</h1>
+   <div class="campaign_table">
+    <div class="table-responsive">
+        <table>
+            <thead style="background-color: #343a40; color: #fff;">
+                <tr>
+                    <th>#</th>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Status</th>
+                    <th>Created On</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for inbox in inbox %}
+                    <tr>
+                        <th scope="row">{{ inbox.id }}</th>
+                        <td>{{ inbox.name }}</td>
+                        <td>{{ inbox.subject }}</td>
+                        <td>{{ inbox.status }}</td>
+                        <td>{{ inbox.created_on }}</td>
+                        <td class="text-right">
+                           <a class="btn btn-danger" href="{{ url_for('views.delete_inbox_route', inbox_id=inbox.id) }}" data-toggle="modal" data-target="#delete">Delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+
+            </tbody>
+        </table>
+        <div class="custom-button-container">
+            <a class="btn custom-button">Load More</a>
+        </div>
+
+
+    </div>
+</div>
+
+{% endblock %}
