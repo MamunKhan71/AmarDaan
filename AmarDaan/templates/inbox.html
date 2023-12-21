@@ -14,9 +14,9 @@
         <table>
             <thead style="background-color: #343a40; color: #fff;">
                 <tr>
-                    <th>#</th>
-                    <th>ID</th>
+                    <th>Id</th>
                     <th>Name</th>
+                    <th>Subject</th>
                     <th>Status</th>
                     <th>Created On</th>
                     <th>Action</th>
@@ -26,11 +26,13 @@
                 {% for inbox in inbox %}
                     <tr>
                         <th scope="row">{{ inbox.id }}</th>
+
                         <td>{{ inbox.name }}</td>
                         <td>{{ inbox.subject }}</td>
                         <td>{{ inbox.status }}</td>
                         <td>{{ inbox.created_on }}</td>
                         <td class="text-right">
+                           <a class="btn btn-danger" style="background-color: #0f9d58; margin-bottom: 10px;" href="{{ url_for('views.inbox_details', inbox_id=inbox.id) }}">View</a>
                            <a class="btn btn-danger" href="{{ url_for('views.delete_inbox_route', inbox_id=inbox.id) }}" data-toggle="modal" data-target="#delete">Delete</a>
                         </td>
                     </tr>

@@ -1,0 +1,22 @@
+{% extends "statistics.html" %}
+{% block header %}
+    <title>Inbox Details | AmarDaan</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/inbox_details.css">
+{% endblock %}
+{% block maincontent %}
+    <div class="inbox-details-container">
+        <div class="inbox-details-header">
+            <h1>Inbox Details</h1>
+        </div>
+        <div class="inbox-details-content">
+            <p>Name: {{ inbox.name }}</p>
+            <p>Subject: {{ inbox.subject }}</p>
+            <p>Message: {{ inbox.message }}</p>
+            <p>Status: {{ inbox.status }}</p>
+            <p>Created On: {{ inbox.created_on }}</p>
+        </div>
+        <div class="back-button">
+            <a href="{{ url_for('views.inbox') }}">Back to Inbox</a>
+        </div>
+    </div>
+{% endblock %}

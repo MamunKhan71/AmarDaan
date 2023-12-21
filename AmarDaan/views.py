@@ -271,7 +271,7 @@ def contact():
     email = request.form.get('email')
     subject = request.form.get('subject')
     message = request.form.get('message')
-    inbox_entry = Inbox(name=name, subject=subject, status="New")
+    inbox_entry = Inbox(name=name, subject=subject, status="New", message=message)
     db.session.add(inbox_entry)
     db.session.commit()
     send_email(subject=subject, body=message, sender="amardaan247@gmail.com", recipients=email,
@@ -561,6 +561,12 @@ def inbox():
     inbx = Inbox.query.all()
     return render_template('inbox.html', user=current_user, inbox=inbx)
 
+
+@views.route('/inbox_details/<int:inbox_id>', methods=["GET", "POST"])
+def inbox_details(inbox_id):
+    inbx = Inbox.query.filter_by(id=inbox_id).first()
+
+    return render_template('inbox_details.html', user=current_user, inbox=inbx)
 
 def delete_inbox(inbox_id):
     inbox_entry = Inbox.query.get(inbox_id)

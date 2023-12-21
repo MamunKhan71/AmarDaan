@@ -89,8 +89,9 @@ class Inbox(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
     subject = db.Column(db.String(255), nullable=False)
+    message = db.Column(db.String(255), nullable=False)
     status = db.Column(db.String(50), nullable=False)
     created_on = db.Column(db.DateTime(timezone=True), default=func.now())
 
     def __repr__(self):
-        return f"Inbox(id={self.id}, name={self.name}, subject={self.subject}, status={self.status}, created_on={self.created_on})"
+        return f"Inbox(id={self.id}, name={self.name}, subject={self.subject}, message={self.message} status={self.status}, created_on={self.created_on})"

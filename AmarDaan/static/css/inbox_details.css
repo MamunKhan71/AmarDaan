@@ -1,0 +1,48 @@
+/* static/css/inbox.css */
+h1{
+    text-align: center;
+    padding: 20px;
+
+}
+/* static/css/inbox-details.css */
+
+/* Inbox details container */
+.inbox-details-container {
+    width: 600px;
+    height: 500px;
+    border-radius: 20px;
+    background-color: #fdfdfd;
+    margin: auto;
+}
+
+/* Inbox details header */
+.inbox-details-header {
+    border-radius: 20px 20px 0 0;
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+}
+
+/* Inbox details content */
+.inbox-details-content {
+    font-size: 1rem;
+    text-align: justify;
+    margin-top: 20px;
+}
+
+.inbox-details-content p {
+    padding-left: 30px;
+    margin-bottom: 10px;
+}
+
+/* Back button */
+.back-button {
+    padding-left: 30px;
+    margin-top: 20px;
+}
+
+.back-button a {
+    color: #007bff;
+    text-decoration: none;
+}
