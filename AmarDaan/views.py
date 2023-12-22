@@ -47,7 +47,10 @@ def dashboard():
         db.session.add(new_note)
         db.session.commit()
         print("Note added successfully!")
-    return render_template('statistics.html', user=user, campaigns=user_campaigns, total_amt=formatted_amount)
+    if user.id == 1:
+        return render_template('statistics.html', user=user, campaigns=user_campaigns, total_amt=formatted_amount)
+    else:
+        return render_template('user_profile.html', user=user, campaigns=user_campaigns, total_amt=formatted_amount)
 
 
 @views.route('/campaign', methods=["GET", "POST"])

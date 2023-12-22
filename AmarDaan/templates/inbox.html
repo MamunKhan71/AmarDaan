@@ -8,7 +8,12 @@
 {#STATUS	#}
 {#CREATED ON#}
 {#ACTION#}
-    <h1>Inquiries</h1>
+    {% if user.id == 1 %}
+        <h1>Inquiries</h1>
+        {% else %}
+        <h1>Support Ticket</h1>
+
+    {% endif %}
    <div class="campaign_table">
     <div class="table-responsive">
         <table>
@@ -32,7 +37,7 @@
                         <td>{{ inbox.status }}</td>
                         <td>{{ inbox.created_on }}</td>
                         <td class="text-right">
-                           <a class="btn btn-danger" style="background-color: #0f9d58; margin-bottom: 10px;" href="{{ url_for('views.inbox_details', inbox_id=inbox.id) }}">View</a>
+                           {% if user.id==1 %}<a class="btn btn-danger" style="background-color: #0f9d58; margin-bottom: 10px;" href="{{ url_for('views.inbox_details', inbox_id=inbox.id) }}">View</a> {% else %}<a class="btn btn-danger" style="background-color: #0f9d58; margin-bottom: 10px;" href="{{ url_for('views.inbox_details', inbox_id=inbox.id) }}">Status</a>{% endif %}
                            <a class="btn btn-danger" href="{{ url_for('views.delete_inbox_route', inbox_id=inbox.id) }}" data-toggle="modal" data-target="#delete">Delete</a>
                         </td>
                     </tr>

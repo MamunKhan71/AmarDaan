@@ -77,6 +77,13 @@ th, td {
             background-color: #dc3545;
             color: #fff;
             width: 50%;
+            margin: 10px auto;
+
+        }
+    .btn-accept {
+            background-color: #59b433;
+            color: #fff;
+            width: 50%;
             margin: auto;
         }
 

@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 {% block title %}Home{% endblock %}
+{% block link %}
+{% endblock %}
 {% block content %}
 <header class="beautiful-header">
   <div class="header-content">
@@ -63,7 +65,7 @@
                         <p>In a remarkable tale of innovation and community support, Rahman Khan, a visionary Bangladeshi entrepreneur, harnessed the power of AmarDaan Crowdfunding to bring quality education to rural areas. Khan's brainchild, a project to establish solar-powered schools, aimed to bridge the education gap and address energy challenges.
 
                           With the aid of AmarDaan's crowdfunding platform, Khan launched a campaign that resonated with donors worldwide. Empowered by their collective contributions, he erected schools equipped with solar panels, providing sustainable energy and modern education to underserved communities. The initiative not only empowered the youth with knowledge but also fueled economic growth.
-                          
+
                           Khan's success story became an inspiration, sparking a wave of philanthropic endeavors across Bangladesh. Through AmarDaan Crowdfunding, he showcased the potential of technology, generosity, and determination to transform lives and uplift a nation.</p>
                     </div>
                 </div>
@@ -76,9 +78,9 @@
                       <p>In the heart of a small town, Kulsum's life changed dramatically, thanks to AmarDaan's devoted donors. Despite financial struggles, Kulsum's determination led her to the organization's door. Through their support, she accessed education and skill development, paving the path to her dreams.
 
                         AmarDaan's donors didn't just offer financial assistance; they became the driving force behind Kulsum's ambitions. With newfound skills and unwavering encouragement, she conquered challenges and emerged as a beacon of hope within her community.
-                        
+
                         Kulsum's story isn't just about personal achievement; it's a testament to the profound impact of collective generosity. Her journey inspires us to believe in the potential of transformation, one life at a time.
-                        
+
                         Today, Kulsum stands as a living embodiment of AmarDaan's mission. Her success underscores the ripple effect of kindness and the enduring power of giving. Join us in celebrating Kulsum's remarkable journey and become a part of AmarDaan's ongoing story of changing lives for the better.</p>
                   </div>
               </div>
@@ -151,6 +153,9 @@
     </div>
 </div>
 
+<div>
+
+</div>
 <script>
   const imageSources = [
   "{{url_for('static', filename='images/header-img-4.jpg')}}",
@@ -190,6 +195,7 @@ const campaignData = [
     });
   });
 </script>
+
 {#<script>#}
 {#  let productCardBlock = document.querySelector(".product_card__block");#}
 {#const productCardContent = [#}

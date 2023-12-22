@@ -33,9 +33,16 @@
                             <td>{{ campaign.camp_status }}</td>
                             <td>{{ campaign.date.strftime('%Y-%m-%d %H:%M:%S') }}</td>
                             <td>{{ campaign.camp_deadline }}</td>
+                            {% if user.id==1 %}
+                            <td class="text-right">
+                                <a class="btn btn-accept" href="{{ url_for('views.delete_campaigns', campaign_id=campaign.id) }}" data-toggle="modal" data-target="#delete">Accept</a>
+                                <a class="btn btn-danger" href="{{ url_for('views.delete_campaigns', campaign_id=campaign.id) }}" data-toggle="modal" data-target="#delete">Reject</a>
+                            </td>
+                                {% else %}
                             <td class="text-right">
                                 <a class="btn btn-danger" href="{{ url_for('views.delete_campaigns', campaign_id=campaign.id) }}" data-toggle="modal" data-target="#delete">Delete</a>
                             </td>
+                            {% endif %}
                         </tr>
                     {% endfor %}
                 </tbody>
