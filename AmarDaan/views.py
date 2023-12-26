@@ -252,7 +252,7 @@ def profile():
 @views.route('/campaign_details', methods=["GET", "POST"])
 def campaign_details():
     campaign_id = request.form.get('campaign_id')
-
+    
     # Query the database to retrieve the campaign based on the campaign_id
     campaigns = Campaign.query.filter_by(id=campaign_id).first()
 

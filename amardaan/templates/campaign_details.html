@@ -72,8 +72,7 @@
               {% endfor %}
               <div class="story_content_spacer"></div>
             </div>
-
-              <div class="story-section fundraising_team_section">
+              <div class="story-section fundraising_team_section" style="margin-bottom: 50px;">
                 <div class="row">
                   <div class="col-sm-12">
                     <h3 class="H3 text-left section-heading">
@@ -92,136 +91,8 @@
                               {{ campaign.camp_owner }}
                           </li>
                         </ul>
-                        <div class="d-none d-lg-block member_info_bottom">
-                      </div>
-                      <div class="d-block d-lg-none member_info_bottom">
-                        <a href="#" class="send-message" onclick="if (!window.__cfRLUnblockHandlers) return false; assign_set_uuiid(1192150);" data-toggle="modal" data-target="#send_msg">
-                        </a>
                       </div>
                     </div>
-                  </div>
-                </div>
-              </div>
-              <div class="story-section donors_section">
-                <div class="row">
-                  <div class="col-sm-12">
-                    <h3 class="H5 text-left section-heading">
-                      Donors
-                    </h3>
-                  </div>
-                </div>
-                <div id="donors-rows2">
-                  <div class="donors-row comment_msg_pre_3942398" id="comment_msg_pre_3942398">
-                    <div class="row">
-                      <div class="col-lg-12">
-                        <div class="donor-img img-responsive no-photo-bg">
-                        </div>
-                        <ul>
-                          <li class="donor_name">
-                              {{ campaign.camp_owner}}
-                          </li>
-                          <li class="donation_date style-TtsKy" id="style-TtsKy">
-                            Donated on Aug 20, 2023
-                          </li>
-                        </ul>
-                      </div>
-                      <div class="text-right amount_div">
-                        <span class="donation_amount">
-                          Tk 5000.00
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="donors-row comment_msg_pre_3941655" id="comment_msg_pre_3941655">
-                    <div class="row">
-                      <div class="col-lg-12">
-                        <div class="donor-img img-responsive no-photo-bg">
-                        </div>
-                        <ul>
-                          <li class="donor_name">
-                            Rafi Ahmed
-                          </li>
-                          <li class="donation_date style-w1xyh" id="style-w1xyh">
-                            Donated on Aug 19, 2023
-                          </li>
-                        </ul>
-                      </div>
-                      <div class="text-right amount_div">
-                        <span class="donation_amount">
-                          Tk 10000.00
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="donors-row comment_msg_pre_3938965" id="comment_msg_pre_3938965">
-                    <div class="row">
-                      <div class="col-lg-12">
-                        <div class="donor-img img-responsive no-photo-bg">
-                        </div>
-                        <ul>
-                          <li class="donor_name">
-                            Anonymous
-                          </li>
-                          <li class="donation_date style-Vmb9E" id="style-Vmb9E">
-                            Donated on Aug 16, 2023
-                          </li>
-                        </ul>
-                      </div>
-                      <div class="text-right amount_div">
-                        <span class="donation_amount hidden_amount">
-                          Amount Hidden
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="sticky-stopper">
-              </div>
-            </div>
-            <div class="tab-pane " id="campaign-updates" role="tabpanel">
-              <div class="campaign_updates_section" id="all_updates_div">
-                <p class="no-active-campaign-style">
-                  No updates for this campaign just yet
-                </p>
-              </div>
-            </div>
-            <div class="tab-pane " id="campaign-donors" role="tabpanel">
-              <div class="donors_section full-panel">
-                <div class="row section-heading-row">
-
-
-                </div>
-                <div id="donors-rows">
-                  <div class="donors-row comment_msg_pre_3942398" id="comment_msg_pre_3942398">
-                    <div class="row">
-                    </div>
-                  </div>
-
-
-
-                  <div class="sticky-stopper">
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="tab-pane" id="campaign-followers" role="tabpanel">
-              <div class="followers_section full-panel">
-                <div class="row section-heading-row">
-                  <div class="col-8 text-left">
-                    <h3 class="section-heading">
-                      Followers
-                    </h3>
-                  </div>
-                  <div class="col-4 text-right">
-                    <span class="P10 count followers-count">
-                      0 followers
-                    </span>
-                  </div>
-                </div>
-                <div id="followers-rows">
-                  <div class="no-active-campaign-style">
-                    No Followers Just Yet...
                   </div>
                 </div>
               </div>
@@ -256,9 +127,7 @@
                           0% Funded
                         {% endif %}
                     </div>
-                    <div class="col-md-6 progress-in-word H10 text-right text-grayish-blue">
-                      4 Donors
-                    </div>
+
                   </div>
                 </div>
                 <div class="time-left">
@@ -285,17 +154,6 @@
                 </form>
 
                 <div class="share_with_friend">
-                  <!-- <button type="button" class="bttn sec md-btn outline-blue" data-toggle="modal" data-target="#campaign-share-modal">
-                    <span class="icons">
-                      <i class="icon i-ws-circle">
-                      </i>
-                      <i class="icon i-twitter-circle">
-                      </i>
-                      <i class="icon i-fb-circle">
-                      </i>
-                    </span>
-                    Share with friends
-                  </button> -->
                   <button type="button" class="bttn sec md-btn outline-blue" id="facebook-share-button">
                     <span class="icons">
                        <i class="icon i-fb-circle"></i>
@@ -316,7 +174,7 @@
                 </div>
                 <p class="brokersText-4">
                   <span class="bottom_line P12 text-center d-block">
-                    You only have the opportunity to donate to this campaign before 
+                    You only have the opportunity to donate to this campaign before
                     <span class="end_time" id="endtime">
                       {{ campaign.camp_deadline }}
                     </span>
