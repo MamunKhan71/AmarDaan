@@ -35,12 +35,13 @@ def home():
 @login_required
 def dashboard():
     user = current_user
-    print(user.profile_picture)
+    transaction = Transactions.query.all()
+
     total_donation_amount = db.session.query(func.sum(Transactions.donation_amount)).scalar()
     total_donation_amount = total_donation_amount or 0
     formatted_amount = "৳ {:,}".format(total_donation_amount)
-
     user_campaigns = Campaign.query.filter_by(user_id=user.id).all()
+
     if request.method == "POST":
         note = request.form.get('note')
         new_note = Campaign(camp_name=note, user_id=current_user.id)  # Assuming camp_name is the correct attribute
@@ -48,7 +49,8 @@ def dashboard():
         db.session.commit()
         print("Note added successfully!")
     if user.id == 1:
-        return render_template('statistics.html', user=user, campaigns=user_campaigns, total_amt=formatted_amount)
+        return render_template('statistics.html', user=user, campaigns=user_campaigns, total_amt=formatted_amount,
+                               transactions=transaction, camp_det=Campaign.query.all())
     else:
         return render_template('user_profile.html', user=user, campaigns=user_campaigns, total_amt=formatted_amount)
 
@@ -125,7 +127,6 @@ def campaign():
             print("Data Saved Successfully!")
 
     return render_template('campaign.html', user=user, Campaign=Campaign)
-
 
 
 @views.route('/upload_profile_picture', methods=["POST"])
@@ -252,7 +253,8 @@ def profile():
 @views.route('/campaign_details', methods=["GET", "POST"])
 def campaign_details():
     campaign_id = request.form.get('campaign_id')
-    
+    camp_deadline = db.Column(db.DateTime(timezone=True))
+
     # Query the database to retrieve the campaign based on the campaign_id
     campaigns = Campaign.query.filter_by(id=campaign_id).first()
 
@@ -260,7 +262,8 @@ def campaign_details():
     if campaigns:
         # Process the donation or redirect to a donation page
         # For now, let's redirect to the campaign details page
-        return render_template('campaign_details.html', user=current_user, campaign=campaigns)
+        return render_template('campaign_details.html', user=current_user, campaign=campaigns,
+                               camp_deadline=camp_deadline)
     else:
         # Handle the case where the campaign is not found
         return render_template('error.html')
@@ -386,8 +389,6 @@ def get_ssl_session():
     return render_template('error.html', user=current_user)
 
 
-
-
 # Your other routes and code here
 
 
@@ -413,14 +414,14 @@ def cancel():
     return redirect('http://localhost:80/cancel')
 
 
-@views.route('/donation_page/<id>', methods=["POST", "GET"])
-def donation_page(id):
+@views.route('/donation_page/', methods=["POST", "GET"])
+def donation_page():
     if request.method == "POST":
         campaign_id = request.form.get('campaignId')
         # Process the donation and campaign_id as needed
 
     # Retrieve the campaign information for the GET request
-    campaign = Campaign.query.filter_by(id=id).first()
+    campaign = Campaign.query.filter_by(id=campaign_id).first()
 
     return render_template('donation_page.html', user=current_user, campaign=campaign)
 
@@ -471,8 +472,6 @@ def add_new_campaign():
     campaigns = Campaign_Category.query.all()
 
     return render_template('add_new_campaign.html', user=current_user)
-
-
 
 
 @views.route('/delete_campaign/<int:campaign_id>', methods=['POST', 'GET'])
@@ -570,6 +569,7 @@ def inbox_details(inbox_id):
     inbx = Inbox.query.filter_by(id=inbox_id).first()
 
     return render_template('inbox_details.html', user=current_user, inbox=inbx)
+
 
 def delete_inbox(inbox_id):
     inbox_entry = Inbox.query.get(inbox_id)

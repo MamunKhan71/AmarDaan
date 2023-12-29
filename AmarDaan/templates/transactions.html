@@ -27,16 +27,19 @@
                             <td>{{ trans.method }}</td>
                             <td>{{ trans.status }}</td>
                             <td>{{ trans.transaction_date.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                            {% if user.email == "mkmamun031@gmail.com" %}'
                             <td class="text-right">
                                 <a class="btn btn-danger" href="{{ url_for('views.delete_transaction', transaction_id=trans.id) }}" data-toggle="modal" data-target="#delete">Delete</a>
                             </td>
+                            {% else %}
+                            <td class="text-right">
+                                <a style="background-color: #6b02ad;" class="btn btn-danger" href="{{ url_for('views.campaign_list', transaction_id=trans.id) }}" data-toggle="modal" data-target="#delete">Donate Again</a>
+                            </td>
+                            {% endif %}
                         </tr>
                     {% endfor %}
                 </tbody>
             </table>
-{#            <div class="custom-button-container">#}
-{#                <a class="btn custom-button" href="{{ url_for('views.add_transaction') }}">Add New Transaction</a>#}
-{#            </div>#}
         </div>
     </div>
 {% endblock %}

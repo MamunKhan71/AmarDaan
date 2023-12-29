@@ -157,20 +157,9 @@
         <main class="main-content">
             <div class="top-container">
                 <div action="#" class="search">
-                    <svg class="search__icon" width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M10.5418 19.25C15.3513 19.25 19.2502 15.3512 19.2502 10.5417C19.2502 5.73223 15.3513 1.83337 10.5418 1.83337C5.73235 1.83337 1.8335 5.73223 1.8335 10.5417C1.8335 15.3512 5.73235 19.25 10.5418 19.25Z" stroke="#596780" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M20.1668 20.1667L18.3335 18.3334" stroke="#596780" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>         
-                    <input type="text" class="search__input" placeholder="Search campaign here">           
+
                 </div>
                 <div class="user-nav">
-                    <button class="notification">
-                        <svg class="notification__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M12.0201 2.91003C8.71009 2.91003 6.02009 5.60003 6.02009 8.91003V11.8C6.02009 12.41 5.76009 13.34 5.45009 13.86L4.30009 15.77C3.59009 16.95 4.08009 18.26 5.38009 18.7C9.69009 20.14 14.3401 20.14 18.6501 18.7C19.8601 18.3 20.3901 16.87 19.7301 15.77L18.5801 13.86C18.2801 13.34 18.0201 12.41 18.0201 11.8V8.91003C18.0201 5.61003 15.3201 2.91003 12.0201 2.91003Z" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"/>
-                            <path d="M13.8699 3.19994C13.5599 3.10994 13.2399 3.03994 12.9099 2.99994C11.9499 2.87994 11.0299 2.94994 10.1699 3.19994C10.4599 2.45994 11.1799 1.93994 12.0199 1.93994C12.8599 1.93994 13.5799 2.45994 13.8699 3.19994Z" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M15.02 19.0601C15.02 20.7101 13.67 22.0601 12.02 22.0601C11.2 22.0601 10.44 21.7201 9.90002 21.1801C9.36002 20.6401 9.02002 19.8801 9.02002 19.0601" stroke="#292D32" stroke-width="1.5" stroke-miterlimit="10"/>
-                        </svg>                            
-                    </button>
                     <div class="user-info">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
                             <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
@@ -178,9 +167,7 @@
                           </svg>
                         <span class="user-name">{{user.name}}</span>                        
                     </div>
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M16.5999 7.45837L11.1666 12.8917C10.5249 13.5334 9.4749 13.5334 8.83324 12.8917L3.3999 7.45837" stroke="#596780" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>    
+
                 </div>
             </div>
             {% block maincontent %}
@@ -206,18 +193,6 @@
                         </div>
                     </div>
                     <div class="box total-box">
-                        <div class="total-box__left">
-                            <div class="header-container">
-                                <h3 class="section-header">Total Donated</h3>
-                                <svg class="up-arrow" width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <rect width="42" height="42" rx="8" fill="#F6F7F9"/>
-                                    <path d="M27.0702 18.57L21.0002 12.5L14.9302 18.57" stroke="#7FB519" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="M21 29.5V12.67" stroke="#7FB519" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>                                
-                            </div>
-                            <h1 class="price">৳ 50,530.00<span class="price-currency">(TK)</span></h1>
-                            <p><span>From January 2023 - August 2023</p></span>                      
-                        </div>
                         <div class="total-box__right">
                             <div class="header-container">
                                 <h3 class="section-header">Total Collected</h3>
@@ -251,77 +226,27 @@
                             </div>                                
                         </div>
                         <table class="transaction-history">
-                            <tr>
-                                <th>Campaign Name</th>
-                                <th>Date
-                                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M9.96004 4.47498L6.70004 7.73498C6.31504 8.11998 5.68504 8.11998 5.30004 7.73498L2.04004 4.47498" stroke="#90A3BF" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg>                                        
-                                </th>
-                                <th>Amount
-                                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M9.96004 4.47498L6.70004 7.73498C6.31504 8.11998 5.68504 8.11998 5.30004 7.73498L2.04004 4.47498" stroke="#90A3BF" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg>                                        
-                                </th>
-                                <th>Type
-                                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M9.96004 4.47498L6.70004 7.73498C6.31504 8.11998 5.68504 8.11998 5.30004 7.73498L2.04004 4.47498" stroke="#90A3BF" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg>                                       
-                                </th>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="img-container">
-                                        <img src="../static/images/header-img-6.jpg" alt="Header Image 3">
-                                    </div>                                       
-                                    Run for Ratan
-                                </td>
-                                <td>Jan 01,2023</td>
-                                <td>৳ 2,000.00</td>
-                                <td>
-                                    <svg class="status" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <rect width="16" height="16" rx="8" fill="#BCE455" fill-opacity="0.3"/>
-                                        <circle cx="8" cy="8" r="4" fill="#7FB519"/>
-                                    </svg>                                        
-                                    Donated
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="img-container">
-                                        <img src="../static/images/header-img-4.jpg" alt="Header Image 3">
-                                    </div>
-                                    Footsteps Bangladesh    
-                                </td>
-                                <td>Jan 04,2023</td>
-                                <td>৳ 2,000.00</td>
-                                <td>
-                                    <svg class="status" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <rect width="16" height="16" rx="8" fill="#DBA32A" fill-opacity="0.14"/>
-                                        <circle cx="8" cy="8" r="4" fill="#DBA32A"/>
-                                    </svg>                                        
-                                    Collected
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="img-container">
-                                        <img src="../static/images/header-img-3.jpg" alt="Header Image 3">
-                                    </div>
-                                    Bidyanondo: Lets Fight against COVID 19    
-                                </td>
-                                <td>Jan 06,2023</td>
-                                <td>৳ 2,000.00</td>
-                                <td>
-                                    <svg class="status" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <rect width="16" height="16" rx="8" fill="#DB2719" fill-opacity="0.3"/>
-                                        <circle cx="8" cy="8" r="4" fill="#DB2719"/>
-                                    </svg>                                        
-                                    Donated
-                                </td>
-                            </tr>
-                        </table>
-                    </div>                   
+                        <tr>
+                            <th>Campaign Name</th>
+                            <th>Date
+                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M9.96004 4.47498L6.70004 7.73498C6.31504 8.11998 5.68504 8.11998 5.30004 7.73498L2.04004 4.47498" stroke="#90A3BF" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </th>
+                            <th>Amount
+                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M9.96004 4.47498L6.70004 7.73498C6.31504 8.11998 5.68504 8.11998 5.30004 7.73498L2.04004 4.47498" stroke="#90A3BF" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </th>
+                            <th>Type
+                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M9.96004 4.47498L6.70004 7.73498C6.31504 8.11998 5.68504 8.11998 5.30004 7.73498L2.04004 4.47498" stroke="#90A3BF" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </th>
+                        </tr>
+                    </table>
+
+                    </div>
                 </div>
                 <div class="bottom-container__right">
                     <div class="box">
@@ -395,7 +320,7 @@
                                     </div>
                                 </td>
                                 <td>
-                                            <span><button style="border: 0px;padding:5px 10px 5px 10px;border-radius: 10px;cursor: pointer;">Donate</button></span>    
+                                            <span><button style="border: 0px;padding:5px 10px 5px 10px;border-radius: 10px;cursor: pointer;">Donate</button></span>
                                 </td>
                             </tr>
                             <tr>
@@ -406,7 +331,7 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <span><button type="submit" style="border: 0px;padding:5px 10px 5px 10px;border-radius: 10px;cursor: pointer;">Donate</button></span>    
+                                    <span><button onclick="{{ url_for('views.donation_page' , id=1) }}" type="submit" style="border: 0px;padding:5px 10px 5px 10px;border-radius: 10px;cursor: pointer;">Donate</button></span>
                                 </td>
                             </tr>
                         </table>

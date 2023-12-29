@@ -41,9 +41,7 @@ class Campaign(db.Model):
 
     @classmethod
     def update_category_choices(cls):
-        """
-        Update the CATEGORY_CHOICES dictionary based on Campaign_Category entries.
-        """
+
         categories = Campaign_Category.query.all()
         cls.CATEGORY_CHOICES = {str(category.camp_id): category.camp_name for category in categories}
 
