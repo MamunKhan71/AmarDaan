@@ -7,11 +7,16 @@ from sqlalchemy.sql import func
 
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(30))
+    first_name = db.Column(db.String(30))
+    last_name = db.Column(db.String(30))
+    username = db.Column(db.String(30), unique=True)
     email = db.Column(db.String(150), unique=True)
-    password = db.Column(db.String(150))
+    phone_number = db.Column(db.String(20))
+    country = db.Column(db.String(50))
     facebook = db.Column(db.String(150))
     instagram = db.Column(db.String(150))
+    other = db.Column(db.String(150))
+    password = db.Column(db.String(150))
     profile_picture = db.Column(db.String(150))
     date = db.Column(db.DateTime(timezone=True), default=func.now())
     campaigns = db.relationship('Campaign', backref='user_campaigns', lazy=True)

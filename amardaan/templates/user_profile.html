@@ -27,11 +27,11 @@
                     <div class="info-box">
                     <div class="profile-info">
                         <div><strong><p>Name</p></strong></div>
-                        <div><p>{{ user.name }}</p></div>
+                        <div><p>{{ user.username }}</p></div>
                         <div><strong><p>Email</p></strong></div>
                         <div><p>{{ user.email}}</p></div>
                         <div><strong><p>Phone</p></strong></div>
-                        <div><p>{{ user.phone}}</p></div>
+                        <div><p>{{ user.phone_number}}</p></div>
                         <div><strong><p>Address</p></strong></div>
                         <div><p>Daffodil Smart City, Ashulia, Savar, Dhaka</p></div>
                     </div>
@@ -49,17 +49,17 @@
                 <div class="form-container">
                     <div class="form-group">
                         <label for="first_name" class="form-label">First Name</label>
-                        <input type="text" name="first_name" class="form-input" value="{{user.name.split()[0]}}">
+                        <input type="text" name="first_name" class="form-input" value="{{user.first_name}}">
 
                     </div> 
 
                     <div class="form-group">
                         <label for="last_name" class="form-label">Last Name</label>
-                        <input type="text" name="last_name" class="form-input" value="{{ ' '.join(user.name.split()[1:]) }}">
+                        <input type="text" name="last_name" class="form-input" value="{{ user.last_name }}">
                     </div>
                     <div class="form-group">
                         <label class="form-label" for="l_name">Username</label>
-                        <input class="form-input" type="email" id="email" name="email" required>
+                        <input class="form-input" type="email" id="email" name="username" value="{{ user.username }}" required>
                     </div> 
                     <div class="form-group">
                         <label for="email" class="form-label">Email</label>
@@ -71,7 +71,7 @@
                     </div> 
                     <div class="form-group">
                         <label class="form-label" for="l_name">Confirm Email</label>
-                        <input class="form-input" type="text" id="l_name" name="l_name" required>
+                        <input class="form-input" type="text" id="cemail" name="cemail" required>
                     </div> 
                 </div>   
             </div>
@@ -84,14 +84,18 @@
                             <input disabled class="form-input" type="text" value="+880">
                         </div>  
                         <div class="form-group">
-                            <input class="form-input" type="text" id="l_name" name="l_name" required>
-                        </div> 
+                        {% if user.phone %}
+                            <input class="form-input" type="text" id="phone" name="phone_number" value="user.phone_number" required>
+                        {% else %}
+                            <input class="form-input" type="text" id="phone" name="phone_number" required>
+                        {% endif %}
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="phone" class="form-label">Country</label>
-                            <select class="form-input">
-                                <option>Bangladesh</option>
-                                <option>India</option>
+                            <select class="form-input" name="country">
+                                <option value="Bangladesh">Bangladesh</option>
+                                <option value="India">India</option>
                             </select>
                     </div>
                     <div class="form-group">
@@ -104,7 +108,7 @@
                     </div>
                     <div class="form-group">
                         <label for="facebook" class="form-label">Instagram</label>
-                        {% if user.facebook %}
+                        {% if user.instagram %}
                         <input type="text" class="form-input" name="instagram" value="{{user.instagram}}" aria-label="Username" aria-describedby="basic-addon1">
                         {% else %}
                         <input type="text" class="form-input" name="instagram" placeholder="Instagram ID" aria-label="Username" aria-describedby="basic-addon1">
@@ -112,7 +116,7 @@
                     </div>
                     <div class="form-group">
                         <label class="form-label" for="l_name">Other</label>
-                        <input class="form-input" type="text" id="l_name" name="l_name" required>
+                        <input class="form-input" type="text" id="other" name="other" required>
                     </div> 
                 </div>
             </div>
@@ -129,14 +133,14 @@
                     <div class="form-group">
                         <label for="password" class="form-label">New Password</label>
                         <div class="password-input-container">
-                            <input type="password" name="password" class="form-input password-match" id="password">
+                            <input type="password" name="npassword" class="form-input password-match" id="password">
                             <button id="toggle-password" class="password-toggle" type="button">Show</button>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="password" class="form-label">Password</label>
+                        <label for="password" class="form-label">Confirm New Password</label>
                         <div class="password-input-container">
-                            <input type="password" name="password" class="form-input password-match" id="password">
+                            <input type="password" name="cnpassword" class="form-input password-match" id="password">
                         </div>
                     </div>
                     <div class="form-group">

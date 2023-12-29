@@ -1,3 +1,5 @@
+import random
+
 from flask import Blueprint, render_template, request, flash, redirect, url_for
 from .models import User
 from . import db
@@ -41,20 +43,29 @@ def forgot_password():
 @auth.route('/signup', methods=["GET", "POST"])
 def signup():
     if request.method == "POST":
-        name = request.form.get('name')
+        fname = request.form.get('firstname')
+        lname = request.form.get('lastname')
         email = request.form.get('email')
         passw = request.form.get('password')
-
+        print(f"{fname} --  {lname}")
         user = User.query.filter_by(email=email).first()
 
         if user:
-            flash('User Already Exist! Please Login', category='error')
+            flash('User Already Exists! Please Login', category='error')
             print(email)
         else:
-            new_user = User(name=name, email=email, password=generate_password_hash(password=passw, method='sha256'))
+            new_user = User(
+                first_name=fname,
+                last_name=lname,
+                username=f"{fname} {lname}",
+                email=email,
+                password=generate_password_hash(password=passw, method='sha256'),
+            )
             db.session.add(new_user)
             db.session.commit()
-            flash("Account Created Succesfully!", category='success')
+            flash("Account Created Successfully!", category='success')
             login_user(user=new_user, remember=True)
             return redirect(url_for('views.home'))
+
     return render_template('user_form.html', user=current_user)
+

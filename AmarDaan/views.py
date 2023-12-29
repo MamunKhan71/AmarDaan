@@ -175,7 +175,7 @@ def send_email(subject, body, sender, recipients, password, name=None):
 def otp_verification():
     otp = random.randint(pow(10, 5), (pow(10, 6) - 1))
     subject = "Your OTP Verification Code"
-    body = f"Dear {current_user.name},\n\nThank you for choosing AmarDaan! To ensure the security of your account, we have sent you a One-Time Password (OTP) for verification purposes. \n\nYour OTP: {otp} \n\nPlease enter this OTP on the verification page to complete the process. Please note that this OTP is valid for a limited time and should not be shared with anyone.\n\nIf you did not initiate this request or have any concerns, please contact our customer support immediately at Customer Support amardaan247@gmail.com. \n\nThank you for your trust in AmarDaan."
+    body = f"Dear {current_user.username},\n\nThank you for choosing AmarDaan! To ensure the security of your account, we have sent you a One-Time Password (OTP) for verification purposes. \n\nYour OTP: {otp} \n\nPlease enter this OTP on the verification page to complete the process. Please note that this OTP is valid for a limited time and should not be shared with anyone.\n\nIf you did not initiate this request or have any concerns, please contact our customer support immediately at Customer Support amardaan247@gmail.com. \n\nThank you for your trust in AmarDaan."
     sender = "amardaan247@gmail.com"
     recipients = current_user.email
     password = "ecaflcbwzegogtnr"
@@ -186,48 +186,49 @@ def otp_verification():
 @views.route('/update_profile', methods=["POST"])
 @login_required
 def update_profile():
-    first_name = request.form.get('first_name')
-    last_name = request.form.get('last_name')
-    password = request.form.get('password')
-    email = request.form.get('email')
-    facebook = request.form.get('facebook')
-    instagram = request.form.get('instagram')
-    updated_name = f"{first_name} {last_name}"
 
     # Generate and store OTP
     generated_otp = otp_verification()
     session['generated_otp'] = generated_otp
-
+    session['form_data'] = request.form
     return render_template('otp_page.html', user=current_user, otp=generated_otp)
 
 
 @views.route('/otp_verified', methods=['POST'])
 @login_required
 def otp_verified():
+    user = current_user
     user_otp = f"{request.form.get('first')}{request.form.get('second')}{request.form.get('third')}{request.form.get('fourth')}{request.form.get('fifth')}{request.form.get('sixth')}"
     generated_otp = session.get('generated_otp')
-
-    if user_otp == generated_otp:
+    form_data = session.get('form_data', {})
+    if user_otp == str(generated_otp):
         try:
-            user = current_user
-
-            # Retrieve updated_name, email, etc. from the form
-            updated_name = f"{request.form.get('first_name')} {request.form.get('last_name')}"
-            email = request.form.get('email')
-            password = request.form.get('password')
-            facebook = request.form.get('facebook')
-            instagram = request.form.get('instagram')
-            print(email)
-            if updated_name:
-                user.name = updated_name
-            if email:
+            first_name = form_data.get('first_name')
+            last_name = form_data.get('last_name')
+            username = form_data.get('username')
+            password = form_data.get('password')
+            new_password = form_data.get('npassword')
+            confirm_new_password = form_data.get('cnpassword')
+            email = form_data.get('email')
+            cemail = form_data.get('cemail')
+            facebook = form_data.get('facebook')
+            instagram = form_data.get('instagram')
+            other = form_data.get('other')
+            country = form_data.get('country')
+            user.first_name = first_name
+            user.last_name = last_name
+            user.username = username
+            if email == cemail:
                 user.email = email
-            if password:
-                user.password = generate_password_hash(password=password, method='sha256')
-            if facebook:
-                user.facebook = f"https://www.fb.com/{facebook}"
-            if instagram:
-                user.instagram = f"https://www.instagram.com/{instagram}"
+            user.facebook = facebook
+            user.instagram = instagram
+            user.other = other
+            user.country = country
+            if user.password == password:
+                if new_password and confirm_new_password:
+                    user.password = generate_password_hash(password=password, method='sha256')
+                else:
+                    print("Password Not MATCH!")
 
             db.session.commit()
             print("Profile Updated Successfully!")
