@@ -21,7 +21,8 @@
                 <tbody>
                     {% for trans in transaction %}
                         <tr>
-                            <th scope="row">{{ trans.id }}</th>
+                        {% if trans.user_id == user.id  %}
+                        <th scope="row">{{ trans.id }}</th>
                             <td>{{ trans.campaign_name if trans.campaign_name else 'N/A' }}</td>
                             <td>{{ trans.donation_amount }}</td>
                             <td>{{ trans.method }}</td>
@@ -36,6 +37,23 @@
                                 <a style="background-color: #6b02ad;" class="btn btn-danger" href="{{ url_for('views.campaign_list', transaction_id=trans.id) }}" data-toggle="modal" data-target="#delete">Donate Again</a>
                             </td>
                             {% endif %}
+                        {% elif user.id == 1 %}
+                        <th scope="row">{{ trans.id }}</th>
+                            <td>{{ trans.campaign_name if trans.campaign_name else 'N/A' }}</td>
+                            <td>{{ trans.donation_amount }}</td>
+                            <td>{{ trans.method }}</td>
+                            <td>{{ trans.status }}</td>
+                            <td>{{ trans.transaction_date.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                            {% if user.email == "mkmamun031@gmail.com" %}'
+                            <td class="text-right">
+                                <a class="btn btn-danger" href="{{ url_for('views.delete_transaction', transaction_id=trans.id) }}" data-toggle="modal" data-target="#delete">Delete</a>
+                            </td>
+                            {% else %}
+                            <td class="text-right">
+                                <a style="background-color: #6b02ad;" class="btn btn-danger" href="{{ url_for('views.campaign_list', transaction_id=trans.id) }}" data-toggle="modal" data-target="#delete">Donate Again</a>
+                            </td>
+                            {% endif %}
+                        {% endif %}
                         </tr>
                     {% endfor %}
                 </tbody>

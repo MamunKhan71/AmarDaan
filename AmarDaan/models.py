@@ -38,6 +38,7 @@ class Campaign_Category(db.Model):
 
 class Campaign(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    admin_approve = db.Column(db.Integer)
     camp_owner = db.Column(db.String(200))
     camp_name = db.Column(db.String(200))
     camp_sub_name = db.Column(db.String(200))

@@ -23,6 +23,7 @@
 <div class="row row-cols-1 row-cols-md-4 g-4 mt-4 containers">
   <section class="product_card__block">
     {% for campaigns in campaign %}
+        {% if campaigns.admin_approve == 1 %}
       <div class="product_card__content">
         <img src="{{ url_for('static', filename=campaigns.camp_photo) }}" alt="" class="product_card__img">
             <h3 class="product_card__title">{{ campaigns.camp_name }}</h3>
@@ -33,6 +34,8 @@
               <button type="submit" class="product_card__btn">Donate Now</button>
           </form>
       </div>
+
+        {% endif %}
     {% endfor %}
   </section>
 </div>

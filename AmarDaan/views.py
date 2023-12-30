@@ -97,9 +97,10 @@ def campaign():
             camp_video = request.form.get('camp_video')
             camp_social = request.form.get('camp_social')
             camp_aboutus = request.form.get('camp_aboutus')
-            camp_owner = current_user.name
+            camp_owner = current_user.username
 
             new_campaign = Campaign(
+                admin_approve=0,
                 camp_name=camp_name,
                 camp_sub_name=camp_sub_name,
                 camp_category=camp_category,
@@ -155,6 +156,13 @@ def upload_profile_picture():
 
     return redirect(url_for('views.user_profile'))
 
+@login_required
+@views.route('/campaign_approve/<int:campaign_id>')
+def campaign_approve(campaign_id):
+    campaign = Campaign.query.filter_by(id=campaign_id).first()
+    campaign.admin_approve = 1
+    db.session.commit()
+    return redirect(url_for('views.edit_campaigns'))
 
 def send_email(subject, body, sender, recipients, password, name=None):
     if name != None:
@@ -249,6 +257,7 @@ def otp_verified():
 @views.route('/statistics')
 @login_required
 def statistics():
+    trans = Transactions.query.all()
     return render_template('statistics.html', user=current_user)
 
 

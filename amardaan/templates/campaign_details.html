@@ -175,8 +175,8 @@
                 <p class="brokersText-4">
                     <span class="bottom_line P12 text-center d-block">
                         You only have the opportunity to donate to this campaign before
-                        <span class="end_time" id="endtime">
-                            {{ camp_deadline }}
+                        <span class="end_time" >
+                            {{ campaign.camp_deadline.strftime('%Y-%m-%d') }}
                         </span>
                     </span>
                 </p>

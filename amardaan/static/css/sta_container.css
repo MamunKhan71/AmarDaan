@@ -106,6 +106,12 @@ body {
     align-items: center;
 }
 
+/* styles for dark mode */
+.dark-mode{
+    background-color: #1a1a1a;
+    color: #fff;
+}
+
 /* -------------- SEARCH -------------- */
 .search {
     display: flex;
@@ -114,8 +120,6 @@ body {
     max-width: 492px;
     width: 100%;
     gap: 26px;
-    background: #FFFFFF;
-    opacity: 0.8;
 }
 
 .search__input {
