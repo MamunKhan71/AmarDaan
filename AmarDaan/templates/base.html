@@ -58,7 +58,7 @@
           <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
           <script>
             const user = {
-                name: "{{ user.name }}",
+                name: "{{ user.username }}",
                 imageSrc: 'path/to/user/image.jpg' // Replace with actual user image path
             };
 
@@ -70,7 +70,7 @@
                       ${user.name}
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                      <li><a class="dropdown-item" href="#">Profile Setting</a></li>
+                      <li><a href={{ url_for('views.profile') }} class="dropdown-item" href="#">Profile Setting</a></li>
                       <li><a class="dropdown-item" href="{{url_for('views.dashboard')}}">Dashboard</a></li> <!-- Close double curly braces -->
                       <li><a class="dropdown-item" href="{{url_for('auth.logout')}}">Logout</a></li> <!-- Close double curly braces -->
                     </ul>

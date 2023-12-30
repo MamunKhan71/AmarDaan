@@ -31,7 +31,7 @@
                         <div><strong><p>Email</p></strong></div>
                         <div><p>{{ user.email}}</p></div>
                         <div><strong><p>Phone</p></strong></div>
-                        <div><p>{{ user.phone_number}}</p></div>
+                        <div><p>{{ user.phone_number }}</p></div>
                         <div><strong><p>Address</p></strong></div>
                         <div><p>Daffodil Smart City, Ashulia, Savar, Dhaka</p></div>
                     </div>
@@ -59,7 +59,7 @@
                     </div>
                     <div class="form-group">
                         <label class="form-label" for="l_name">Username</label>
-                        <input class="form-input" type="email" id="email" name="username" value="{{ user.username }}" required>
+                        <input class="form-input" type="text" id="name" name="username" value="{{ user.username }}" required>
                     </div> 
                     <div class="form-group">
                         <label for="email" class="form-label">Email</label>
@@ -85,9 +85,9 @@
                         </div>  
                         <div class="form-group">
                         {% if user.phone %}
-                            <input class="form-input" type="text" id="phone" name="phone_number" value="user.phone_number" required>
+                            <input class="form-input" type="text" id="phone" name="phone_number" placeholder="{{ user.phone_number }}" required>
                         {% else %}
-                            <input class="form-input" type="text" id="phone" name="phone_number" required>
+                            <input class="form-input" type="text" id="phone" name="phone_number" placeholder="Phone Number" required>
                         {% endif %}
                         </div>
                     </div>
@@ -116,7 +116,7 @@
                     </div>
                     <div class="form-group">
                         <label class="form-label" for="l_name">Other</label>
-                        <input class="form-input" type="text" id="other" name="other" required>
+                        <input class="form-input" type="text" id="other" name="other" value="{{ user.other }}" required>
                     </div> 
                 </div>
             </div>

@@ -218,15 +218,21 @@ def otp_verified():
             user.first_name = first_name
             user.last_name = last_name
             user.username = username
+            user.phone_number = form_data.get('phone_number')
             if email == cemail:
                 user.email = email
-            user.facebook = facebook
-            user.instagram = instagram
+            user.facebook = f"https://www.facebook.com/{facebook}"
+            user.instagram = f"https://www.instagram.com/{instagram}"
             user.other = other
             user.country = country
-            if user.password == password:
+            print(user.password)
+            print(password)
+            print(new_password)
+            print(confirm_new_password)
+
+            if check_password_hash(user.password, password):
                 if new_password and confirm_new_password:
-                    user.password = generate_password_hash(password=password, method='sha256')
+                    user.password = generate_password_hash(password=new_password, method='sha256')
                 else:
                     print("Password Not MATCH!")
 

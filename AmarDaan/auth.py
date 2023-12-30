@@ -24,7 +24,7 @@ def login():
             else:
                 flash("Incorrect Password!", category='error')
 
-        return redirect(url_for('views.home'))
+        # return redirect(url_for('views.home'))
     return render_template('user_form.html', user=current_user)
 
 
@@ -37,8 +37,8 @@ def logout():
 
 @auth.route('/forgot_password')
 def forgot_password():
-
     return render_template('forgot_password.html', user=current_user)
+
 
 @auth.route('/signup', methods=["GET", "POST"])
 def signup():
@@ -68,4 +68,3 @@ def signup():
             return redirect(url_for('views.home'))
 
     return render_template('user_form.html', user=current_user)
-
