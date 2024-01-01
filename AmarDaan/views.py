@@ -4,7 +4,7 @@ from flask import jsonify, Blueprint, render_template, request, current_app, red
 from flask_login import login_required, current_user
 from sqlalchemy import func
 
-from .models import Campaign, Campaign_Category, Transactions, Inbox
+from .models import Campaign, Campaign_Category, Transactions, Inbox, ProfileSettings
 from werkzeug.security import generate_password_hash, check_password_hash
 from . import db
 from werkzeug.utils import secure_filename
@@ -25,6 +25,14 @@ from werkzeug.local import LocalProxy
 views = Blueprint('views', __name__)
 
 
+@views.context_processor
+def inject_settings():
+    settings = ProfileSettings.query.filter_by(id=1).first()
+
+    # Return a dictionary with the variable you want to inject into the template context
+    return {'settings': settings}
+
+
 @views.route('/')
 def home():
     campaigns = Campaign.query.all()
@@ -36,7 +44,7 @@ def home():
 def dashboard():
     user = current_user
     transaction = Transactions.query.all()
-
+    settings = ProfileSettings.query.filter_by(id=1).first()
     total_donation_amount = db.session.query(func.sum(Transactions.donation_amount)).scalar()
     total_donation_amount = total_donation_amount or 0
     formatted_amount = "৳ {:,}".format(total_donation_amount)
@@ -156,6 +164,7 @@ def upload_profile_picture():
 
     return redirect(url_for('views.user_profile'))
 
+
 @login_required
 @views.route('/campaign_approve/<int:campaign_id>')
 def campaign_approve(campaign_id):
@@ -163,6 +172,7 @@ def campaign_approve(campaign_id):
     campaign.admin_approve = 1
     db.session.commit()
     return redirect(url_for('views.edit_campaigns'))
+
 
 def send_email(subject, body, sender, recipients, password, name=None):
     if name != None:
@@ -194,7 +204,6 @@ def otp_verification():
 @views.route('/update_profile', methods=["POST"])
 @login_required
 def update_profile():
-
     # Generate and store OTP
     generated_otp = otp_verification()
     session['generated_otp'] = generated_otp
@@ -258,6 +267,7 @@ def otp_verified():
 @login_required
 def statistics():
     trans = Transactions.query.all()
+    settings = ProfileSettings.query.filter_by(id=1).first()
     return render_template('statistics.html', user=current_user)
 
 
@@ -602,3 +612,56 @@ def delete_inbox(inbox_id):
 def delete_inbox_route(inbox_id):
     delete_inbox(inbox_id)
     return redirect(url_for('views.inbox'))
+
+
+@views.route('/settings', methods=["POST", "GET"])
+@login_required
+def settings():
+    if request.method == "POST":
+        existing_profile_settings = ProfileSettings.query.filter_by(id=1).first()
+        try:
+            # Get form data
+            website_text = request.form.get('website-text')
+            about_section = request.form.get('about-section')
+
+            # Get file data
+            if request.files['logo']:
+                profile_photo = request.files['logo']
+                upload_folder = os.path.join(current_app.root_path, 'static', current_app.config['UPLOAD_FOLDER'])
+                os.makedirs(upload_folder, exist_ok=True)
+                filename = secure_filename(profile_photo.filename)
+                relative_path = os.path.join(current_app.config['UPLOAD_FOLDER'], filename).replace(os.path.sep, '/')
+                full_path = os.path.join(upload_folder, filename)
+                profile_photo.save(full_path)
+            else:
+                relative_path = existing_profile_settings.profile_picture
+
+            # Save file to server
+
+            # Check if there's an existing record for the current user
+
+            if existing_profile_settings:
+                # Update existing record
+                existing_profile_settings.profile_picture = relative_path
+                existing_profile_settings.website_text = website_text
+                existing_profile_settings.about = about_section
+            else:
+                # Create a new record
+                profile_settings = ProfileSettings(
+                    id=current_user.id,
+                    profile_picture=relative_path,
+                    website_text=website_text,
+                    about=about_section
+                )
+                db.session.add(profile_settings)
+
+            db.session.commit()
+            print(f"Profile settings saved successfully.")
+
+        except Exception as e:
+            print(f"Error handling form submission: {e}")
+            return 'Error processing form submission'
+
+        return redirect(url_for('views.settings'))
+
+    return render_template('settings.html', user=current_user)

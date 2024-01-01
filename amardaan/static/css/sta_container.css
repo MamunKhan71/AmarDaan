@@ -31,7 +31,9 @@ body {
     padding: 0 16px;
     overflow: auto;
 }
-
+.logo{
+    width: 150px;
+}
 .sidebar__logo {
     display: flex;
     justify-content: center;

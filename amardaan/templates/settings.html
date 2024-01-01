@@ -1,0 +1,38 @@
+{% extends 'statistics.html' %}
+{% block header %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/settings.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+{% endblock %}
+{% block maincontent %}
+    <h1 class="">Update Site Settings</h1>
+<div class="settings-container">
+    <div class="setting-item">
+        <label for="current-photo">Current Photo:</label>
+        <img src="path/to/your/current/photo.jpg" alt="Current Photo" class="current-photo">
+    </div>
+   <form action="{{ url_for('views.settings') }}" method="post" enctype="multipart/form-data">
+    <div class="setting-item">
+        <label for="logo">Upload New Photo:</label>
+        <div class="file-input-wrapper">
+            <input type="file" id="logo" name="logo" accept="image/*">
+        </div>
+    </div>
+
+    <div class="setting-item">
+        <label for="website-text">Website Text:</label>
+        <input type="text" id="website-text" name="website-text" placeholder="Enter website text">
+    </div>
+
+    <div class="setting-item">
+        <label for="about-section">About Section:</label>
+        <textarea id="about-section" name="about-section" rows="4" placeholder="Enter about section"></textarea>
+    </div>
+
+    <div class="setting-item">
+        <input class="custom-button" type="submit" name="submit" value="Update Settings">
+    </div>
+    </form>
+</div>
+
+{% endblock %}

@@ -99,3 +99,10 @@ class Inbox(db.Model):
 
     def __repr__(self):
         return f"Inbox(id={self.id}, name={self.name}, subject={self.subject}, message={self.message} status={self.status}, created_on={self.created_on})"
+
+
+class ProfileSettings(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    profile_picture = db.Column(db.String(255), nullable=False)
+    website_text = db.Column(db.String(255), nullable=False)
+    about = db.Column(db.String(255), nullable=False)

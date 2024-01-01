@@ -11,7 +11,7 @@ h1{
 
 /* Add your custom styles here */
 body {
-    font-family: Arial, sans-serif;
+    font-family: "Plus Jakarta Sans", sans-serif;
 }
 
 .campaign_table {
@@ -87,7 +87,9 @@ th, td {
             margin: auto;
         }
 
-
+.logo{
+    width: 150px;
+}
     .custom-button-container {
         text-align: center;
         margin-top: 20px; /* Adjust as needed */

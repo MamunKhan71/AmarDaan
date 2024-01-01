@@ -19,9 +19,11 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container-fluid">
-          <a class="navbar-brand" href="{{url_for('views.home')}}">
-              <img class="logo" src="{{url_for('static', filename='/images/logo.png')}}">
-          </a>
+        {% if settings.profile_picture %}
+                <a href="{{ url_for('views.home') }}"><img class="logo" src="{{ url_for('static', filename=settings.profile_picture) }}"></a>
+            {% else %}
+                <img class="logo" src="{{ url_for('static', filename='/images/logo.png') }}">
+            {% endif %}
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>

@@ -25,7 +25,9 @@ body {
     margin: 0; 
     padding: 0; 
 } 
-
+.logo{
+    min-width: 150px;
+}
 div { 
     vertical-align: baseline; 
     font-style: inherit; 
@@ -99,20 +101,20 @@ h2{
 /* Add your other styles here */
 
 
-body { 
+body {
     -webkit-text-size-adjust: 100%;
-} 
+}
 
-body { 
-    vertical-align: baseline; 
-    font-style: inherit; 
-    font-size: 14px; 
-    outline: 0; 
-    padding: 0; 
-    margin: 0; 
-    border: 0; 
+body {
+    vertical-align: baseline;
+    font-style: inherit;
+    font-size: 14px;
+    outline: 0;
+    padding: 0;
+    margin: 0;
+    border: 0;
     list-style: none;
-} 
+}
 
 .page-template-default { 
     overflow-x: hidden;
