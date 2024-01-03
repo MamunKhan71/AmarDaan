@@ -1,12 +1,19 @@
 import random
 
 from flask import Blueprint, render_template, request, flash, redirect, url_for
-from .models import User
+from .models import User, ProfileSettings
 from . import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, login_required, logout_user, current_user
 
 auth = Blueprint('auth', __name__)
+
+@auth.context_processor
+def inject_settings():
+    settings = ProfileSettings.query.filter_by(id=1).first()
+
+    # Return a dictionary with the variable you want to inject into the template context
+    return {'settings': settings}
 
 
 @auth.route('/login', methods=["GET", "POST"])

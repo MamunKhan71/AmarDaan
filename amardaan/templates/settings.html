@@ -9,7 +9,7 @@
 <div class="settings-container">
     <div class="setting-item">
         <label for="current-photo">Current Photo:</label>
-        <img src="path/to/your/current/photo.jpg" alt="Current Photo" class="current-photo">
+        <img style="height: 80px; width: 300px" src="{{ url_for('static' , filename=settings.profile_picture) }}" alt="Current Photo" class="current-photo">
     </div>
    <form action="{{ url_for('views.settings') }}" method="post" enctype="multipart/form-data">
     <div class="setting-item">
@@ -21,12 +21,12 @@
 
     <div class="setting-item">
         <label for="website-text">Website Text:</label>
-        <input type="text" id="website-text" name="website-text" placeholder="Enter website text">
+        <input type="text" id="website-text" name="website-text" placeholder="Enter website text" value="{{ settings.website_text }}">
     </div>
 
     <div class="setting-item">
         <label for="about-section">About Section:</label>
-        <textarea id="about-section" name="about-section" rows="4" placeholder="Enter about section"></textarea>
+        <textarea id="about-section" name="about-section" rows="4">{{ settings.about }}</textarea>
     </div>
 
     <div class="setting-item">

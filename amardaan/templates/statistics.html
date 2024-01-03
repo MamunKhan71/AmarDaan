@@ -111,8 +111,9 @@
                 </ul>
     
                 <ul class="side-nav">
+                    {% if user.id == 1 %}
                     <a href="{{ url_for('views.settings') }}" style="text-decoration: none;">
-                    <span class="side-nav__header">Preferences</span>
+                    <span class="side-nav__header"></span>
                     <li class="side-nav__item">
                         <svg width="22" height="23" viewBox="0 0 22 23" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M2.75 8.85081V14.14C2.75 16.0833 2.75 16.0833 4.58333 17.3208L9.625 20.2358C10.3858 20.6758 11.6233 20.6758 12.375 20.2358L17.4167 17.3208C19.25 16.0833 19.25 16.0833 19.25 14.1491V8.85081C19.25 6.91664 19.25 6.91664 17.4167 5.67914L12.375 2.76414C11.6233 2.32414 10.3858 2.32414 9.625 2.76414L4.58333 5.67914C2.75 6.91664 2.75 6.91664 2.75 8.85081Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -120,7 +121,7 @@
                         </svg>
                         </a>
                         <span>Settings</span>
-
+                    {% endif %}
                     </li>
                     <li class="side-nav__item">
                         <svg width="22" height="23" viewBox="0 0 22 23" fill="none" xmlns="http://www.w3.org/2000/svg">
