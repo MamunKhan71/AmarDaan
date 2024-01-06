@@ -51,6 +51,10 @@ def dashboard():
     user_campaigns = Campaign.query.filter_by(user_id=user.id).all()
     fund_raised_values = [campaign.camp_fund_raised for campaign in Campaign.query.all()]
     session['fund_raised_values'] = fund_raised_values
+    # month:
+
+
+    #end
     if request.method == "POST":
         note = request.form.get('note')
         new_note = Campaign(camp_name=note, user_id=current_user.id)  # Assuming camp_name is the correct attribute
@@ -267,7 +271,20 @@ def otp_verified():
 @views.route('/statistics')
 @login_required
 def statistics():
-    trans = Transactions.query.all()
+    # trans = Transactions.query.all()
+    transactions = Transactions.query.all()
+    month_names = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Des']
+    monthly_amounts = [0] * 12  # Initialize an array with zeros for each month
+
+    for transaction in transactions:
+        # Assuming transaction_date is a datetime field
+        month_index = transaction.transaction_date.month - 1  # Months are 1-indexed
+        monthly_amounts[month_index] += transaction.donation_amount
+
+    # Serialize the data before storing it in the session
+    session['month_names'] = json.dumps(month_names)
+    session['monthly_amounts'] = json.dumps(monthly_amounts)
+
     settings = ProfileSettings.query.filter_by(id=1).first()
     return render_template('statistics.html', user=current_user)
 

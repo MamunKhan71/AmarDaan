@@ -323,28 +323,19 @@
                                 <th>Progres Bar</th>
                                 <th>Action</th>
                             </tr>
-                            <tr>
-                                <td>Run for Ratan</td>
+                            {% for camp in campaigns %}
+                                <tr>
+                                <td>{{ camp.camp_name }}</td>
                                 <td>
                                     <div class="progress-bg">
                                         <div class="progress-bar">
                                     </div>
                                 </td>
                                 <td>
-                                            <span><button style="border: 0px;padding:5px 10px 5px 10px;border-radius: 10px;cursor: pointer;">Donate</button></span>
+                                            <span><button style="border: 0px;padding:5px 10px 5px 10px;border-radius: 10px;cursor: pointer;"><a style="text-decoration: none; color: black;" href="{{ url_for('views.campaign_list')}}">Donate</a> </button></span>
                                 </td>
                             </tr>
-                            <tr>
-                                <td>Footsteps Bangladesh</td>
-                                <td>
-                                    <div class="progress-bg">
-                                        <div class="progress-bar">
-                                    </div>
-                                </td>
-                                <td>
-                                    <span><button onclick="{{ url_for('views.donation_page' , id=1) }}" type="submit" style="border: 0px;padding:5px 10px 5px 10px;border-radius: 10px;cursor: pointer;">Donate</button></span>
-                                </td>
-                            </tr>
+                            {% endfor %}
                         </table>
         </main>
         {% endblock %}
@@ -382,7 +373,7 @@ const ctx = document.getElementById('myChart');
 new Chart(ctx, {
   type: 'bar',
   data: {
-    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Des'],
+    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mey', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
     datasets: [{
       label: 'Amount Contributed',
       data: [11, 3, 14, 7, 4, 10, 7, 9, 15, 13, 7, 14],
