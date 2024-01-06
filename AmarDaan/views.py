@@ -49,7 +49,8 @@ def dashboard():
     total_donation_amount = total_donation_amount or 0
     formatted_amount = "৳ {:,}".format(total_donation_amount)
     user_campaigns = Campaign.query.filter_by(user_id=user.id).all()
-
+    fund_raised_values = [campaign.camp_fund_raised for campaign in Campaign.query.all()]
+    session['fund_raised_values'] = fund_raised_values
     if request.method == "POST":
         note = request.form.get('note')
         new_note = Campaign(camp_name=note, user_id=current_user.id)  # Assuming camp_name is the correct attribute
@@ -58,7 +59,7 @@ def dashboard():
         print("Note added successfully!")
     if user.id == 1:
         return render_template('statistics.html', user=user, campaigns=user_campaigns, total_amt=formatted_amount,
-                               transactions=transaction, camp_det=Campaign.query.all())
+                               transactions=transaction, camp_det=Campaign.query.all(), fund_raised_values = fund_raised_values)
     else:
         return render_template('user_profile.html', user=user, campaigns=user_campaigns, total_amt=formatted_amount)
 
