@@ -16,16 +16,21 @@
             <h6>Please enter the one time password <br> to verify your account</h6>
             <div>
                 <span>A code has been sent to</span>
+                {% if update_profile %}
                 <small>{{ user.email[:3] }}{{ '*' * (user.email|length - 7) }}{{ user.email[-10:] }}</small>
+                {% else %}
+
+                <small>{{ email[:3] }}{{ '*' * (email|length - 7) }}{{ email[-10:] }}</small>
+                {% endif %}
             </div>
-          <form action="{{url_for('views.otp_verified', otp=otp)}}" method="POST">
-            <div id="otp" class="inputs d-flex flex-row justify-content-center mt-2"> 
-              <input class="m-2 text-center form-control rounded" type="text" name="first" id="first" maxlength="1" /> 
-              <input class="m-2 text-center form-control rounded" type="text" name="second" id="second" maxlength="1" /> 
-              <input class="m-2 text-center form-control rounded" type="text" name="third" id="third" maxlength="1" /> 
-              <input class="m-2 text-center form-control rounded" type="text" name="fourth" id="fourth" maxlength="1" /> 
-              <input class="m-2 text-center form-control rounded" type="text" name="fifth" id="fifth" maxlength="1" /> 
-              <input class="m-2 text-center form-control rounded" type="text" name="sixth" id="sixth" maxlength="1" /> 
+            <form action="{% if update_profile %}{{ url_for('views.otp_verified', otp=otp) }}{% else %}{{ url_for('auth.auth_otp', otp=otp) }}{% endif %}" method="POST">
+            <div id="otp" class="inputs d-flex flex-row justify-content-center mt-2">
+              <input class="m-2 text-center form-control rounded" type="text" name="first" id="first" maxlength="1" />
+              <input class="m-2 text-center form-control rounded" type="text" name="second" id="second" maxlength="1" />
+              <input class="m-2 text-center form-control rounded" type="text" name="third" id="third" maxlength="1" />
+              <input class="m-2 text-center form-control rounded" type="text" name="fourth" id="fourth" maxlength="1" />
+              <input class="m-2 text-center form-control rounded" type="text" name="fifth" id="fifth" maxlength="1" />
+              <input class="m-2 text-center form-control rounded" type="text" name="sixth" id="sixth" maxlength="1" />
             </div>
             <div > <button type="submit" class="btn btn-danger px-4 validate">Validate</button> </div>
           </form>

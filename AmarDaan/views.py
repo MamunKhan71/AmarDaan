@@ -213,7 +213,7 @@ def update_profile():
     generated_otp = otp_verification()
     session['generated_otp'] = generated_otp
     session['form_data'] = request.form
-    return render_template('otp_page.html', user=current_user, otp=generated_otp)
+    return render_template('otp_page.html', user=current_user, otp=generated_otp, update_profile=True)
 
 
 @views.route('/otp_verified', methods=['POST', "GET"])
