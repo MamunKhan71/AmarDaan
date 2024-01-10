@@ -103,17 +103,17 @@ def signup():
 def auth_otp():
     user_otp = f"{request.form.get('first')}{request.form.get('second')}{request.form.get('third')}{request.form.get('fourth')}{request.form.get('fifth')}{request.form.get('sixth')}"
     generated_otp = session.get('auth_generated_otp')
-    form_data = session.get('signup', {})
+    form_datas = session.get('signup', {})
 
     if user_otp == str(generated_otp):
         try:
             print("success")
             new_user = User(
-                first_name=form_data.get('firstname'),
-                last_name=form_data.get('lastname'),
-                username=f"{form_data.get('firstname')} {form_data.get('lastname')}",
-                email=form_data.get('email'),
-                password=generate_password_hash(password=form_data.get('password'), method='sha256'),
+                first_name=form_datas.get('firstname'),
+                last_name=form_datas.get('lastname'),
+                username=f"{form_datas.get('firstname')} {form_datas.get('lastname')}",
+                email=form_datas.get('email'),
+                password=generate_password_hash(password=form_datas.get('password'), method='sha256'),
             )
             db.session.add(new_user)
             db.session.commit()

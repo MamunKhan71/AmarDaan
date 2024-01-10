@@ -88,6 +88,7 @@
                         {% if user.id==1 %}<span>Transactions</span> {% else %}<span>My Transactions</span>{% endif %}
 
                     </li>
+                {% if user.id==1 %}
                     <li class="side-nav__item">
                         <a href="{{url_for('views.inbox')}}" style="text-decoration: none;">
                         <svg width="22" height="23" viewBox="0 0 22 23" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -97,7 +98,8 @@
                             <path d="M7.3283 10.5833H7.33653" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                         </a>
-                        {% if user.id==1 %}<span>Inbox</span> {% else %}<span>My Inbox</span>{% endif %}
+                        <span>Inbox</span>
+                {% endif %}
                     </li>
                 </ul>
     

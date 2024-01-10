@@ -30,7 +30,8 @@
             <tbody>
                 {% for inbox in inbox %}
                     <tr>
-                        <th scope="row">{{ inbox.id }}</th>
+                        {% if user.id == 1 %}
+                    <th scope="row">{{ inbox.id }}</th>
 
                         <td>{{ inbox.name }}</td>
                         <td>{{ inbox.subject }}</td>
@@ -40,6 +41,7 @@
                            {% if user.id==1 %}<a class="btn btn-danger" style="background-color: #0f9d58; margin-bottom: 10px;" href="{{ url_for('views.inbox_details', inbox_id=inbox.id) }}">View</a> {% else %}<a class="btn btn-danger" style="background-color: #0f9d58; margin-bottom: 10px;" href="{{ url_for('views.inbox_details', inbox_id=inbox.id) }}">Status</a>{% endif %}
                            <a class="btn btn-danger" href="{{ url_for('views.delete_inbox_route', inbox_id=inbox.id) }}" data-toggle="modal" data-target="#delete">Delete</a>
                         </td>
+                    {% endif %}
                     </tr>
                 {% endfor %}
 
