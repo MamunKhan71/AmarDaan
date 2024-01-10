@@ -339,8 +339,7 @@ def faq():
 def campaign_list():
     campaign = Campaign.query.all()
     donation_categories = Campaign_Category.query.all()
-    categories_data = [{'value': category.id, 'label': category.camp_name} for category in donation_categories]
-    return render_template('campaign_list.html', user=current_user, campaign=campaign,  donation_categories=categories_data)
+    return render_template('campaign_list.html', user=current_user, campaign=campaign,  donation_categories=donation_categories)
 
 
 def get_session(name, amount):
@@ -603,6 +602,20 @@ def delete_transaction(transaction_id):
 
     # Redirect to the transactions page or another appropriate page
     return redirect(url_for('views.transactions'))
+
+
+@views.route('/campaign_filter', methods=['GET', 'POST'])
+def campaign_filter():
+    campaigns = Campaign.query.all()  # Define campaigns outside of the if block
+
+    if request.method == 'POST':
+        donation_sector = request.form.get('category')
+        print(donation_sector)
+        campaigns = Campaign.query.filter_by(camp_category=donation_sector).all()
+
+    donation_categories = Campaign_Category.query.all()
+
+    return render_template('campaign_list.html', campaign=campaigns, donation_categories=donation_categories, user=current_user)
 
 
 @views.route('/inbox')

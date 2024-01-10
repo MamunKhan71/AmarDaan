@@ -1,105 +1,69 @@
 {% extends 'base.html' %}
-{% block link %}
-<link rel="stylesheet" href="../static/css/campaign_list.css" />
-{% endblock %}
-{% block content %}
-<div class="heading-section">
-    <h1>Discover Fundraisers</h1>
-    <h4>AmarDaan helps you raise money for what matters to you most</h4>
-    <hr>
-</div>
-<div class="query-filters">
-    <div class="filter-section">
-        <label for="filter">Explore &nbsp; </label>
-        <select id="filter" name="filter">
-            <option value="1">Getting Funded</option>
-            <option value="2">Newest</option>
-            <option value="3">Fully funded</option>
-        </select>
-    </div>
-    <div class="filter-section">
-        <label for="filter">Donation Sector &nbsp; </label>
-        <select id="category" name="filter">
-        </select>
-    </div>
-</div>
-<!-- campaign_list.html -->
 
-<div class="camp_container">
-    <div class="products-container">
-        {% for campaign in campaign %}
-            <div class="product-card">
-                <div class="product-tumb">
-                    <img class="product-image" src="{{ url_for('static', filename=campaign.camp_photo) }}" alt="">
-                </div>
-                <div class="product-details">
-                    <span class="product-catagory">{{ campaign.camp_category }}</span>
-                    <h4><a href="#">{{ campaign.camp_name }}</a></h4>
-                    <p>{{ campaign.camp_sub_name }}</p>
-                    <div class="product-bottom-details">
-                        <div class="product-price">
-                            ৳ {{ campaign.camp_goal }}
-                        </div>
-                        <div class="product-links">
-                            <a href=""><i class="fa fa-heart"></i></a>
-                            <a href=""><i class="fa fa-shopping-cart"></i></a>
+{% block link %}
+    <link rel="stylesheet" href="../static/css/campaign_list.css" />
+{% endblock %}
+
+{% block content %}
+    <div class="heading-section">
+        <h1>Discover Fundraisers</h1>
+        <h4>AmarDaan helps you raise money for what matters to you most</h4>
+        <hr>
+    </div>
+        <div class="query-filters">
+            <div class="filter-section">
+<form method="POST" action="{{ url_for('views.campaign_filter') }}">
+
+                <label for="category">Donation Sector &nbsp; </label>
+                <select id="category" name="category">
+                    <!-- Add options dynamically based on your database -->
+                    {% for category in donation_categories %}
+                        <option value="{{ category.camp_id }}">{{ category.camp_name }}</option>
+                    {% endfor %}
+                </select>
+
+            </div>
+        <button type="submit" class="product_card__btn1">Filter</button>
+</form>
+            <div>
+
+            </div>
+        </div>
+
+
+
+
+    <!-- campaign_list.html -->
+
+    <div class="camp_container">
+        <div class="products-container">
+            {% for campaign in campaign %}
+                <div class="product-card">
+                    <div class="product-tumb">
+                        <img class="product-image" src="{{ url_for('static', filename=campaign.camp_photo) }}" alt="">
+                    </div>
+                    <div class="product-details">
+                        <span class="product-catagory">{{ campaign.camp_category_name }}</span>
+                        <h4><a href="#">{{ campaign.camp_name }}</a></h4>
+                        <p>{{ campaign.camp_sub_name }}</p>
+                        <div class="product-bottom-details">
+                            <div class="product-price">
+                                ৳ {{ campaign.camp_goal }}
+                            </div>
+                            <form action="{{ url_for('views.campaign_details') }}" method="post">
+                                <input type="hidden" name="campaign_id" value="{{ campaign.id }}">
+                                <button type="submit" class="product_card__btn">Donate Now</button>
+                            </form>
                         </div>
                     </div>
                 </div>
-            </div>
-        {% endfor %}
+            {% endfor %}
+        </div>
     </div>
-</div>
-    
 {% block script %}
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        $(function () {
-            $("div.product-card").slice(0, 4).show(); // Show the first 4 product cards
-            $("#loadMore").on('click', function (e) {
-                e.preventDefault();
-                $("div.product-card:hidden").slice(0, 4).slideDown(); // Show the next 4 hidden product cards
-                if ($("div.product-card:hidden").length == 0) {
-                    $("#loadMore").fadeOut('slow'); // If there are no more hidden cards, hide the "Show More" button
-                }
-                $('html,body').animate({
-                    scrollTop: $(this).offset().top
-                }, 1500);
-                if ($("div.product-card:last").css('display') == 'block') {
-                    $('#loadMore').hide();
-                    $('.totop').show();
-                }
-            });
 
-            $('a[href=#top]').click(function () {
-                $('body,html').animate({
-                    scrollTop: 0
-                }, 600);
-                return false;
-            });
-
-            $(window).scroll(function () {
-                if ($(this).scrollTop() > 50) {
-                    $('.totop a').fadeIn();
-                } else {
-                    $('.totop a').fadeOut();
-                }
-            });
-        });
-
-        const donationCategories = {{ donation_categories|tojson|safe }};
-
-        function populateCategories() {
-            const selectElement = document.getElementById('category');
-
-            donationCategories.forEach(category => {
-                const option = document.createElement('option');
-                option.value = category.value;
-                option.text = category.label;
-                selectElement.appendChild(option);
-            });
-        }
-        populateCategories();
-    </script>
 {% endblock %}
+
+
 {% endblock %}
