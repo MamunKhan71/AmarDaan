@@ -216,7 +216,7 @@ def update_profile():
     return render_template('otp_page.html', user=current_user, otp=generated_otp)
 
 
-@views.route('/otp_verified', methods=['POST'])
+@views.route('/otp_verified', methods=['POST', "GET"])
 @login_required
 def otp_verified():
     user = current_user
@@ -265,7 +265,8 @@ def otp_verified():
             db.session.rollback()
             return render_template('error.html', message="An error occurred while saving data.")
     else:
-        return render_template("error.html", message="ERROR 404 - WRONG OTP")
+        return render_template("user_profile.html", user=current_user)
+    return render_template("user_profile.html", user=current_user)
 
 
 @views.route('/statistics')
