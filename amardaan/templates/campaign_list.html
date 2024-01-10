@@ -50,89 +50,56 @@
         {% endfor %}
     </div>
 </div>
-
-
-{#        <!-- Add more product cards as needed -->#}
-{##}
-{#    </div>#}
-{#    <div class="load-more">#}
-{#        <button id="loadMore">Show More</button>#}
-{#    </div>#}
-{#    <div class="totop">#}
-{#        <a href="#top">Back to Top</a>#}
-{#    </div>#}
-{#</div>#}
-
-
-
+    
 {% block script %}
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    $(function () {
-        $("div.product-card").slice(0, 4).show(); // Show the first 4 product cards
-        $("#loadMore").on('click', function (e) {
-            e.preventDefault();
-            $("div.product-card:hidden").slice(0, 4).slideDown(); // Show the next 4 hidden product cards
-            if ($("div.product-card:hidden").length == 0) {
-                $("#loadMore").fadeOut('slow'); // If there are no more hidden cards, hide the "Show More" button
-            }
-            $('html,body').animate({
-                scrollTop: $(this).offset().top
-            }, 1500);
-            if ($("div.product-card:last").css('display') == 'block') {
-                $('#loadMore').hide();
-                $('.totop').show();
-            }
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(function () {
+            $("div.product-card").slice(0, 4).show(); // Show the first 4 product cards
+            $("#loadMore").on('click', function (e) {
+                e.preventDefault();
+                $("div.product-card:hidden").slice(0, 4).slideDown(); // Show the next 4 hidden product cards
+                if ($("div.product-card:hidden").length == 0) {
+                    $("#loadMore").fadeOut('slow'); // If there are no more hidden cards, hide the "Show More" button
+                }
+                $('html,body').animate({
+                    scrollTop: $(this).offset().top
+                }, 1500);
+                if ($("div.product-card:last").css('display') == 'block') {
+                    $('#loadMore').hide();
+                    $('.totop').show();
+                }
+            });
+
+            $('a[href=#top]').click(function () {
+                $('body,html').animate({
+                    scrollTop: 0
+                }, 600);
+                return false;
+            });
+
+            $(window).scroll(function () {
+                if ($(this).scrollTop() > 50) {
+                    $('.totop a').fadeIn();
+                } else {
+                    $('.totop a').fadeOut();
+                }
+            });
         });
-    });
 
-    $('a[href=#top]').click(function () {
-        $('body,html').animate({
-            scrollTop: 0
-        }, 600);
-        return false;
-    });
+        const donationCategories = {{ donation_categories|tojson|safe }};
 
-    $(window).scroll(function () {
-        if ($(this).scrollTop() > 50) {
-            $('.totop a').fadeIn();
-        } else {
-            $('.totop a').fadeOut();
+        function populateCategories() {
+            const selectElement = document.getElementById('category');
+
+            donationCategories.forEach(category => {
+                const option = document.createElement('option');
+                option.value = category.value;
+                option.text = category.label;
+                selectElement.appendChild(option);
+            });
         }
-    });
-</script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    const donationCategories = [
-        { value: 'health', label: 'Health'},
-        { value: 'education', label: 'Education' },
-        { value: 'environment', label: 'Environment' },
-        { value: 'poverty', label: 'Poverty' },
-        { value: 'disaster', label: 'Disaster' },
-        { value: 'community', label: 'Community' },
-        { value: 'animals', label: 'Animals' },
-        { value: 'arts', label: 'Arts' },
-        { value: 'rights', label: 'Rights' },
-        { value: 'technology', label: 'Technology' },
-        { value: 'hunger', label: 'Hunger' },
-        { value: 'water', label: 'Water' },
-        { value: 'elderly', label: 'Elderly' },
-        { value: 'mental-health', label: 'Mental Health' },
-        { value: 'refugees', label: 'Refugees' }
-    ];
-
-    function populateCategories() {
-        const selectElement = document.getElementById('category');
-
-        donationCategories.forEach(category => {
-            const option = document.createElement('option');
-            option.value = category.value;
-            option.text = category.label;
-            selectElement.appendChild(option);
-        });
-    }
-
-    populateCategories();
-</script>
+        populateCategories();
+    </script>
 {% endblock %}
 {% endblock %}

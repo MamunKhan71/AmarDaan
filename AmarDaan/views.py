@@ -338,7 +338,9 @@ def faq():
 @views.route('/campaign_list')
 def campaign_list():
     campaign = Campaign.query.all()
-    return render_template('campaign_list.html', user=current_user, campaign=campaign)
+    donation_categories = Campaign_Category.query.all()
+    categories_data = [{'value': category.id, 'label': category.camp_name} for category in donation_categories]
+    return render_template('campaign_list.html', user=current_user, campaign=campaign,  donation_categories=categories_data)
 
 
 def get_session(name, amount):
